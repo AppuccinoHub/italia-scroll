@@ -66,9 +66,9 @@ window.ITALIA_SCROLL = {
       "images/places/ischia-2.jpg"
     ],
     "Capri": [
+      "images/places/capri-fara-alt.jpg",
       "images/places/capri-1.jpg",
-      "images/places/capri-2.jpg",
-      "images/places/capri-3.jpg"
+      "images/places/capri-2.jpg"
     ],
     "Tropea": [
       "images/places/tropea-1.jpg",

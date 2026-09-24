@@ -18,23 +18,23 @@
   };
 
   const FOCUS = {
-    Capri: '68% 42%',
-    Tropea: '38% 40%',
-    Polignano: '50% 35%',
-    Alberobello: '50% 40%',
-    Matera: '52% 38%',
-    Amalfi: '50% 45%',
-    Procida: '50% 48%',
-    Ischia: '55% 45%',
-    Bacoli: '50% 50%',
-    'Monte di Procida': '50% 48%',
+    Capri: '50% 45%',
+    Tropea: '55% 48%',
+    Polignano: '50% 40%',
+    Alberobello: '48% 42%',
+    Matera: '52% 42%',
+    Amalfi: '52% 48%',
+    Procida: '50% 45%',
+    Ischia: '48% 36%',
+    Bacoli: '50% 45%',
+    'Monte di Procida': '50% 42%',
     Bologna: '50% 40%',
-    Genova: '50% 45%',
-    Braies: '50% 55%',
+    Genova: '50% 42%',
+    Braies: '50% 52%',
     Palermo: '50% 40%',
-    Ortigia: '50% 45%',
-    Torino: '50% 35%',
-    Sperlonga: '50% 45%',
+    Ortigia: '50% 42%',
+    Torino: '50% 32%',
+    Sperlonga: '50% 42%',
     Chioggia: '50% 45%',
     Ravenna: '50% 40%',
     Lecce: '50% 40%',
@@ -295,6 +295,7 @@
     const feed = $('feed');
     feed.innerHTML = '';
     state.cards.forEach((card, i) => feed.appendChild(buildCardEl(card, i)));
+    preloadNearbyImages(0);
   }
 
   function pickImage(card, i) {
@@ -323,11 +324,12 @@
     if (imgUrl) {
       const img = document.createElement('img');
       img.className = 'card-photo';
-      img.alt = '';
+      img.alt = card.region || '';
       img.decoding = 'async';
-      img.loading = i < 2 ? 'eager' : 'lazy';
+      img.loading = i < 3 ? 'eager' : 'lazy';
+      if (i < 2) img.fetchPriority = 'high';
       img.src = imgUrl;
-      img.style.objectPosition = FOCUS[card.region] || '50% 45%';
+      img.style.objectPosition = FOCUS[card.region] || '50% 42%';
       img.addEventListener('load', () => visual.classList.add('has-photo'));
       img.addEventListener('error', () => {
         img.hidden = true;
@@ -399,10 +401,14 @@
     fb.setAttribute('role', 'status');
     fb.setAttribute('aria-live', 'polite');
 
+    const dock = document.createElement('div');
+    dock.className = 'card-dock';
+    dock.appendChild(body);
+    dock.appendChild(row);
+    dock.appendChild(fb);
+
     art.appendChild(visual);
-    art.appendChild(body);
-    art.appendChild(row);
-    art.appendChild(fb);
+    art.appendChild(dock);
 
     if (state.answeredOk[card.id]) {
       lockCardCorrect(art, card);
@@ -496,8 +502,9 @@
     prove.setAttribute('role', 'group');
     prove.setAttribute('aria-label', 'Prove it');
     const fb = art.querySelector('.feedback');
-    if (fb && fb.parentNode === art) art.insertBefore(prove, fb.nextSibling);
-    else art.appendChild(prove);
+    const dock = art.querySelector('.card-dock') || art;
+    if (fb && fb.parentNode) fb.parentNode.insertBefore(prove, fb.nextSibling);
+    else dock.appendChild(prove);
     return prove;
   }
 
@@ -713,6 +720,20 @@
     next.disabled = nextIdx >= state.cards.length || !canVisit(nextIdx);
   }
 
+
+  function preloadNearbyImages(centerIdx) {
+    const feed = $('feed');
+    if (!feed) return;
+    [centerIdx + 1, centerIdx + 2].forEach((j) => {
+      const el = feed.querySelector('.feed-card[data-index="' + j + '"] .card-photo');
+      if (!el || !el.src) return;
+      if (el.complete) return;
+      const warm = new Image();
+      warm.decoding = 'async';
+      warm.src = el.src;
+    });
+  }
+
   function scrollToIndex(i, smooth) {
     if (!canVisit(i)) i = maxReachableIndex();
     const feed = $('feed');
@@ -725,6 +746,7 @@
     state.index = i;
     updateSoftScore();
     updateNavLock();
+    preloadNearbyImages(i);
   }
 
   function goTo(i) {
@@ -755,6 +777,7 @@
       state.index = best;
       updateSoftScore();
       updateNavLock();
+      preloadNearbyImages(best);
     }
   }
 
