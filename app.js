@@ -296,6 +296,7 @@
     feed.innerHTML = '';
     state.cards.forEach((card, i) => feed.appendChild(buildCardEl(card, i)));
     preloadNearbyImages(0);
+    syncVideoMute(feed);
   }
 
   function pickImage(card, i) {
@@ -304,6 +305,38 @@
     if (!placeImg) return '';
     if (Array.isArray(placeImg)) return placeImg[i % placeImg.length] || placeImg[0] || '';
     return placeImg;
+  }
+
+
+  function addPhoto(visual, imgUrl, card, i) {
+    const img = document.createElement('img');
+    img.className = 'card-photo';
+    img.alt = card.region || '';
+    img.decoding = 'async';
+    img.loading = i < 3 ? 'eager' : 'lazy';
+    if (i < 2) img.fetchPriority = 'high';
+    img.src = imgUrl;
+    img.style.objectPosition = FOCUS[card.region] || '50% 42%';
+    img.addEventListener('load', () => visual.classList.add('has-photo'));
+    img.addEventListener('error', () => {
+      img.hidden = true;
+      visual.classList.remove('has-photo');
+    });
+    visual.insertBefore(img, visual.querySelector('.card-shade'));
+  }
+
+  function syncVideoMute(root) {
+    const muted = state.muted;
+    (root || document).querySelectorAll('video.card-video').forEach((v) => {
+      v.muted = true; // class autoplay always muted; sound toggle does not unmute classroom videos
+      if (!muted) {
+        // keep muted for school Chromebooks — sound toggle only affects beeps
+      }
+      try {
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      } catch (_) {}
+    });
   }
 
   function buildCardEl(card, i) {
@@ -321,21 +354,43 @@
       '</div><div class="card-shade"></div>';
 
     const imgUrl = pickImage(card, i);
-    if (imgUrl) {
-      const img = document.createElement('img');
-      img.className = 'card-photo';
-      img.alt = card.region || '';
-      img.decoding = 'async';
-      img.loading = i < 3 ? 'eager' : 'lazy';
-      if (i < 2) img.fetchPriority = 'high';
-      img.src = imgUrl;
-      img.style.objectPosition = FOCUS[card.region] || '50% 42%';
-      img.addEventListener('load', () => visual.classList.add('has-photo'));
-      img.addEventListener('error', () => {
-        img.hidden = true;
-        visual.classList.remove('has-photo');
+    const vidUrl = card.video || '';
+    if (vidUrl) {
+      const vid = document.createElement('video');
+      vid.className = 'card-video';
+      vid.src = vidUrl;
+      vid.muted = true;
+      vid.defaultMuted = true;
+      vid.playsInline = true;
+      vid.setAttribute('playsinline', '');
+      vid.setAttribute('webkit-playsinline', '');
+      vid.loop = true;
+      vid.autoplay = true;
+      vid.preload = i < 2 ? 'auto' : 'metadata';
+      vid.setAttribute('aria-label', (card.region || 'Italy') + ' clip');
+      vid.addEventListener('loadeddata', () => visual.classList.add('has-photo', 'has-video'));
+      vid.addEventListener('error', () => {
+        vid.remove();
+        visual.classList.remove('has-video');
+        if (imgUrl) addPhoto(visual, imgUrl, card, i);
       });
-      visual.insertBefore(img, visual.querySelector('.card-shade'));
+      visual.insertBefore(vid, visual.querySelector('.card-shade'));
+      // poster-ish fallback photo under video if provided
+      if (imgUrl) {
+        const img = document.createElement('img');
+        img.className = 'card-photo card-photo--under';
+        img.alt = '';
+        img.decoding = 'async';
+        img.src = imgUrl;
+        img.style.objectPosition = FOCUS[card.region] || '50% 42%';
+        visual.insertBefore(img, vid);
+      }
+      try {
+        const p = vid.play();
+        if (p && p.catch) p.catch(() => {});
+      } catch (_) {}
+    } else if (imgUrl) {
+      addPhoto(visual, imgUrl, card, i);
     }
 
     const body = document.createElement('div');
@@ -343,14 +398,20 @@
     const tag = card.tag
       ? '<span class="region-sub">' + escapeHtml(card.tag) + '</span>'
       : '';
+    const statement = card.prompt || card.statement || '';
     body.innerHTML =
       '<div class="region-row"><span class="region-tag">' +
       escapeHtml(card.region) +
       '</span>' +
       tag +
-      '</div><p class="culture">' +
-      escapeHtml(card.culture || '') +
-      '</p>';
+      '</div>' +
+      (card.culture
+        ? '<p class="culture">' + escapeHtml(card.culture) + '</p>'
+        : '') +
+      '<p class="statement">' +
+      escapeHtml(statement) +
+      '</p>' +
+      '<p class="pick-label">Pick the Italian that says this</p>';
 
     const tools = document.createElement('div');
     tools.className = 'card-tools';
@@ -384,7 +445,7 @@
     const row = document.createElement('div');
     row.className = 'caption-row';
     row.setAttribute('role', 'group');
-    row.setAttribute('aria-label', 'Choose caption');
+    row.setAttribute('aria-label', 'Pick the Italian that matches the English');
     card.captions.forEach((text, ci) => {
       const b = document.createElement('button');
       b.type = 'button';
@@ -421,6 +482,7 @@
       fb.hidden = false;
       fb.className = 'feedback ok';
       fb.textContent = '✓';
+      showLockIn(art, card);
       showProveIt(art, card);
     }
 
@@ -451,7 +513,7 @@
         '<p class="panel-label">Help</p><p>' +
         escapeHtml(
           card.help ||
-            'Match the moment: happening now, or a past scene / used-to?'
+            'Read the English line. Pick the Italian that says the same thing.'
         ) +
         '</p>';
     } else {
@@ -460,7 +522,7 @@
         ? (card.explain || '').trim() ||
           'This caption matches the moment on the card.'
         : card.softExplain ||
-          'One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.';
+          'Read the English line first. One Italian matches it; the other is the same person at the wrong time.';
       panel.innerHTML =
         '<p class="panel-label">Explanation</p><p>' + escapeHtml(text) + '</p>';
     }
@@ -506,6 +568,35 @@
     if (fb && fb.parentNode) fb.parentNode.insertBefore(prove, fb.nextSibling);
     else dock.appendChild(prove);
     return prove;
+  }
+
+
+  function showLockIn(art, card) {
+    const dock = art.querySelector('.card-dock') || art;
+    let el = art.querySelector('.lock-in');
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'lock-in';
+      el.setAttribute('role', 'status');
+      const fb = art.querySelector('.feedback');
+      if (fb && fb.parentNode) fb.parentNode.insertBefore(el, fb.nextSibling);
+      else dock.appendChild(el);
+    }
+    const li = card.lockIn;
+    if (!li || !(li.it || li.en)) {
+      el.hidden = true;
+      el.innerHTML = '';
+      return;
+    }
+    el.hidden = false;
+    el.innerHTML =
+      '<p class="lock-label">You locked in</p>' +
+      '<p class="lock-it">' +
+      escapeHtml(li.it || '') +
+      '</p>' +
+      '<p class="lock-en">' +
+      escapeHtml(li.en || '') +
+      '</p>';
   }
 
   function showProveIt(art, card) {
@@ -610,6 +701,7 @@
       fb.hidden = false;
       fb.className = 'feedback ok';
       fb.textContent = '✓';
+      showLockIn(art, card);
       updateSoftScore();
       refreshExplainIfOpen(card, art);
       showProveIt(art, card);
@@ -753,6 +845,7 @@
     if (i < 0 || i >= state.cards.length) return;
     if (!canVisit(i)) return;
     scrollToIndex(i, true);
+    syncVideoMute($('feed'));
   }
 
   function syncIndexFromScroll() {

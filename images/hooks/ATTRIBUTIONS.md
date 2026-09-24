@@ -2,7 +2,5 @@
 
 School-safe attention hooks for Italia Scroll.
 
-- Ferrari photos: Wikimedia Commons / Unsplash (CC / Unsplash License) — red sports cars, no people.
-- Teen portraits: Unsplash License — fully clothed, tasteful outdoor/portrait looks for classroom Chromebooks.
-
-Not for commercial redistribution beyond this educational app.
+- Ferrari photos: Wikimedia Commons / Unsplash (CC / Unsplash License) — red sports cars.
+- Teen action stills (`teen-*.jpg`): frames from Mixkit classroom video loops (see `videos/ATTRIBUTIONS.md`) — gelato, photos, dance, beach, scooter. Fully clothed, joyful energy.

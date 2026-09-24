@@ -2,8 +2,9 @@
 
 **Laptop-first** trip through Italy (two-pane on Chromebooks; vertical snap on phones) for Sue Scotto’s Italian 3 (AppuccinoHub).
 
-Each card = a place moment + culture bite + **choose the caption that fits**.
-Students learn a now-vs-past-scene contrast by feel — no grammar labels in the UI.
+Each card = **English statement** → pick the Italian that says it (photo/video is vibe).
+Sneak: now-vs-past feel + high-frequency chunks (`Ti va di…`, `il golfo`, food, places). No tense-name labels.
+After a correct pick: tiny “you locked in” gloss. Some cards use short muted Italy loops.
 
 **Live:** https://appuccinohub.github.io/italia-scroll/
 
@@ -27,5 +28,5 @@ Quick Play ≈ 8 cards. Person scope: io / tu / lui-lei / noi.
 
 ## Tech
 
-Vanilla HTML/CSS/JS. Cache-bust: `?v=11`. Themes: Sky lemon → Fall → Dark.
+Vanilla HTML/CSS/JS. Cache-bust: `?v=12`. Themes: Sky lemon → Fall → Dark.
 No modal sheets / Chiudi overlays.
