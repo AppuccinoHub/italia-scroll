@@ -755,3 +755,127 @@ html[data-theme="dark"] .card-shade {
 .play-meta { padding: 4px 12px; opacity: 0.85; }
 .soft-score { font-size: 11px; }
 .level-badge { font-size: 11px; }
+
+/* —— Name gate —— */
+.name-card {
+  margin: auto 16px;
+  padding: 24px 18px;
+  border-radius: 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.name-emoji { font-size: 40px; margin: 0 0 8px; }
+.name-card h2 { margin: 0 0 8px; font-size: 20px; }
+.name-hint {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.name-input {
+  width: 100%;
+  padding: 14px 14px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: var(--bg-soft);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 650;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.name-input:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-color: var(--accent);
+}
+.name-input.shake { animation: shake 0.35s ease; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+.home-greet {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.name-change {
+  margin-top: 8px;
+  width: 100%;
+  font-size: 12px;
+  color: var(--muted);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* —— Help + Explanation (inline, no modal) —— */
+.card-tools {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 6px;
+  position: relative;
+  z-index: 3;
+}
+.tool-btn {
+  flex: 1;
+  min-height: 40px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 750;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+.tool-btn.on {
+  background: rgba(255,255,255,0.92);
+  color: var(--ink);
+  text-shadow: none;
+  border-color: #fff;
+}
+.card-panel {
+  margin: 0 0 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.94);
+  color: var(--ink);
+  text-shadow: none;
+  font-size: 13px;
+  line-height: 1.4;
+  position: relative;
+  z-index: 3;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.card-panel[hidden] { display: none !important; }
+.panel-label {
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.card-panel p { margin: 0; }
+.hook-card .region-tag {
+  background: rgba(255, 80, 60, 0.45);
+}
+
+/* Landmark-safe cover crops (Capri Faraglioni etc.) */
+.card-photo {
+  object-fit: cover;
+  object-position: center 45%;
+}

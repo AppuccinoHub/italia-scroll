@@ -2,60 +2,30 @@
 
 TikTok-style **vertical scroll through Italy** for Sue Scotto’s Italian 3 (AppuccinoHub).
 
-Each card = a **region moment** + culture/food bite + **choose the correct Italian caption** (real conjugated sentences — never buttons labeled Presente / Imperfetto / Passato prossimo).
+Each card = a place moment + culture bite + **choose the caption that fits**.
+Students learn a now-vs-past-scene contrast by feel — no grammar labels in the UI.
 
 **Live:** https://appuccinohub.github.io/italia-scroll/
 
-## Classroom pacing
+**Teacher roster (same device):** https://appuccinohub.github.io/italia-scroll/teacher.html
 
-| Mode | Length | Notes |
-|------|--------|--------|
-| Levels 1–4 | ≈ 8–10 min each (~22 cards + prove-it) | One level per class day works best |
-| Quick Play | ≈ 2–3 min (8 cards + prove-it) | Warm-up or exit ticket |
+## Classroom flow
 
-Each correct caption unlocks a short **prove-it** meaning check before the next card. High-frequency chunks recycle across a level (io/tu/lui-lei/noi).
+1. Student types first name (saved locally).
+2. Trip stretches unlock quietly after enough solid clears — no counter shown.
+3. Every card has **Help** (before/while choosing) and **Explanation** (soft before answer; full why after).
+4. Correct caption → prove-it meaning check → next card.
+5. End screen shows first-try score under their name; roster stored in `localStorage` for `teacher.html`.
 
-## Unlock path
+## Trip stretches
 
-1. **Ora o abitudine?** — Presente vs Imperfetto  
-2. **Ora o fatto?** — Presente vs Passato prossimo  
-3. **Sfondo o momento?** — Passato prossimo vs Imperfetto  
-4. **Mix totale** — all three (3 caption choices)
+1. **Costa Campania** — Bacoli → Monte → Ischia → Capri…
+2. **Sud e isole** — Tropea → Polignano → Matera…
+3. **Centro e Nord** — Bologna → Genova → Braies…
 
-Complete a level to unlock the next (IEP-friendly). Soft first-try score. Replay unlocked levels. Progress in `localStorage`.
-
-On a miss: short high-school English explanation, then try again. After a correct caption: one-tap **prove-it** (match the English meaning) — wrong → short English + retry; stay until right. Help for everyone (English gloss default-on).
-
-## Regions (Campania coast first → unique Italy)
-
-**Opener (Sue’s area):** Bacoli → **Monte di Procida** (hometown of Professoressa Scotto — light teacher cameo) → Ischia → Capri.
-
-Then: Tropea, Polignano, Matera, Alberobello, Bologna, Lecce, Genova, Braies, Palermo, Ortigia, Torino, and more.
-
-**Not** a Rome/Venice tourist brochure lead.
+Quick Play ≈ 8 cards. Person scope: io / tu / lui-lei / noi.
 
 ## Tech
 
-Vanilla HTML/CSS/JS. No build step.
-
-```
-index.html  styles.css  app.js  data.js  manifest.webmanifest  og.png
-```
-
-Cache-bust: `?v=7` on assets. Themes (header tap cycles, persisted): **Sky lemon** (default light) → **Fall** (terracotta / muted gold) → **Dark**. Sound muted by default. Mute + theme always in the header — no modal sheets.
-
-Chromebook: centered ~400px feed, trackpad scroll, ↑↓ / click next. Phone: full-viewport snap scroll.
-
-**No modal bottom sheets / Chiudi overlays** (Safari trap learned on Film Set).
-
-## Local
-
-Open `index.html` or serve the folder:
-
-```bash
-python3 -m http.server 8080 --directory .
-```
-
-## Identity
-
-AppuccinoHub classroom app for Sue Scotto. Do not confuse with italian-dms / film-set-demo / time-glitch-demo.
+Vanilla HTML/CSS/JS. Cache-bust: `?v=9`. Themes: Sky lemon → Fall → Dark.
+No modal sheets / Chiudi overlays.

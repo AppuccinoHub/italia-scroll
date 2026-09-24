@@ -1,57 +1,45 @@
 /* Italia Scroll — content pack
-   Pacing: ~8–10 min/level (~22 cards + prove-it). Quick Play ≈ 8 cards / 2–3 min.
-   Region hop: Bacoli → Monte di Procida (Prof.ssa Scotto) → Ischia → Capri,
-   then lesser-known gems. Avoid Rome/Venice leads.
-   Captions = real conjugated Italian — never tense-name buttons.
-   Person scope: ONLY io, tu, lui/lei, noi (no voi, no loro).
-   Distractors = same person/number, different tense.
-   Hyper-repetition: same high-frequency chunks recycle across a level.
-   After each correct caption → prove-it (meaning match) before next card. */
+   Trip through Italy. Captions = real Italian. Sneak teaching: now vs past-scene feel.
+   Only presente vs imperfetto under the hood (never labeled).
+   Person scope: io, tu, lui/lei, noi.
+   Silent unlock every 15 clears. Prove-it after correct caption.
+   Hooks: Ferrari + school-safe stylish teens every ~5–8 cards. */
 window.ITALIA_SCROLL = {
-  "version": 7,
+  "version": 9,
+  "unlockEvery": 15,
   "levels": [
     {
       "id": 1,
-      "title": "Ora o abitudine?",
-      "blurb": "Presente · Imperfetto",
-      "minutes": "≈ 8–10 min",
-      "contrast": "presente-imperfetto"
+      "title": "Costa Campania",
+      "blurb": "Bacoli → Monte → Ischia → Capri…",
+      "minutes": "≈ 8–10 min"
     },
     {
       "id": 2,
-      "title": "Ora o fatto?",
-      "blurb": "Presente · Passato",
-      "minutes": "≈ 8–10 min",
-      "contrast": "presente-passato"
+      "title": "Sud e isole",
+      "blurb": "Tropea → Polignano → Matera…",
+      "minutes": "≈ 8–10 min"
     },
     {
       "id": 3,
-      "title": "Sfondo o momento?",
-      "blurb": "Passato · Imperfetto",
-      "minutes": "≈ 8–10 min",
-      "contrast": "passato-imperfetto"
-    },
-    {
-      "id": 4,
-      "title": "Mix totale",
-      "blurb": "Mix",
-      "minutes": "≈ 8–10 min",
-      "contrast": "mixed"
+      "title": "Centro e Nord",
+      "blurb": "Bologna → Genova → Braies…",
+      "minutes": "≈ 8–10 min"
     }
   ],
   "quickPlay": {
     "title": "Quick Play",
-    "blurb": "Eight cards · about two–three minutes. Mixed tenses — warm-up or exit ticket.",
+    "blurb": "Eight cards · about two–three minutes.",
     "minutes": "≈ 2–3 min",
     "cardIds": [
-      "l1-2",
-      "l2-1",
-      "l3-1",
-      "l4-2",
-      "l2-5",
-      "l1-16",
-      "l3-4",
-      "l4-5"
+      "c1-01",
+      "c1-05",
+      "c2-01",
+      "c2-06",
+      "c3-01",
+      "c1-09",
+      "c2-09",
+      "c3-12"
     ]
   },
   "placeImages": {
@@ -73,28 +61,83 @@ window.ITALIA_SCROLL = {
       "images/hometown/scogli-golfo.jpg",
       "images/hometown/molo-tramonto.jpg"
     ],
-    "Ischia": ["images/places/ischia-1.jpg", "images/places/ischia-2.jpg"],
-    "Capri": ["images/places/capri-1.jpg", "images/places/capri-2.jpg", "images/places/capri-3.jpg"],
-    "Tropea": ["images/places/tropea-1.jpg", "images/places/tropea-2.jpg"],
-    "Polignano": ["images/places/polignano-1.jpg", "images/places/polignano-2.jpg"],
-    "Matera": ["images/places/matera-1.jpg", "images/places/matera-2.jpg"],
-    "Alberobello": ["images/places/alberobello-1.jpg", "images/places/alberobello-2.jpg"],
-    "Bologna": ["images/places/bologna-1.jpg", "images/places/bologna-2.jpg"],
-    "Lecce": ["images/places/lecce-1.jpg", "images/places/lecce-2.jpg"],
-    "Genova": ["images/places/genova-1.jpg", "images/places/genova-2.jpg"],
-    "Braies": ["images/places/braies-1.jpg", "images/places/braies-2.jpg"],
-    "Palermo": ["images/places/palermo-1.jpg", "images/places/palermo-2.jpg"],
-    "Ortigia": ["images/places/ortigia-1.jpg", "images/places/ortigia-2.jpg"],
-    "Torino": ["images/places/torino-1.jpg", "images/places/torino-2.jpg"],
-    "Amalfi": ["images/places/amalfi-1.jpg", "images/places/amalfi-2.jpg"],
-    "Procida": ["images/places/procida-1.jpg", "images/places/procida-2.jpg"],
-    "Sperlonga": ["images/places/sperlonga-1.jpg", "images/places/sperlonga-2.jpg"],
-    "Ravenna": ["images/places/ravenna-1.jpg", "images/places/ravenna-2.jpg"],
-    "Chioggia": ["images/places/chioggia-1.jpg", "images/places/chioggia-2.jpg"]
+    "Ischia": [
+      "images/places/ischia-1.jpg",
+      "images/places/ischia-2.jpg"
+    ],
+    "Capri": [
+      "images/places/capri-1.jpg",
+      "images/places/capri-2.jpg",
+      "images/places/capri-3.jpg"
+    ],
+    "Tropea": [
+      "images/places/tropea-1.jpg",
+      "images/places/tropea-2.jpg"
+    ],
+    "Polignano": [
+      "images/places/polignano-1.jpg",
+      "images/places/polignano-2.jpg"
+    ],
+    "Matera": [
+      "images/places/matera-1.jpg",
+      "images/places/matera-2.jpg"
+    ],
+    "Alberobello": [
+      "images/places/alberobello-1.jpg",
+      "images/places/alberobello-2.jpg"
+    ],
+    "Bologna": [
+      "images/places/bologna-1.jpg",
+      "images/places/bologna-2.jpg"
+    ],
+    "Lecce": [
+      "images/places/lecce-1.jpg",
+      "images/places/lecce-2.jpg"
+    ],
+    "Genova": [
+      "images/places/genova-1.jpg",
+      "images/places/genova-2.jpg"
+    ],
+    "Braies": [
+      "images/places/braies-1.jpg",
+      "images/places/braies-2.jpg"
+    ],
+    "Palermo": [
+      "images/places/palermo-1.jpg",
+      "images/places/palermo-2.jpg"
+    ],
+    "Ortigia": [
+      "images/places/ortigia-1.jpg",
+      "images/places/ortigia-2.jpg"
+    ],
+    "Torino": [
+      "images/places/torino-1.jpg",
+      "images/places/torino-2.jpg"
+    ],
+    "Amalfi": [
+      "images/places/amalfi-1.jpg",
+      "images/places/amalfi-2.jpg"
+    ],
+    "Procida": [
+      "images/places/procida-1.jpg",
+      "images/places/procida-2.jpg"
+    ],
+    "Sperlonga": [
+      "images/places/sperlonga-1.jpg",
+      "images/places/sperlonga-2.jpg"
+    ],
+    "Ravenna": [
+      "images/places/ravenna-1.jpg",
+      "images/places/ravenna-2.jpg"
+    ],
+    "Chioggia": [
+      "images/places/chioggia-1.jpg",
+      "images/places/chioggia-2.jpg"
+    ]
   },
   "cards": [
     {
-      "id": "l1-1",
+      "id": "c1-01",
       "level": 1,
       "region": "Bacoli",
       "image": "images/hometown/molo-tramonto.jpg",
@@ -109,8 +152,11 @@ window.ITALIA_SCROLL = {
       "correct": 0,
       "why": [
         "",
-        "Imperfect paints a past scene. You’re there tonight — present."
+        "The past-scene one paints a past scene. You’re there tonight — The now one."
       ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
           "We’re there tonight",
@@ -118,10 +164,11 @@ window.ITALIA_SCROLL = {
         ],
         "correct": 0,
         "miss": "Live now — not a memory."
-      }
+      },
+      "hook": false
     },
     {
-      "id": "l1-2",
+      "id": "c1-02",
       "level": 1,
       "region": "Monte di Procida",
       "image": "images/hometown/capo-miseno.jpg",
@@ -136,8 +183,11 @@ window.ITALIA_SCROLL = {
       "correct": 0,
       "why": [
         "",
-        "Imperfect is a past scene. You’re standing there now — present."
+        "The past-scene one is a past scene. You’re standing there now — The now one."
       ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
           "We’re at her town overlook now",
@@ -145,10 +195,11 @@ window.ITALIA_SCROLL = {
         ],
         "correct": 0,
         "miss": "You’re there live."
-      }
+      },
+      "hook": false
     },
     {
-      "id": "l1-3",
+      "id": "c1-03",
       "level": 1,
       "region": "Ischia",
       "culture": "Island summers.",
@@ -162,8 +213,11 @@ window.ITALIA_SCROLL = {
       "correct": 0,
       "why": [
         "",
-        "Present is today’s habit. Prompt wants how summers used to go — imperfect."
+        "The now one is today’s habit. Prompt wants how summers used to go — The past-scene one."
       ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one paints a past scene or “used to” habit — not a live now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
           "We used to go every summer",
@@ -171,10 +225,11 @@ window.ITALIA_SCROLL = {
         ],
         "correct": 0,
         "miss": "“Used to” = past habit."
-      }
+      },
+      "hook": false
     },
     {
-      "id": "l1-4",
+      "id": "c1-04",
       "level": 1,
       "region": "Capri",
       "culture": "Faraglioni from the boat.",
@@ -188,8 +243,11 @@ window.ITALIA_SCROLL = {
       "correct": 0,
       "why": [
         "",
-        "Imperfect = past habit. You’re on the boat now — present."
+        "The past-scene one = past habit. You’re on the boat now — The now one."
       ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
           "We see them live from the boat",
@@ -197,166 +255,42 @@ window.ITALIA_SCROLL = {
         ],
         "correct": 0,
         "miss": "Live view = present."
-      }
+      },
+      "hook": false
     },
     {
-      "id": "l1-5",
+      "id": "c1-05",
       "level": 1,
-      "region": "Tropea",
-      "culture": "Turquoise + cipolla rossa.",
-      "prompt": "Posting LIVE from the sand.",
-      "gloss": "right now",
-      "person": "noi",
-      "captions": [
-        "Siamo a Tropea e il mare è pazzesco oggi 💙",
-        "Eravamo a Tropea e il mare era pazzesco"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Imperfect paints a past scene. You’re there today — present."
-      ],
-      "prove": {
-        "choices": [
-          "We’re on the sand today",
-          "We used to be on the sand"
-        ],
-        "correct": 0,
-        "miss": "Today = present."
-      }
-    },
-    {
-      "id": "l1-6",
-      "level": 1,
-      "region": "Polignano",
-      "culture": "Cliff + gelato evenings.",
-      "prompt": "How August evenings USED TO feel here.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Ogni sera ad agosto ci tuffavamo e poi prendevamo un gelato",
-        "Ogni sera ad agosto ci tuffiamo e poi prendiamo un gelato"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is tonight. Prompt wants how August used to feel — imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to dive then get gelato",
-          "We dive then get gelato tonight"
-        ],
-        "correct": 0,
-        "miss": "Old August loop."
-      }
-    },
-    {
-      "id": "l1-7",
-      "level": 1,
-      "region": "Matera",
-      "culture": "Sassi at dusk.",
-      "prompt": "How evenings USED TO feel when you first visited.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "A Matera la sera camminiamo in silenzio tra i Sassi",
-        "A Matera la sera camminavamo in silenzio tra i Sassi"
-      ],
-      "correct": 1,
-      "why": [
-        "Present is a general now. Prompt wants how it used to feel — imperfect.",
-        ""
-      ],
-      "prove": {
-        "choices": [
-          "We walk there now",
-          "We used to walk there in the evenings"
-        ],
-        "correct": 1,
-        "miss": "“Used to” = imperfect."
-      }
-    },
-    {
-      "id": "l1-8",
-      "level": 1,
-      "region": "Alberobello",
-      "culture": "Trulli + gelato.",
-      "prompt": "Wandering the trulli streets RIGHT NOW.",
-      "gloss": "right now",
-      "person": "tu",
-      "captions": [
-        "Giri tra i trulli e mangi un gelato, classico",
-        "Giravi tra i trulli e mangiavi un gelato"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Imperfect is a past wander. You’re there now — present."
-      ],
-      "prove": {
-        "choices": [
-          "You’re wandering + gelato now",
-          "You used to wander + gelato"
-        ],
-        "correct": 0,
-        "miss": "Right now = present."
-      }
-    },
-    {
-      "id": "l1-9",
-      "level": 1,
-      "region": "Bologna",
-      "culture": "Portici after school.",
-      "prompt": "How afternoons USED TO go near Via Zamboni.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Dopo scuola andavamo sempre sotto i portici a mangiare qualcosa",
-        "Dopo scuola andiamo sotto i portici a mangiare qualcosa"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is today. Old after-school loop = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to go under the arches",
-          "We go under the arches today"
-        ],
-        "correct": 0,
-        "miss": "Old loop = imperfect."
-      }
-    },
-    {
-      "id": "l1-10",
-      "level": 1,
-      "region": "Amalfi",
-      "culture": "Lemon coast selfie.",
-      "prompt": "You’re THERE now — live story.",
+      "region": "Capri",
+      "hook": true,
+      "image": "images/hooks/ferrari-1.jpg",
+      "culture": "Rosso corsa on the coast.",
+      "prompt": "You spot a bright red Ferrari RIGHT NOW.",
       "gloss": "right now",
       "person": "io",
       "captions": [
-        "Sono ad Amalfi e mangio un gelato al limone",
-        "Ero ad Amalfi e mangiavo un gelato al limone"
+        "Guardo quella Ferrari rossa — pazzesca!",
+        "Guardavo sempre quella Ferrari rossa"
       ],
       "correct": 0,
       "why": [
         "",
-        "Imperfect = past scene. You’re posting live — present."
+        "Past-scene “used to watch.” You’re spotting it live now."
       ],
+      "help": "Are you seeing it live right now — or remembering how it used to look?",
+      "explain": "This matches a live “I’m looking at it now” moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "I am in Amalfi eating gelato",
-          "I used to be in Amalfi eating gelato"
+          "I’m looking at the red Ferrari now",
+          "I used to look at that Ferrari"
         ],
         "correct": 0,
-        "miss": "Live selfie = present."
+        "miss": "Live look = now."
       }
     },
     {
-      "id": "l1-11",
+      "id": "c1-06",
       "level": 1,
       "region": "Procida",
       "culture": "Colorful harbor.",
@@ -370,8 +304,11 @@ window.ITALIA_SCROLL = {
       "correct": 0,
       "why": [
         "",
-        "Imperfect = he used to be there. He’s there now — present."
+        "The past-scene one = he used to be there. He’s there now — The now one."
       ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
           "Marco is there looking at the harbor",
@@ -379,166 +316,41 @@ window.ITALIA_SCROLL = {
         ],
         "correct": 0,
         "miss": "He’s there now."
-      }
+      },
+      "hook": false
     },
     {
-      "id": "l1-12",
+      "id": "c1-07",
       "level": 1,
-      "region": "Lecce",
-      "culture": "Barocco stroll.",
-      "prompt": "How evenings USED TO feel on the old streets.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "La sera vedevamo sempre le luci sui palazzi barocchi",
-        "La sera vediamo sempre le luci sui palazzi barocchi"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is tonight. Prompt wants old evenings — imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to see the lights every evening",
-          "We see the lights every evening now"
-        ],
-        "correct": 0,
-        "miss": "Used-to evenings."
-      }
-    },
-    {
-      "id": "l1-13",
-      "level": 1,
-      "region": "Genova",
-      "culture": "Focaccia counter.",
-      "prompt": "Ordering focaccia RIGHT NOW (tu).",
-      "gloss": "right now",
-      "person": "tu",
-      "captions": [
-        "Prendi una focaccia e corri al porto",
-        "Prendevi una focaccia e correvi al porto"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Imperfect = old habit. You’re ordering now — present."
-      ],
-      "prove": {
-        "choices": [
-          "You’re grabbing focaccia now",
-          "You used to grab focaccia"
-        ],
-        "correct": 0,
-        "miss": "Live order."
-      }
-    },
-    {
-      "id": "l1-14",
-      "level": 1,
-      "region": "Braies",
-      "culture": "Mountain lake mornings.",
-      "prompt": "How mornings USED TO go at the lake.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Al lago andavamo presto e restavamo in silenzio",
-        "Al lago andiamo presto e restiamo in silenzio"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is today. Old quiet mornings = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to go early and stay quiet",
-          "We go early and stay quiet today"
-        ],
-        "correct": 0,
-        "miss": "Old mornings."
-      }
-    },
-    {
-      "id": "l1-15",
-      "level": 1,
-      "region": "Palermo",
-      "culture": "Street food now.",
-      "prompt": "Eating panelle RIGHT NOW.",
+      "region": "Amalfi",
+      "culture": "Lemon coast selfie.",
+      "prompt": "You’re THERE now — live story.",
       "gloss": "right now",
       "person": "io",
       "captions": [
-        "Mangio panelle a Ballarò, aspetta",
-        "Mangiavo panelle a Ballarò, aspetta"
+        "Sono ad Amalfi e mangio un gelato al limone",
+        "Ero ad Amalfi e mangiavo un gelato al limone"
       ],
       "correct": 0,
       "why": [
         "",
-        "Imperfect = you used to eat. You’re mid-bite — present."
+        "The past-scene one = past scene. You’re posting live — The now one."
       ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "I’m eating panelle now",
-          "I used to eat panelle"
+          "I am in Amalfi eating gelato",
+          "I used to be in Amalfi eating gelato"
         ],
         "correct": 0,
-        "miss": "Mid-bite = present."
-      }
+        "miss": "Live selfie = present."
+      },
+      "hook": false
     },
     {
-      "id": "l1-16",
-      "level": 1,
-      "region": "Ortigia",
-      "culture": "Gelato after cena.",
-      "prompt": "Sofia asks you LIVE for gelato (lei).",
-      "gloss": "right now",
-      "person": "lei",
-      "captions": [
-        "Sofia chiede: “Ti va di prendere un gelato?”",
-        "Sofia chiedeva: “Ti andava di prendere un gelato?”"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Imperfect = she used to ask. She’s asking now — present."
-      ],
-      "prove": {
-        "choices": [
-          "She’s inviting you to gelato now",
-          "She used to invite you to gelato"
-        ],
-        "correct": 0,
-        "miss": "Live invite."
-      }
-    },
-    {
-      "id": "l1-17",
-      "level": 1,
-      "region": "Torino",
-      "culture": "Gianduiotto walk.",
-      "prompt": "How evenings USED TO feel downtown.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "La sera eravamo sempre in centro con un gianduiotto",
-        "La sera siamo sempre in centro con un gianduiotto"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is tonight. Old downtown loop = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to hang downtown with chocolate",
-          "We hang downtown with chocolate now"
-        ],
-        "correct": 0,
-        "miss": "Used-to evenings."
-      }
-    },
-    {
-      "id": "l1-18",
+      "id": "c1-08",
       "level": 1,
       "region": "Capri",
       "culture": "Second look from the boat.",
@@ -552,8 +364,11 @@ window.ITALIA_SCROLL = {
       "correct": 0,
       "why": [
         "",
-        "Imperfect = past look. You’re pointing live — present."
+        "The past-scene one = past look. You’re pointing live — The now one."
       ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
           "You see them right now",
@@ -561,88 +376,42 @@ window.ITALIA_SCROLL = {
         ],
         "correct": 0,
         "miss": "Live point."
-      }
+      },
+      "hook": false
     },
     {
-      "id": "l1-19",
+      "id": "c1-09",
       "level": 1,
-      "region": "Sperlonga",
-      "culture": "Beach gelato habit.",
-      "prompt": "How beach days USED TO end.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Dopo il mare prendevamo sempre un gelato sulla spiaggia",
-        "Dopo il mare prendiamo sempre un gelato sulla spiaggia"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is today’s habit. Old beach ending = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to get gelato after the sea",
-          "We get gelato after the sea today"
-        ],
-        "correct": 0,
-        "miss": "Old beach ending."
-      }
-    },
-    {
-      "id": "l1-20",
-      "level": 1,
-      "region": "Chioggia",
-      "culture": "Little Venice canals.",
-      "prompt": "Luca is heading to the market NOW (lui).",
+      "region": "Capri",
+      "hook": true,
+      "image": "images/hooks/teen-girl-1.jpg",
+      "culture": "Belvedere selfie energy.",
+      "prompt": "She is posing for a story RIGHT NOW.",
       "gloss": "right now",
-      "person": "lui",
+      "person": "lei",
       "captions": [
-        "Luca va al mercato e compra il pesce fresco",
-        "Luca andava al mercato e comprava il pesce fresco"
+        "Lei fa una storia al belvedere, aspetta",
+        "Lei faceva sempre una storia al belvedere"
       ],
       "correct": 0,
       "why": [
         "",
-        "Imperfect = old habit. He’s going now — present."
+        "Past habit. She’s posting live now."
       ],
+      "help": "Is she doing this live right now — or was it how she used to post?",
+      "explain": "This matches something happening in the moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "Luca is going to the market now",
-          "Luca used to go to the market"
+          "She’s posting a story now",
+          "She used to post stories here"
         ],
         "correct": 0,
-        "miss": "He’s going live."
+        "miss": "Live story."
       }
     },
     {
-      "id": "l1-21",
-      "level": 1,
-      "region": "Ravenna",
-      "culture": "Mosaic + snack.",
-      "prompt": "How afternoons USED TO go after the mosaics.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Dopo i mosaici mangiavamo sempre qualcosa in piazza",
-        "Dopo i mosaici mangiamo sempre qualcosa in piazza"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is today. Old post-mosaic snack = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to eat in the piazza after",
-          "We eat in the piazza after today"
-        ],
-        "correct": 0,
-        "miss": "Old snack loop."
-      }
-    },
-    {
-      "id": "l1-22",
+      "id": "c1-10",
       "level": 1,
       "region": "Bacoli",
       "image": "images/hometown/faro.jpg",
@@ -657,8 +426,11 @@ window.ITALIA_SCROLL = {
       "correct": 0,
       "why": [
         "",
-        "Imperfect = you used to stay. You’re staying tonight — present."
+        "The past-scene one = you used to stay. You’re staying tonight — The now one."
       ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
           "I’m staying for sunset",
@@ -666,1774 +438,1056 @@ window.ITALIA_SCROLL = {
         ],
         "correct": 0,
         "miss": "Tonight = present."
-      }
+      },
+      "hook": false
     },
     {
-      "id": "l2-1",
-      "level": 2,
-      "region": "Bacoli",
-      "image": "images/hometown/capo-miseno.jpg",
-      "culture": "Stairs → sand.",
-      "prompt": "You JUST reached the sand. Finished climb.",
-      "gloss": "just finished",
-      "person": "noi",
-      "captions": [
-        "Siamo scesi in spiaggia a Bacoli, finalmente!",
-        "Scendiamo in spiaggia a Bacoli, finalmente!"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = still going down. You’re already on the sand — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "We already made it to the sand",
-          "We’re still going down"
-        ],
-        "correct": 0,
-        "miss": "Climb is done."
-      }
-    },
-    {
-      "id": "l2-2",
-      "level": 2,
+      "id": "c1-11",
+      "level": 1,
       "region": "Monte di Procida",
       "image": "images/hometown/lago-collina.jpg",
       "culture": "Gelato, gulf view.",
-      "prompt": "Still choosing a flavor LIVE.",
-      "gloss": "still deciding",
-      "person": "io",
-      "captions": [
-        "Aspetta, scelgo il gusto guardando il golfo…",
-        "Aspetta, ho scelto il gusto guardando il golfo…"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already picked. You’re still deciding — present."
-      ],
-      "prove": {
-        "choices": [
-          "I’m still picking a flavor",
-          "I already picked a flavor"
-        ],
-        "correct": 0,
-        "miss": "Still deciding."
-      }
-    },
-    {
-      "id": "l2-3",
-      "level": 2,
-      "region": "Ischia",
-      "culture": "Ferry at the porto.",
-      "prompt": "Ferry just DOCKED. Mark the arrival.",
-      "gloss": "just finished",
-      "person": "lui",
-      "captions": [
-        "Il traghetto è arrivato a Ischia — ci vediamo al porto!",
-        "Il traghetto arriva a Ischia — ci vediamo al porto!"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = it’s arriving. It already docked — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "The ferry already docked",
-          "The ferry is arriving now"
-        ],
-        "correct": 0,
-        "miss": "Already there."
-      }
-    },
-    {
-      "id": "l2-4",
-      "level": 2,
-      "region": "Capri",
-      "culture": "Piazzetta photos.",
-      "prompt": "Snapping photos NOW.",
-      "gloss": "right now",
-      "person": "io",
-      "captions": [
-        "Faccio un sacco di foto a Capri, aspetta",
-        "Ho fatto un sacco di foto a Capri, aspetta"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already done. You’re still shooting — present."
-      ],
-      "prove": {
-        "choices": [
-          "I’m still taking photos",
-          "I already took the photos"
-        ],
-        "correct": 0,
-        "miss": "Still shooting."
-      }
-    },
-    {
-      "id": "l2-5",
-      "level": 2,
-      "region": "Lecce",
-      "culture": "Pasticciotti run.",
-      "prompt": "You just GRABBED pasticciotti. Done.",
-      "gloss": "just finished",
-      "person": "io",
-      "captions": [
-        "Ok fatto, ho preso i pasticciotti per tutti",
-        "Ok, prendo i pasticciotti per tutti"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = still doing it. Bag is already in hand — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "I already grabbed them",
-          "I’m still grabbing them"
-        ],
-        "correct": 0,
-        "miss": "Bag’s in hand."
-      }
-    },
-    {
-      "id": "l2-6",
-      "level": 2,
-      "region": "Genova",
-      "culture": "Focaccia counter.",
-      "prompt": "Ordering focaccia LIVE.",
-      "gloss": "right now",
-      "person": "io",
-      "captions": [
-        "Prendo una focaccia e corro al porto",
-        "Ho preso una focaccia e sono corso al porto"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already bought and ran. You’re ordering now — present."
-      ],
-      "prove": {
-        "choices": [
-          "I’m ordering focaccia now",
-          "I already bought focaccia and ran"
-        ],
-        "correct": 0,
-        "miss": "Still at the counter."
-      }
-    },
-    {
-      "id": "l2-7",
-      "level": 2,
-      "region": "Braies",
-      "culture": "Rowboat on the lake.",
-      "prompt": "You JUST rented the rowboat.",
-      "gloss": "just finished",
+      "prompt": "How gelato stops USED TO feel here.",
+      "gloss": "used to",
       "person": "noi",
       "captions": [
-        "Abbiamo noleggiato la barca — andiamo sul lago!",
-        "Noleggiamo la barca — andiamo sul lago!"
+        "Al belvedere prendevamo sempre un gelato guardando il golfo",
+        "Al belvedere prendiamo sempre un gelato guardando il golfo"
       ],
       "correct": 0,
       "why": [
         "",
-        "Present = still renting. Boat’s already yours — passato prossimo."
+        "That’s today’s habit. Prompt wants the old loop."
       ],
+      "help": "Is this an old habit/scene — or what you do today?",
+      "explain": "This paints a past habit — how gelato stops used to go.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "We already rented the boat",
-          "We’re still renting the boat"
+          "We used to get gelato at the overlook",
+          "We get gelato at the overlook today"
         ],
         "correct": 0,
-        "miss": "Boat is yours."
+        "miss": "Old gelato loop."
       }
     },
     {
-      "id": "l2-8",
+      "id": "c1-12",
+      "level": 1,
+      "region": "Ischia",
+      "image": null,
+      "culture": "Ferry at the porto.",
+      "prompt": "You’re waiting — ferry arrives in the LIVE feed.",
+      "gloss": "right now",
+      "person": "noi",
+      "captions": [
+        "Aspettiamo il traghetto a Ischia — ci vediamo al porto!",
+        "Aspettavamo sempre il traghetto a Ischia"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Past waiting loop. You’re waiting live now."
+      ],
+      "help": "Waiting live now — or how waiting used to feel?",
+      "explain": "This matches the live wait happening now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We’re waiting for the ferry now",
+          "We used to wait for the ferry"
+        ],
+        "correct": 0,
+        "miss": "Live wait."
+      }
+    },
+    {
+      "id": "c1-13",
+      "level": 1,
+      "region": "Amalfi",
+      "hook": true,
+      "image": "images/hooks/teen-boy-2.jpg",
+      "culture": "Lemon-coast smile.",
+      "prompt": "He is smiling for the group pic RIGHT NOW.",
+      "gloss": "right now",
+      "person": "lui",
+      "captions": [
+        "Lui sorride per la foto ad Amalfi",
+        "Lui sorrideva sempre per le foto ad Amalfi"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Past habit of smiling. He’s mid-smile now."
+      ],
+      "help": "Live smile right now — or how he used to smile for photos?",
+      "explain": "This matches a smile happening in the moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "He’s smiling for the photo now",
+          "He used to smile for photos"
+        ],
+        "correct": 0,
+        "miss": "Live smile."
+      }
+    },
+    {
+      "id": "c1-14",
+      "level": 1,
+      "region": "Procida",
+      "culture": "Colorful harbor habit.",
+      "prompt": "How harbor evenings USED TO feel.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "La sera al porto guardavamo i colori e parlavamo piano",
+        "La sera al porto guardiamo i colori e parliamo piano"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Tonight’s habit. Prompt wants old evenings."
+      ],
+      "help": "Old evening scene — or what you do tonight?",
+      "explain": "This paints how evenings used to feel at the harbor.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to watch the harbor colors",
+          "We watch the harbor colors tonight"
+        ],
+        "correct": 0,
+        "miss": "Old evenings."
+      }
+    },
+    {
+      "id": "c1-15",
+      "level": 1,
+      "region": "Capri",
+      "hook": true,
+      "image": "images/hooks/ferrari-2.jpg",
+      "culture": "Another rosso flex.",
+      "prompt": "How spotting Ferraris USED TO feel on Capri.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "A Capri vedevamo sempre una Ferrari rossa davanti al bar",
+        "A Capri vediamo sempre una Ferrari rossa davanti al bar"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "That’s today’s flex. Prompt wants the old “used to see” vibe."
+      ],
+      "help": "Old Capri habit of spotting Ferraris — or today’s habit?",
+      "explain": "This paints a past habit — Ferraris used to show up like that.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to see a red Ferrari by the bar",
+          "We see a red Ferrari by the bar today"
+        ],
+        "correct": 0,
+        "miss": "Used-to Capri flex."
+      }
+    },
+    {
+      "id": "c2-01",
+      "level": 2,
+      "region": "Tropea",
+      "culture": "Turquoise + cipolla rossa.",
+      "prompt": "Posting LIVE from the sand.",
+      "gloss": "right now",
+      "person": "noi",
+      "captions": [
+        "Siamo a Tropea e il mare è pazzesco oggi 💙",
+        "Eravamo a Tropea e il mare era pazzesco"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The past-scene one paints a past scene. You’re there today — The now one."
+      ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We’re on the sand today",
+          "We used to be on the sand"
+        ],
+        "correct": 0,
+        "miss": "Today = present."
+      },
+      "hook": false
+    },
+    {
+      "id": "c2-02",
+      "level": 2,
+      "region": "Polignano",
+      "culture": "Cliff + gelato evenings.",
+      "prompt": "How August evenings USED TO feel here.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "Ogni sera ad agosto ci tuffavamo e poi prendevamo un gelato",
+        "Ogni sera ad agosto ci tuffiamo e poi prendiamo un gelato"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The now one is tonight. Prompt wants how August used to feel — The past-scene one."
+      ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one paints a past scene or “used to” habit — not a live now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to dive then get gelato",
+          "We dive then get gelato tonight"
+        ],
+        "correct": 0,
+        "miss": "Old August loop."
+      },
+      "hook": false
+    },
+    {
+      "id": "c2-03",
+      "level": 2,
+      "region": "Tropea",
+      "hook": true,
+      "image": "images/hooks/ferrari-street.jpg",
+      "culture": "Rosso on the lungomare.",
+      "prompt": "A red Ferrari is parked there RIGHT NOW.",
+      "gloss": "right now",
+      "person": "noi",
+      "captions": [
+        "C’è una Ferrari rossa davanti al bar a Tropea",
+        "C’era sempre una Ferrari rossa davanti al bar a Tropea"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Past scene. It’s there live now."
+      ],
+      "help": "Is the Ferrari there live now — or how it used to sit there?",
+      "explain": "This matches what’s there right now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "There’s a red Ferrari there now",
+          "There used to be a red Ferrari there"
+        ],
+        "correct": 0,
+        "miss": "Live park."
+      }
+    },
+    {
+      "id": "c2-04",
+      "level": 2,
+      "region": "Matera",
+      "culture": "Sassi at dusk.",
+      "prompt": "How evenings USED TO feel when you first visited.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "A Matera la sera camminiamo in silenzio tra i Sassi",
+        "A Matera la sera camminavamo in silenzio tra i Sassi"
+      ],
+      "correct": 1,
+      "why": [
+        "The now one is a general now. Prompt wants how it used to feel — The past-scene one.",
+        ""
+      ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We walk there now",
+          "We used to walk there in the evenings"
+        ],
+        "correct": 1,
+        "miss": "“Used to” = past-scene form."
+      },
+      "hook": false
+    },
+    {
+      "id": "c2-05",
+      "level": 2,
+      "region": "Alberobello",
+      "culture": "Trulli + gelato.",
+      "prompt": "Wandering the trulli streets RIGHT NOW.",
+      "gloss": "right now",
+      "person": "tu",
+      "captions": [
+        "Giri tra i trulli e mangi un gelato, classico",
+        "Giravi tra i trulli e mangiavi un gelato"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The past-scene one is a past wander. You’re there now — The now one."
+      ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "You’re wandering + gelato now",
+          "You used to wander + gelato"
+        ],
+        "correct": 0,
+        "miss": "Right now = present."
+      },
+      "hook": false
+    },
+    {
+      "id": "c2-06",
+      "level": 2,
+      "region": "Polignano",
+      "hook": true,
+      "image": "images/hooks/teen-girl-4.jpg",
+      "culture": "Cliff-light smile.",
+      "prompt": "How she USED TO laugh on the cliffs.",
+      "gloss": "used to",
+      "person": "lei",
+      "captions": [
+        "Sulla scogliera lei rideva sempre con gli amici",
+        "Sulla scogliera lei ride sempre con gli amici"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Today’s laugh habit. Prompt wants how she used to laugh."
+      ],
+      "help": "Old cliff laughs — or how she laughs today?",
+      "explain": "This paints a past habit — how she used to laugh here.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "She used to laugh on the cliffs",
+          "She laughs on the cliffs today"
+        ],
+        "correct": 0,
+        "miss": "Used-to laugh."
+      }
+    },
+    {
+      "id": "c2-07",
+      "level": 2,
+      "region": "Lecce",
+      "culture": "Barocco stroll.",
+      "prompt": "How evenings USED TO feel on the old streets.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "La sera vedevamo sempre le luci sui palazzi barocchi",
+        "La sera vediamo sempre le luci sui palazzi barocchi"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The now one is tonight. Prompt wants old evenings — The past-scene one."
+      ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one paints a past scene or “used to” habit — not a live now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to see the lights every evening",
+          "We see the lights every evening now"
+        ],
+        "correct": 0,
+        "miss": "Used-to evenings."
+      },
+      "hook": false
+    },
+    {
+      "id": "c2-08",
+      "level": 2,
+      "region": "Palermo",
+      "culture": "Street food now.",
+      "prompt": "Eating panelle RIGHT NOW.",
+      "gloss": "right now",
+      "person": "io",
+      "captions": [
+        "Mangio panelle a Ballarò, aspetta",
+        "Mangiavo panelle a Ballarò, aspetta"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The past-scene one = you used to eat. You’re mid-bite — The now one."
+      ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "I’m eating panelle now",
+          "I used to eat panelle"
+        ],
+        "correct": 0,
+        "miss": "Mid-bite = present."
+      },
+      "hook": false
+    },
+    {
+      "id": "c2-09",
+      "level": 2,
+      "region": "Ortigia",
+      "culture": "Gelato after cena.",
+      "prompt": "Sofia asks you LIVE for gelato (lei).",
+      "gloss": "right now",
+      "person": "lei",
+      "captions": [
+        "Sofia chiede: “Ti va di prendere un gelato?”",
+        "Sofia chiedeva: “Ti andava di prendere un gelato?”"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The past-scene one = she used to ask. She’s asking now — The now one."
+      ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "She’s inviting you to gelato now",
+          "She used to invite you to gelato"
+        ],
+        "correct": 0,
+        "miss": "Live invite."
+      },
+      "hook": false
+    },
+    {
+      "id": "c2-10",
       "level": 2,
       "region": "Palermo",
       "culture": "Ballarò noise.",
-      "prompt": "Walking through the market NOW.",
+      "prompt": "Walking the market RIGHT NOW.",
       "gloss": "right now",
       "person": "noi",
       "captions": [
         "Giriamo a Ballarò e mangiamo panelle al volo",
-        "Abbiamo girato a Ballarò e abbiamo mangiato panelle"
+        "Giravamo a Ballarò e mangiavamo panelle al volo"
       ],
       "correct": 0,
       "why": [
         "",
-        "Passato prossimo wraps a finished trip. You’re still in the market — present."
+        "Past market loop. You’re mid-market now."
       ],
+      "help": "Live market walk — or how markets used to feel?",
+      "explain": "This matches walking the market in the moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "We’re still walking the market",
-          "We already finished the market trip"
+          "We’re walking Ballarò now",
+          "We used to walk Ballarò"
         ],
         "correct": 0,
-        "miss": "Still inside."
+        "miss": "Live market."
       }
     },
     {
-      "id": "l2-9",
+      "id": "c2-11",
       "level": 2,
-      "region": "Ortigia",
-      "culture": "Sofia’s text.",
-      "prompt": "Sofia JUST texted the group.",
-      "gloss": "just finished",
-      "person": "lei",
-      "captions": [
-        "Sofia ha scritto: “raga Ortigia è pazzesca”",
-        "Sofia scrive: “raga Ortigia è pazzesca”"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = she’s writing now. She already hit send — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "Sofia already sent the text",
-          "Sofia is typing now"
-        ],
-        "correct": 0,
-        "miss": "Already sent."
-      }
-    },
-    {
-      "id": "l2-10",
-      "level": 2,
-      "region": "Amalfi",
-      "culture": "Bus to the pier.",
-      "prompt": "You JUST arrived at Amalfi.",
-      "gloss": "just finished",
+      "region": "Sperlonga",
+      "culture": "Beach gelato habit.",
+      "prompt": "How beach days USED TO end.",
+      "gloss": "used to",
       "person": "noi",
       "captions": [
-        "Siamo arrivati ad Amalfi — che profumo di limone!",
-        "Arriviamo ad Amalfi — che profumo di limone!"
+        "Dopo il mare prendevamo sempre un gelato sulla spiaggia",
+        "Dopo il mare prendiamo sempre un gelato sulla spiaggia"
       ],
       "correct": 0,
       "why": [
         "",
-        "Present = still arriving. You’re already there — passato prossimo."
+        "The now one is today’s habit. Old beach ending = The past-scene one."
       ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one paints a past scene or “used to” habit — not a live now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "We already arrived",
-          "We’re still arriving"
+          "We used to get gelato after the sea",
+          "We get gelato after the sea today"
         ],
         "correct": 0,
-        "miss": "You’re there."
+        "miss": "Old beach ending."
+      },
+      "hook": false
+    },
+    {
+      "id": "c2-12",
+      "level": 2,
+      "region": "Matera",
+      "hook": true,
+      "image": "images/hooks/teen-boy-3.jpg",
+      "culture": "Sassi evening look.",
+      "prompt": "He is looking at the Sassi RIGHT NOW.",
+      "gloss": "right now",
+      "person": "lui",
+      "captions": [
+        "Lui guarda i Sassi e resta in silenzio",
+        "Lui guardava i Sassi e restava in silenzio"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Past quiet look. He’s looking live now."
+      ],
+      "help": "Live look now — or how he used to look at the Sassi?",
+      "explain": "This matches a look happening now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "He’s looking at the Sassi now",
+          "He used to look at the Sassi"
+        ],
+        "correct": 0,
+        "miss": "Live look."
       }
     },
     {
-      "id": "l2-11",
+      "id": "c2-13",
       "level": 2,
-      "region": "Procida",
-      "culture": "Harbor photos.",
-      "prompt": "Still taking pictures NOW (tu).",
+      "region": "Alberobello",
+      "culture": "Trulli evening habit.",
+      "prompt": "How evenings USED TO feel among the trulli.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "La sera tra i trulli camminavamo piano con un gelato",
+        "La sera tra i trulli camminiamo piano con un gelato"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Tonight’s stroll. Prompt wants old evenings."
+      ],
+      "help": "Old trulli evenings — or tonight’s stroll?",
+      "explain": "This paints how evenings used to feel among the trulli.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to walk among the trulli",
+          "We walk among the trulli tonight"
+        ],
+        "correct": 0,
+        "miss": "Old evenings."
+      }
+    },
+    {
+      "id": "c2-14",
+      "level": 2,
+      "region": "Ortigia",
+      "culture": "Gelato after cena — again.",
+      "prompt": "You’re answering Sofia LIVE (tu).",
       "gloss": "right now",
       "person": "tu",
       "captions": [
-        "Fai troppe foto al porto, dai!",
-        "Hai fatto troppe foto al porto, dai!"
+        "Rispondi: “Sì, mi va di prendere un gelato”",
+        "Rispondevi: “Sì, mi andava di prendere un gelato”"
       ],
       "correct": 0,
       "why": [
         "",
-        "Passato prossimo = already done. Camera still up — present."
+        "Past reply habit. You’re answering live."
       ],
+      "help": "Live reply now — or how you used to answer?",
+      "explain": "This matches answering in the moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "You’re still taking photos",
-          "You already took too many photos"
+          "You’re saying yes to gelato now",
+          "You used to say yes to gelato"
         ],
         "correct": 0,
-        "miss": "Camera still up."
+        "miss": "Live reply."
       }
     },
     {
-      "id": "l2-12",
+      "id": "c2-15",
       "level": 2,
-      "region": "Tropea",
-      "culture": "Cipolla rossa haul.",
-      "prompt": "You JUST bought the onions.",
-      "gloss": "just finished",
+      "region": "Lecce",
+      "hook": true,
+      "image": "images/hooks/ferrari-3.jpg",
+      "culture": "Barocco + rosso.",
+      "prompt": "How spotting sports cars USED TO feel downtown.",
+      "gloss": "used to",
+      "person": "io",
+      "captions": [
+        "In centro vedevo sempre macchine rosse pazzesche",
+        "In centro vedo sempre macchine rosse pazzesche"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Today’s spotting. Prompt wants the old “used to see” flex."
+      ],
+      "help": "Old downtown spotting habit — or what you see today?",
+      "explain": "This paints a past habit of spotting wild red cars.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "I used to see wild red cars downtown",
+          "I see wild red cars downtown today"
+        ],
+        "correct": 0,
+        "miss": "Used-to flex."
+      }
+    },
+    {
+      "id": "c3-01",
+      "level": 3,
+      "region": "Bologna",
+      "culture": "Portici after school.",
+      "prompt": "How afternoons USED TO go near Via Zamboni.",
+      "gloss": "used to",
       "person": "noi",
       "captions": [
-        "Abbiamo preso la cipolla rossa al mercato",
-        "Prendiamo la cipolla rossa al mercato"
+        "Dopo scuola andavamo sempre sotto i portici a mangiare qualcosa",
+        "Dopo scuola andiamo sotto i portici a mangiare qualcosa"
       ],
       "correct": 0,
       "why": [
         "",
-        "Present = still buying. Bag is closed — passato prossimo."
+        "The now one is today. Old after-school loop = The past-scene one."
       ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one paints a past scene or “used to” habit — not a live now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "We already bought them",
-          "We’re still buying them"
+          "We used to go under the arches",
+          "We go under the arches today"
         ],
         "correct": 0,
-        "miss": "Bag closed."
-      }
+        "miss": "Old loop = past-scene form."
+      },
+      "hook": false
     },
     {
-      "id": "l2-13",
-      "level": 2,
-      "region": "Polignano",
-      "culture": "Gelato flavors.",
-      "prompt": "Giulia is STILL choosing (lei).",
-      "gloss": "still deciding",
+      "id": "c3-02",
+      "level": 3,
+      "region": "Genova",
+      "culture": "Focaccia counter.",
+      "prompt": "Ordering focaccia RIGHT NOW (tu).",
+      "gloss": "right now",
+      "person": "tu",
+      "captions": [
+        "Prendi una focaccia e corri al porto",
+        "Prendevi una focaccia e correvi al porto"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The past-scene one = old habit. You’re ordering now — The now one."
+      ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "You’re grabbing focaccia now",
+          "You used to grab focaccia"
+        ],
+        "correct": 0,
+        "miss": "Live order."
+      },
+      "hook": false
+    },
+    {
+      "id": "c3-03",
+      "level": 3,
+      "region": "Braies",
+      "culture": "Mountain lake mornings.",
+      "prompt": "How mornings USED TO go at the lake.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "Al lago andavamo presto e restavamo in silenzio",
+        "Al lago andiamo presto e restiamo in silenzio"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The now one is today. Old quiet mornings = The past-scene one."
+      ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one paints a past scene or “used to” habit — not a live now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to go early and stay quiet",
+          "We go early and stay quiet today"
+        ],
+        "correct": 0,
+        "miss": "Old mornings."
+      },
+      "hook": false
+    },
+    {
+      "id": "c3-04",
+      "level": 3,
+      "region": "Torino",
+      "culture": "Gianduiotto walk.",
+      "prompt": "How evenings USED TO feel downtown.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "La sera eravamo sempre in centro con un gianduiotto",
+        "La sera siamo sempre in centro con un gianduiotto"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The now one is tonight. Old downtown loop = The past-scene one."
+      ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one paints a past scene or “used to” habit — not a live now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to hang downtown with chocolate",
+          "We hang downtown with chocolate now"
+        ],
+        "correct": 0,
+        "miss": "Used-to evenings."
+      },
+      "hook": false
+    },
+    {
+      "id": "c3-05",
+      "level": 3,
+      "region": "Bologna",
+      "hook": true,
+      "image": "images/hooks/teen-girl-2.jpg",
+      "culture": "Portici laugh.",
+      "prompt": "She is laughing under the portici RIGHT NOW.",
+      "gloss": "right now",
       "person": "lei",
       "captions": [
-        "Giulia sceglie il gusto sulla scogliera…",
-        "Giulia ha scelto il gusto sulla scogliera…"
+        "Lei ride sotto i portici dopo scuola",
+        "Lei rideva sempre sotto i portici dopo scuola"
       ],
       "correct": 0,
       "why": [
         "",
-        "Passato prossimo = already picked. She’s still deciding — present."
+        "Past after-school loop. She’s laughing live."
       ],
+      "help": "Live laugh now — or how she used to laugh after school?",
+      "explain": "This matches a laugh happening now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "Giulia is still choosing",
-          "Giulia already chose"
+          "She’s laughing under the arches now",
+          "She used to laugh under the arches"
         ],
         "correct": 0,
-        "miss": "Still deciding."
+        "miss": "Live laugh."
       }
     },
     {
-      "id": "l2-14",
-      "level": 2,
-      "region": "Matera",
-      "culture": "Sassi meetup.",
-      "prompt": "Marco JUST arrived at the Sassi (lui).",
-      "gloss": "just finished",
+      "id": "c3-06",
+      "level": 3,
+      "region": "Chioggia",
+      "culture": "Little Venice canals.",
+      "prompt": "Luca is heading to the market NOW (lui).",
+      "gloss": "right now",
       "person": "lui",
       "captions": [
-        "Marco è arrivato nei Sassi — ci vediamo lì",
-        "Marco arriva nei Sassi — ci vediamo lì"
+        "Luca va al mercato e compra il pesce fresco",
+        "Luca andava al mercato e comprava il pesce fresco"
       ],
       "correct": 0,
       "why": [
         "",
-        "Present = he’s arriving. He already got there — passato prossimo."
+        "The past-scene one = old habit. He’s going now — The now one."
       ],
+      "help": "Is this happening now (or today’s habit) — or a past scene?",
+      "explain": "This one matches something happening now (or a habit that still holds).",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "Marco already arrived",
-          "Marco is arriving now"
+          "Luca is going to the market now",
+          "Luca used to go to the market"
         ],
         "correct": 0,
-        "miss": "He’s there."
+        "miss": "He’s going live."
+      },
+      "hook": false
+    },
+    {
+      "id": "c3-07",
+      "level": 3,
+      "region": "Ravenna",
+      "culture": "Mosaic + snack.",
+      "prompt": "How afternoons USED TO go after the mosaics.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "Dopo i mosaici mangiavamo sempre qualcosa in piazza",
+        "Dopo i mosaici mangiamo sempre qualcosa in piazza"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "The now one is today. Old post-mosaic snack = The past-scene one."
+      ],
+      "help": "Is this painting a past scene / habit — or happening now?",
+      "explain": "This one paints a past scene or “used to” habit — not a live now.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to eat in the piazza after",
+          "We eat in the piazza after today"
+        ],
+        "correct": 0,
+        "miss": "Old snack loop."
+      },
+      "hook": false
+    },
+    {
+      "id": "c3-08",
+      "level": 3,
+      "region": "Genova",
+      "culture": "Focaccia habit.",
+      "prompt": "How port mornings USED TO start.",
+      "gloss": "used to",
+      "person": "io",
+      "captions": [
+        "Al porto prendevo sempre una focaccia calda",
+        "Al porto prendo sempre una focaccia calda"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Today’s order. Prompt wants old mornings."
+      ],
+      "help": "Old focaccia mornings — or today’s order?",
+      "explain": "This paints how mornings used to start at the port.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "I used to grab warm focaccia",
+          "I grab warm focaccia today"
+        ],
+        "correct": 0,
+        "miss": "Old mornings."
       }
     },
     {
-      "id": "l2-15",
-      "level": 2,
-      "region": "Alberobello",
-      "culture": "Trulli selfie.",
-      "prompt": "Group selfie happening NOW.",
+      "id": "c3-09",
+      "level": 3,
+      "region": "Torino",
+      "hook": true,
+      "image": "images/hooks/teen-boy-1.jpg",
+      "culture": "Gianduiotto stare.",
+      "prompt": "How he USED TO look on evening walks.",
+      "gloss": "used to",
+      "person": "lui",
+      "captions": [
+        "La sera lui era sempre serio con un gianduiotto",
+        "La sera lui è sempre serio con un gianduiotto"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Tonight’s look. Prompt wants how he used to seem."
+      ],
+      "help": "Old evening vibe — or how he seems tonight?",
+      "explain": "This paints how he used to seem on those walks.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "He used to look serious with chocolate",
+          "He looks serious with chocolate tonight"
+        ],
+        "correct": 0,
+        "miss": "Used-to vibe."
+      }
+    },
+    {
+      "id": "c3-10",
+      "level": 3,
+      "region": "Braies",
+      "culture": "Lake quiet now.",
+      "prompt": "You’re at the lake RIGHT NOW (noi).",
       "gloss": "right now",
       "person": "noi",
       "captions": [
-        "Facciamo una foto tra i trulli — uno, due, tre!",
-        "Abbiamo fatto una foto tra i trulli"
+        "Siamo al lago e restiamo in silenzio",
+        "Eravamo al lago e restavamo in silenzio"
       ],
       "correct": 0,
       "why": [
         "",
-        "Passato prossimo = already snapped. You’re counting down — present."
+        "Past quiet scene. You’re there live."
       ],
+      "help": "Live at the lake now — or a past quiet scene?",
+      "explain": "This matches being at the lake in the moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "We’re taking the photo now",
-          "We already took the photo"
+          "We’re at the lake staying quiet now",
+          "We used to stay quiet at the lake"
         ],
         "correct": 0,
-        "miss": "Countdown = present."
+        "miss": "Live lake."
       }
     },
     {
-      "id": "l2-16",
-      "level": 2,
+      "id": "c3-11",
+      "level": 3,
+      "region": "Chioggia",
+      "culture": "Canal evenings.",
+      "prompt": "How canal evenings USED TO feel.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "La sera sui canali camminavamo senza fretta",
+        "La sera sui canali camminiamo senza fretta"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Tonight’s walk. Prompt wants old evenings."
+      ],
+      "help": "Old canal evenings — or tonight’s walk?",
+      "explain": "This paints how canal evenings used to feel.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "We used to walk the canals slowly",
+          "We walk the canals slowly tonight"
+        ],
+        "correct": 0,
+        "miss": "Old evenings."
+      }
+    },
+    {
+      "id": "c3-12",
+      "level": 3,
+      "region": "Ravenna",
+      "hook": true,
+      "image": "images/hooks/ferrari-1.jpg",
+      "culture": "Mosaic town + rosso.",
+      "prompt": "You see a red Ferrari RIGHT NOW (tu).",
+      "gloss": "right now",
+      "person": "tu",
+      "captions": [
+        "Vedi quella Ferrari rossa? È incredibile",
+        "Vedevi sempre quella Ferrari rossa"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "Past spotting. You’re pointing live."
+      ],
+      "help": "Live point now — or how you used to spot it?",
+      "explain": "This matches spotting it in the moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
+      "prove": {
+        "choices": [
+          "You see the red Ferrari now",
+          "You used to see that Ferrari"
+        ],
+        "correct": 0,
+        "miss": "Live spot."
+      }
+    },
+    {
+      "id": "c3-13",
+      "level": 3,
       "region": "Bologna",
-      "culture": "Tortellini to-go.",
-      "prompt": "You JUST grabbed lunch.",
-      "gloss": "just finished",
+      "culture": "Tortellini to-go live.",
+      "prompt": "Ordering lunch RIGHT NOW (io).",
+      "gloss": "right now",
       "person": "io",
       "captions": [
-        "Ho preso i tortellini da asporto, vengo",
-        "Prendo i tortellini da asporto, vengo"
+        "Prendo i tortellini da asporto, vengo",
+        "Prendevo sempre i tortellini da asporto"
       ],
       "correct": 0,
       "why": [
         "",
-        "Present = still ordering. Food’s already yours — passato prossimo."
+        "Past lunch habit. You’re ordering live."
       ],
+      "help": "Live order now — or old lunch habit?",
+      "explain": "This matches ordering in the moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "I already got the tortellini",
-          "I’m still getting tortellini"
+          "I’m grabbing tortellini now",
+          "I used to grab tortellini"
         ],
         "correct": 0,
-        "miss": "Already got them."
+        "miss": "Live order."
       }
     },
     {
-      "id": "l2-17",
-      "level": 2,
+      "id": "c3-14",
+      "level": 3,
       "region": "Torino",
-      "culture": "Portici stroll.",
-      "prompt": "Wandering the portici NOW (tu).",
+      "culture": "Portici stroll now.",
+      "prompt": "Wandering the portici RIGHT NOW (tu).",
       "gloss": "right now",
       "person": "tu",
       "captions": [
         "Giri sotto i portici e mangi un gianduiotto",
-        "Hai girato sotto i portici e hai mangiato un gianduiotto"
+        "Giravi sotto i portici e mangiavi un gianduiotto"
       ],
       "correct": 0,
       "why": [
         "",
-        "Passato prossimo wraps a finished walk. You’re still strolling — present."
+        "Past stroll. You’re wandering live."
       ],
+      "help": "Live stroll now — or how walks used to go?",
+      "explain": "This matches wandering in the moment.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "You’re still wandering now",
-          "You already finished the walk"
+          "You’re walking the arches now",
+          "You used to walk the arches"
         ],
         "correct": 0,
-        "miss": "Still strolling."
+        "miss": "Live stroll."
       }
     },
     {
-      "id": "l2-18",
-      "level": 2,
-      "region": "Ravenna",
-      "culture": "Group chat.",
-      "prompt": "You JUST texted the class chat.",
-      "gloss": "just finished",
-      "person": "noi",
-      "captions": [
-        "Abbiamo scritto al gruppo: “Ravenna è incredibile”",
-        "Scriviamo al gruppo: “Ravenna è incredibile”"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = still typing. Message already sent — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "We already sent the message",
-          "We’re still typing"
-        ],
-        "correct": 0,
-        "miss": "Already sent."
-      }
-    },
-    {
-      "id": "l2-19",
-      "level": 2,
-      "region": "Sperlonga",
-      "culture": "Beach drop.",
-      "prompt": "You JUST got to the beach.",
-      "gloss": "just finished",
-      "person": "io",
-      "captions": [
-        "Sono arrivato a Sperlonga — che mare!",
-        "Arrivo a Sperlonga — che mare!"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = still arriving. Feet on sand — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "I already arrived",
-          "I’m still arriving"
-        ],
-        "correct": 0,
-        "miss": "Feet on sand."
-      }
-    },
-    {
-      "id": "l2-20",
-      "level": 2,
-      "region": "Chioggia",
-      "culture": "Canal photos.",
-      "prompt": "Sofia is snapping NOW (lei).",
-      "gloss": "right now",
-      "person": "lei",
-      "captions": [
-        "Sofia fa foto ai canali, aspetta un secondo",
-        "Sofia ha fatto foto ai canali, aspetta un secondo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already done. She’s still shooting — present."
-      ],
-      "prove": {
-        "choices": [
-          "Sofia is taking photos now",
-          "Sofia already took the photos"
-        ],
-        "correct": 0,
-        "miss": "Still shooting."
-      }
-    },
-    {
-      "id": "l2-21",
-      "level": 2,
-      "region": "Monte di Procida",
-      "image": "images/hometown/scogli-golfo.jpg",
-      "culture": "Gelateria again.",
-      "prompt": "You JUST picked flavors for the group.",
-      "gloss": "just finished",
-      "person": "noi",
-      "captions": [
-        "Abbiamo scelto i gusti — andiamo al belvedere",
-        "Scegliamo i gusti — andiamo al belvedere"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = still choosing. Cones ready — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "We already chose the flavors",
-          "We’re still choosing flavors"
-        ],
-        "correct": 0,
-        "miss": "Cones ready."
-      }
-    },
-    {
-      "id": "l2-22",
-      "level": 2,
-      "region": "Capri",
-      "culture": "Limoncello stop.",
-      "prompt": "Grabbing a taste RIGHT NOW (tu).",
-      "gloss": "right now",
-      "person": "tu",
-      "captions": [
-        "Prendi un assaggio e poi ripartiamo",
-        "Hai preso un assaggio e poi siamo ripartiti"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already tasted and left. You’re tasting now — present."
-      ],
-      "prove": {
-        "choices": [
-          "You’re tasting now",
-          "You already tasted and left"
-        ],
-        "correct": 0,
-        "miss": "Still tasting."
-      }
-    },
-    {
-      "id": "l3-1",
-      "level": 3,
-      "region": "Monte di Procida",
-      "image": "images/hometown/notte-luna.jpg",
-      "culture": "Windy belvedere.",
-      "prompt": "Set the SCENE of that windy evening.",
-      "gloss": "the scene",
-      "person": "lui",
-      "captions": [
-        "C’era vento sul belvedere ma il golfo era bellissimo",
-        "C’è stato vento sul belvedere ma il golfo è stato bellissimo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Ongoing wind + vibe = imperfect. Passato prossimo punches single finished events."
-      ],
-      "prove": {
-        "choices": [
-          "It was windy — setting the scene",
-          "There was a one-time wind event"
-        ],
-        "correct": 0,
-        "miss": "Mood = imperfect."
-      }
-    },
-    {
-      "id": "l3-2",
-      "level": 3,
-      "region": "Ischia",
-      "culture": "Bus on a tiny road.",
-      "prompt": "A bus suddenly PASSED you. Mark the EVENT.",
-      "gloss": "sudden moment",
-      "person": "lui",
-      "captions": [
-        "All’improvviso un bus mi è passato a un centimetro",
-        "All’improvviso un bus mi passava a un centimetro"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "“All’improvviso” + completed scare = passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "A bus suddenly passed — finished scare",
-          "A bus was passing ongoing"
-        ],
-        "correct": 0,
-        "miss": "Sudden finished beat."
-      }
-    },
-    {
-      "id": "l3-3",
-      "level": 3,
-      "region": "Capri",
-      "culture": "Under the Faraglioni.",
-      "prompt": "How the water FELT while you floated.",
-      "gloss": "the scene",
-      "person": "lei",
-      "captions": [
-        "Sotto i Faraglioni l’acqua era trasparente",
-        "Sotto i Faraglioni l’acqua è stata trasparente"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Mood and ongoing look = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "The water felt clear — scene",
-          "The water was clear as a checklist"
-        ],
-        "correct": 0,
-        "miss": "Feeling = imperfect."
-      }
-    },
-    {
-      "id": "l3-4",
-      "level": 3,
-      "region": "Bologna",
-      "culture": "Surprise torta.",
-      "prompt": "The cake suddenly ARRIVED. Event.",
-      "gloss": "sudden moment",
-      "person": "lei",
-      "captions": [
-        "Poi è arrivata la torta e noi abbiamo cantato",
-        "Poi arrivava la torta e noi cantavamo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Cake arrival is a finished story beat — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "The cake arrived — finished beat",
-          "The cake was arriving ongoing"
-        ],
-        "correct": 0,
-        "miss": "Event = passato."
-      }
-    },
-    {
-      "id": "l3-5",
-      "level": 3,
-      "region": "Matera",
-      "culture": "Night in the Sassi.",
-      "prompt": "How the stone city FELT that night.",
-      "gloss": "the scene",
-      "person": "lui",
-      "captions": [
-        "Nei Sassi faceva fresco e le luci erano d’oro",
-        "Nei Sassi ha fatto fresco e le luci sono state d’oro"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Mood and ongoing glow = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "It felt cool with golden lights",
-          "It finished being cool once"
-        ],
-        "correct": 0,
-        "miss": "Mood = imperfect."
-      }
-    },
-    {
-      "id": "l3-6",
-      "level": 3,
-      "region": "Palermo",
-      "culture": "Street calcio.",
-      "prompt": "YOU scored the GOAL. Finished moment.",
-      "gloss": "sudden moment",
-      "person": "noi",
-      "captions": [
-        "All’ultimo minuto abbiamo segnato e abbiamo urlato",
-        "All’ultimo minuto segnavamo e urlavamo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That goal and the shout are finished beats — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "We scored — finished goal",
-          "We were scoring ongoing"
-        ],
-        "correct": 0,
-        "miss": "Goal = passato."
-      }
-    },
-    {
-      "id": "l3-7",
-      "level": 3,
-      "region": "Torino",
-      "culture": "Gianduiotto walk.",
-      "prompt": "How YOU felt that evening while walking.",
-      "gloss": "the scene",
-      "person": "io",
-      "captions": [
-        "Era tardi ma non volevo tornare a casa",
-        "È stato tardi ma non ho voluto tornare a casa"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "“It was late / I didn’t want” = imperfect mood."
-      ],
-      "prove": {
-        "choices": [
-          "It was late and I didn’t want to go home",
-          "It got late once and I refused once"
-        ],
-        "correct": 0,
-        "miss": "Mood = imperfect."
-      }
-    },
-    {
-      "id": "l3-8",
-      "level": 3,
-      "region": "Tropea",
-      "culture": "Late coastal bus.",
-      "prompt": "The bus finally SHOWED UP. Event.",
-      "gloss": "sudden moment",
-      "person": "lui",
-      "captions": [
-        "Alla fine il bus è arrivato con quaranta minuti di ritardo",
-        "Alla fine il bus arrivava con quaranta minuti di ritardo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "“Alla fine” + arrival = passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "The bus finally arrived",
-          "The bus was arriving ongoing"
-        ],
-        "correct": 0,
-        "miss": "Finally = passato."
-      }
-    },
-    {
-      "id": "l3-9",
-      "level": 3,
-      "region": "Braies",
-      "culture": "Snow + headphones.",
-      "prompt": "Background: snow + quiet study vibe.",
-      "gloss": "the scene",
-      "person": "noi",
-      "captions": [
-        "Fuori nevicava e noi studiavamo con la musica bassa",
-        "Fuori ha nevicato e noi abbiamo studiato con la musica bassa"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Setting the study scene = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "Snow was falling while we studied",
-          "It snowed once and we studied once"
-        ],
-        "correct": 0,
-        "miss": "Scene = imperfect."
-      }
-    },
-    {
-      "id": "l3-10",
-      "level": 3,
-      "region": "Bacoli",
-      "image": "images/hometown/scogli-golfo.jpg",
-      "culture": "Quiet golfo evening.",
-      "prompt": "Paint that evening SCENE on the waterfront.",
-      "gloss": "the scene",
-      "person": "lui",
-      "captions": [
-        "C’era poca gente e il golfo era calmo",
-        "C’è stata poca gente e il golfo è stato calmo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Ongoing quiet vibe = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "Few people — calm scene",
-          "A one-time quiet event"
-        ],
-        "correct": 0,
-        "miss": "Scene = imperfect."
-      }
-    },
-    {
-      "id": "l3-11",
-      "level": 3,
-      "region": "Amalfi",
-      "culture": "Ferry surprise.",
-      "prompt": "The ferry suddenly SHOWED UP.",
-      "gloss": "sudden moment",
-      "person": "lui",
-      "captions": [
-        "All’improvviso è arrivato il traghetto",
-        "All’improvviso arrivava il traghetto"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Sudden completed arrival = passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "The ferry suddenly arrived",
-          "The ferry was arriving ongoing"
-        ],
-        "correct": 0,
-        "miss": "Sudden = passato."
-      }
-    },
-    {
-      "id": "l3-12",
-      "level": 3,
-      "region": "Procida",
-      "culture": "Hot afternoon.",
-      "prompt": "How the harbor FELT that afternoon.",
-      "gloss": "the scene",
-      "person": "lui",
-      "captions": [
-        "Al porto faceva caldo e i colori erano fortissimi",
-        "Al porto ha fatto caldo e i colori sono stati fortissimi"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Ongoing heat + color = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "It felt hot with strong colors",
-          "It finished being hot once"
-        ],
-        "correct": 0,
-        "miss": "Feeling = imperfect."
-      }
-    },
-    {
-      "id": "l3-13",
-      "level": 3,
-      "region": "Lecce",
-      "culture": "Pasticciotto grab.",
-      "prompt": "You suddenly GRABBED the last ones. Event.",
-      "gloss": "sudden moment",
-      "person": "noi",
-      "captions": [
-        "All’ultimo momento abbiamo preso gli ultimi pasticciotti",
-        "All’ultimo momento prendevamo gli ultimi pasticciotti"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Finished last-second grab = passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "We grabbed the last ones",
-          "We were grabbing them ongoing"
-        ],
-        "correct": 0,
-        "miss": "Finished grab."
-      }
-    },
-    {
-      "id": "l3-14",
-      "level": 3,
-      "region": "Polignano",
-      "culture": "Cliff hesitation.",
-      "prompt": "How YOU felt before the jump (tu).",
-      "gloss": "the scene",
-      "person": "tu",
-      "captions": [
-        "Volevi tuffarti ma avevi un po’ di paura",
-        "Hai voluto tuffarti ma hai avuto un po’ di paura"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Ongoing feeling before the jump = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "You wanted to jump but felt scared",
-          "You decided once and got scared once"
-        ],
-        "correct": 0,
-        "miss": "Feeling = imperfect."
-      }
-    },
-    {
-      "id": "l3-15",
-      "level": 3,
-      "region": "Ortigia",
-      "culture": "Zia’s door.",
-      "prompt": "Zia suddenly OPENED the door. Event.",
-      "gloss": "sudden moment",
-      "person": "lei",
-      "captions": [
-        "Poi zia è arrivata e ci ha abbracciato",
-        "Poi zia arrivava e ci abbracciava"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Finished greeting beat = passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "Zia arrived and hugged you",
-          "Zia was arriving and hugging ongoing"
-        ],
-        "correct": 0,
-        "miss": "Event = passato."
-      }
-    },
-    {
-      "id": "l3-16",
-      "level": 3,
-      "region": "Genova",
-      "culture": "Vicoli rain.",
-      "prompt": "Set the rainy SCENE in the vicoli.",
-      "gloss": "the scene",
-      "person": "lui",
-      "captions": [
-        "C’era pioggia leggera e i vicoli erano vuoti",
-        "C’è stata pioggia leggera e i vicoli sono stati vuoti"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Ongoing rain + empty streets = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "Light rain — empty streets scene",
-          "A one-time rain checklist"
-        ],
-        "correct": 0,
-        "miss": "Scene = imperfect."
-      }
-    },
-    {
-      "id": "l3-17",
-      "level": 3,
-      "region": "Alberobello",
-      "culture": "First trullo view.",
-      "prompt": "You suddenly SAW the trulli. Event.",
-      "gloss": "sudden moment",
-      "person": "noi",
-      "captions": [
-        "All’improvviso abbiamo visto i trulli e siamo rimasti zitti",
-        "All’improvviso vedevamo i trulli e restavamo zitti"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Sudden reveal = passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "We suddenly saw them and went quiet",
-          "We were seeing them ongoing"
-        ],
-        "correct": 0,
-        "miss": "Reveal = passato."
-      }
-    },
-    {
-      "id": "l3-18",
-      "level": 3,
-      "region": "Sperlonga",
-      "culture": "Late beach day.",
-      "prompt": "How YOU felt as the beach emptied.",
-      "gloss": "the scene",
-      "person": "io",
-      "captions": [
-        "Era tardi e non volevo lasciare la spiaggia",
-        "È stato tardi e non ho voluto lasciare la spiaggia"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Late + didn’t want = imperfect mood."
-      ],
-      "prove": {
-        "choices": [
-          "It was late and I didn’t want to leave",
-          "It got late once and I refused once"
-        ],
-        "correct": 0,
-        "miss": "Mood = imperfect."
-      }
-    },
-    {
-      "id": "l3-19",
-      "level": 3,
-      "region": "Chioggia",
-      "culture": "Lagoon bus.",
-      "prompt": "The bus finally SHOWED UP.",
-      "gloss": "sudden moment",
-      "person": "lui",
-      "captions": [
-        "Alla fine il bus è arrivato e siamo saliti",
-        "Alla fine il bus arrivava e noi salivamo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "“Alla fine” + boarded = passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "The bus finally arrived and we got on",
-          "The bus was arriving ongoing"
-        ],
-        "correct": 0,
-        "miss": "Finally = passato."
-      }
-    },
-    {
-      "id": "l3-20",
+      "id": "c3-15",
       "level": 3,
       "region": "Ravenna",
-      "culture": "Study café rain.",
-      "prompt": "Background: rain + quiet study vibe.",
-      "gloss": "the scene",
-      "person": "noi",
-      "captions": [
-        "Fuori pioveva e noi studiavamo al bar",
-        "Fuori ha piovuto e noi abbiamo studiato al bar"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Setting the study scene = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "It was raining while we studied",
-          "It rained once and we studied once"
-        ],
-        "correct": 0,
-        "miss": "Scene = imperfect."
-      }
-    },
-    {
-      "id": "l3-21",
-      "level": 3,
-      "region": "Palermo",
-      "culture": "Market shout.",
-      "prompt": "Someone suddenly YELLED your name. Event.",
-      "gloss": "sudden moment",
-      "person": "lui",
-      "captions": [
-        "All’improvviso qualcuno ha urlato il mio nome",
-        "All’improvviso qualcuno urlava il mio nome"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Sudden completed shout = passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "Someone suddenly yelled your name",
-          "Someone was yelling your name ongoing"
-        ],
-        "correct": 0,
-        "miss": "Sudden = passato."
-      }
-    },
-    {
-      "id": "l3-22",
-      "level": 3,
-      "region": "Capri",
-      "culture": "Quiet Faraglioni moment.",
-      "prompt": "Paint the quiet SCENE under the rocks.",
-      "gloss": "the scene",
-      "person": "noi",
-      "captions": [
-        "Sotto i Faraglioni c’era silenzio e noi parlavamo piano",
-        "Sotto i Faraglioni c’è stato silenzio e noi abbiamo parlato piano"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Ongoing quiet + soft talk = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "It was quiet and we talked softly",
-          "Silence happened once as a checklist"
-        ],
-        "correct": 0,
-        "miss": "Scene = imperfect."
-      }
-    },
-    {
-      "id": "l4-1",
-      "level": 4,
-      "region": "Bacoli",
-      "image": "images/hometown/notte-luna.jpg",
-      "culture": "Last light, story.",
-      "prompt": "You JUST posted the story.",
-      "gloss": "just finished",
-      "person": "io",
-      "captions": [
-        "Ho messo la storia da Bacoli, guardate",
-        "Metto la storia da Bacoli, guardate",
-        "Mettevo sempre la storia da Bacoli"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = doing it now. You already posted — passato prossimo.",
-        "Imperfect is an old habit. This is today’s finished post."
-      ],
-      "prove": {
-        "choices": [
-          "I already posted the story",
-          "I’m posting / I used to post"
-        ],
-        "correct": 0,
-        "miss": "Already posted."
-      }
-    },
-    {
-      "id": "l4-2",
-      "level": 4,
-      "region": "Monte di Procida",
-      "image": "images/hometown/dal-mare.jpg",
-      "culture": "Bus into her town.",
-      "prompt": "Live update FROM the bus as you arrive.",
-      "gloss": "right now",
-      "person": "noi",
-      "captions": [
-        "Siamo sul bus per Monte di Procida — la professoressa è di qui! 🇮🇹",
-        "Siamo stati sul bus per Monte di Procida",
-        "Eravamo sul bus per Monte di Procida"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo wraps a finished trip. You’re still arriving — present.",
-        "Imperfect is a past scene. This is live — present."
-      ],
-      "prove": {
-        "choices": [
-          "We’re on the bus now",
-          "We were / we finished being on the bus"
-        ],
-        "correct": 0,
-        "miss": "Live on the bus."
-      }
-    },
-    {
-      "id": "l4-3",
-      "level": 4,
-      "region": "Ischia",
-      "culture": "Thermal garden quiet.",
-      "prompt": "How the garden FELT while you wandered.",
-      "gloss": "the scene",
-      "person": "noi",
-      "captions": [
-        "Nel giardino termale c’era pace e noi parlavamo piano",
-        "Nel giardino termale c’è pace e noi parliamo piano",
-        "Nel giardino termale c’è stata pace e noi abbiamo parlato piano"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is now. Prompt wants remembered vibe — imperfect.",
-        "Passato prossimo lists finished actions. Scene-setting = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "It felt peaceful — scene",
-          "It’s peaceful now / peace happened once"
-        ],
-        "correct": 0,
-        "miss": "Remembered vibe."
-      }
-    },
-    {
-      "id": "l4-4",
-      "level": 4,
-      "region": "Capri",
-      "culture": "Clouds break.",
-      "prompt": "The view suddenly OPENED. Mark the event.",
-      "gloss": "sudden moment",
-      "person": "noi",
-      "captions": [
-        "All’improvviso abbiamo visto i Faraglioni e siamo rimasti senza parole",
-        "All’improvviso vediamo i Faraglioni e restiamo senza parole",
-        "All’improvviso vedevamo i Faraglioni e restavamo senza parole"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present would be a live call; this is a finished story beat.",
-        "Imperfect keeps it ongoing. The reveal already happened — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "We suddenly saw them — finished",
-          "We see / we were seeing them"
-        ],
-        "correct": 0,
-        "miss": "Reveal done."
-      }
-    },
-    {
-      "id": "l4-5",
-      "level": 4,
-      "region": "Polignano",
-      "culture": "Cliff selfie.",
-      "prompt": "You’re posing RIGHT NOW.",
-      "gloss": "right now",
-      "person": "noi",
-      "captions": [
-        "Facciamo una foto sulla scogliera — uno, due, tre!",
-        "Abbiamo fatto una foto sulla scogliera",
-        "Facevamo sempre una foto sulla scogliera"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already snapped. You’re counting down — present.",
-        "Imperfect = old habit. This is the live countdown."
-      ],
-      "prove": {
-        "choices": [
-          "We’re taking the photo now",
-          "We already took it / we used to take it"
-        ],
-        "correct": 0,
-        "miss": "Live countdown."
-      }
-    },
-    {
-      "id": "l4-6",
-      "level": 4,
-      "region": "Ortigia",
-      "culture": "Gelato after cena.",
-      "prompt": "How evenings USED TO go at zia’s.",
+      "culture": "Mosaic quiet habit.",
+      "prompt": "How museum mornings USED TO feel.",
       "gloss": "used to",
       "person": "noi",
       "captions": [
-        "Da zia uscivamo sempre dopo cena per un gelato",
-        "Da zia usciamo sempre dopo cena per un gelato",
-        "Da zia siamo usciti dopo cena per un gelato"
+        "Al mattino guardavamo i mosaici in silenzio",
+        "Al mattino guardiamo i mosaici in silenzio"
       ],
       "correct": 0,
       "why": [
         "",
-        "Present is today’s habit. “Used to” = imperfect.",
-        "Passato prossimo = one outing. Habitual past = imperfect."
+        "Today’s visit. Prompt wants old quiet mornings."
       ],
+      "help": "Old quiet mornings — or today’s visit?",
+      "explain": "This paints how museum mornings used to feel.",
+      "softExplain": "One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.",
       "prove": {
         "choices": [
-          "We used to go out for gelato",
-          "We go / we went once"
+          "We used to look at mosaics quietly",
+          "We look at mosaics quietly today"
         ],
         "correct": 0,
-        "miss": "Used-to habit."
-      }
-    },
-    {
-      "id": "l4-7",
-      "level": 4,
-      "region": "Genova",
-      "culture": "Vicoli concert.",
-      "prompt": "The band JUST finished. (Marco = lui)",
-      "gloss": "just finished",
-      "person": "lui",
-      "captions": [
-        "Marco ha finito di suonare e io ho applaudito",
-        "Marco finisce di suonare e io applaudo",
-        "Marco finiva di suonare e io applaudivo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is live encore energy. Song is over — passato prossimo.",
-        "Imperfect = he was finishing. It’s done — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "Marco finished and I clapped",
-          "He’s finishing / he was finishing"
-        ],
-        "correct": 0,
-        "miss": "Song over."
-      }
-    },
-    {
-      "id": "l4-8",
-      "level": 4,
-      "region": "Lecce",
-      "culture": "July heat, iced caffè.",
-      "prompt": "Live complaint FROM the bar counter.",
-      "gloss": "right now",
-      "person": "io",
-      "captions": [
-        "Prendo un caffè freddo perché sto morendo di caldo",
-        "Ho preso un caffè freddo perché sono morto di caldo",
-        "Prendevo un caffè freddo perché morivo di caldo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already ordered. You’re ordering — present.",
-        "Imperfect is a past heat habit. This is today’s order — present."
-      ],
-      "prove": {
-        "choices": [
-          "I’m ordering a cold coffee now",
-          "I already ordered / I used to order"
-        ],
-        "correct": 0,
-        "miss": "Ordering live."
-      }
-    },
-    {
-      "id": "l4-9",
-      "level": 4,
-      "region": "Matera",
-      "culture": "Rainy Sassi Sunday.",
-      "prompt": "Paint LAST Sunday’s cozy scene.",
-      "gloss": "the scene",
-      "person": "noi",
-      "captions": [
-        "Domenica scorsa pioveva e camminavamo tra i Sassi tutto il pomeriggio",
-        "Domenica scorsa piove e camminiamo tra i Sassi tutto il pomeriggio",
-        "Domenica scorsa ha piovuto e abbiamo camminato tra i Sassi"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present doesn’t fit “domenica scorsa.”",
-        "Passato prossimo can list actions, but the cozy ongoing vibe wants imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "It was raining while we walked — scene",
-          "It rains now / it rained once as a list"
-        ],
-        "correct": 0,
-        "miss": "Cozy scene."
-      }
-    },
-    {
-      "id": "l4-10",
-      "level": 4,
-      "region": "Amalfi",
-      "culture": "Lemon stand live.",
-      "prompt": "You’re THERE now buying limoncello.",
-      "gloss": "right now",
-      "person": "io",
-      "captions": [
-        "Sono ad Amalfi e prendo un limoncello",
-        "Sono stato ad Amalfi e ho preso un limoncello",
-        "Ero ad Amalfi e prendevo un limoncello"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = finished trip. You’re there live — present.",
-        "Imperfect = old scene. This is live — present."
-      ],
-      "prove": {
-        "choices": [
-          "I’m in Amalfi buying limoncello now",
-          "I was / I finished being there"
-        ],
-        "correct": 0,
-        "miss": "Live there."
-      }
-    },
-    {
-      "id": "l4-11",
-      "level": 4,
-      "region": "Procida",
-      "culture": "Harbor meetup.",
-      "prompt": "Ferry JUST docked.",
-      "gloss": "just finished",
-      "person": "lui",
-      "captions": [
-        "Il traghetto è arrivato a Procida",
-        "Il traghetto arriva a Procida",
-        "Il traghetto arrivava a Procida"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = arriving now. It already docked — passato prossimo.",
-        "Imperfect = was arriving. Done — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "The ferry already arrived",
-          "It’s arriving / it was arriving"
-        ],
-        "correct": 0,
-        "miss": "Already docked."
-      }
-    },
-    {
-      "id": "l4-12",
-      "level": 4,
-      "region": "Tropea",
-      "culture": "Summer bus loop.",
-      "prompt": "How summers USED TO start.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Ogni estate andavamo a Tropea in bus",
-        "Ogni estate andiamo a Tropea in bus",
-        "Ogni estate siamo andati a Tropea in bus"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is today’s habit. Used-to = imperfect.",
-        "Passato prossimo = one trip. Habit = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to go by bus every summer",
-          "We go / we went once"
-        ],
-        "correct": 0,
-        "miss": "Used-to habit."
-      }
-    },
-    {
-      "id": "l4-13",
-      "level": 4,
-      "region": "Alberobello",
-      "culture": "Trulli camera.",
-      "prompt": "Still shooting NOW (tu).",
-      "gloss": "right now",
-      "person": "tu",
-      "captions": [
-        "Fai foto ai trulli, non smetti mai",
-        "Hai fatto foto ai trulli, non hai smesso mai",
-        "Facevi foto ai trulli, non smettevi mai"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already done. Still shooting — present.",
-        "Imperfect = old habit. This is live — present."
-      ],
-      "prove": {
-        "choices": [
-          "You’re still taking photos",
-          "You already took / you used to take"
-        ],
-        "correct": 0,
-        "miss": "Still shooting."
-      }
-    },
-    {
-      "id": "l4-14",
-      "level": 4,
-      "region": "Bologna",
-      "culture": "Portici snack.",
-      "prompt": "You JUST grabbed a snack.",
-      "gloss": "just finished",
-      "person": "noi",
-      "captions": [
-        "Abbiamo preso qualcosa sotto i portici",
-        "Prendiamo qualcosa sotto i portici",
-        "Prendevamo qualcosa sotto i portici"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = still ordering. Bag ready — passato prossimo.",
-        "Imperfect = old habit. This is today’s grab."
-      ],
-      "prove": {
-        "choices": [
-          "We already grabbed a snack",
-          "We’re grabbing / we used to grab"
-        ],
-        "correct": 0,
-        "miss": "Already got it."
-      }
-    },
-    {
-      "id": "l4-15",
-      "level": 4,
-      "region": "Braies",
-      "culture": "Dawn lake.",
-      "prompt": "Paint that dawn SCENE.",
-      "gloss": "the scene",
-      "person": "lui",
-      "captions": [
-        "All’alba c’era nebbia e il lago era grigio",
-        "All’alba c’è nebbia e il lago è grigio",
-        "All’alba c’è stata nebbia e il lago è stato grigio"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is now. Prompt wants remembered dawn — imperfect.",
-        "Passato prossimo checklists. Scene = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "There was fog — dawn scene",
-          "There’s fog now / fog happened once"
-        ],
-        "correct": 0,
-        "miss": "Dawn scene."
-      }
-    },
-    {
-      "id": "l4-16",
-      "level": 4,
-      "region": "Palermo",
-      "culture": "Ballarò surprise.",
-      "prompt": "You suddenly SAW a friend. Event.",
-      "gloss": "sudden moment",
-      "person": "noi",
-      "captions": [
-        "All’improvviso abbiamo visto Marco a Ballarò",
-        "All’improvviso vediamo Marco a Ballarò",
-        "All’improvviso vedevamo Marco a Ballarò"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = live call. Finished surprise = passato prossimo.",
-        "Imperfect = ongoing. Surprise already hit."
-      ],
-      "prove": {
-        "choices": [
-          "We suddenly saw Marco",
-          "We see / we were seeing Marco"
-        ],
-        "correct": 0,
-        "miss": "Surprise done."
-      }
-    },
-    {
-      "id": "l4-17",
-      "level": 4,
-      "region": "Torino",
-      "culture": "Late chocolate walk.",
-      "prompt": "How YOU felt that night.",
-      "gloss": "the scene",
-      "person": "io",
-      "captions": [
-        "Era tardi ma volevo ancora un gianduiotto",
-        "È tardi ma voglio ancora un gianduiotto",
-        "È stato tardi ma ho voluto ancora un gianduiotto"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is tonight. Prompt wants that night’s feeling — imperfect.",
-        "Passato prossimo punches one decision. Mood = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "It was late but I still wanted chocolate",
-          "It’s late now / I wanted once"
-        ],
-        "correct": 0,
-        "miss": "That night’s mood."
-      }
-    },
-    {
-      "id": "l4-18",
-      "level": 4,
-      "region": "Sperlonga",
-      "culture": "Gelato flavors.",
-      "prompt": "Still choosing LIVE (lei).",
-      "gloss": "still deciding",
-      "person": "lei",
-      "captions": [
-        "Sofia sceglie il gusto sulla spiaggia…",
-        "Sofia ha scelto il gusto sulla spiaggia…",
-        "Sofia sceglieva il gusto sulla spiaggia…"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Passato prossimo = already picked. Still deciding — present.",
-        "Imperfect = was choosing. She’s choosing now — present."
-      ],
-      "prove": {
-        "choices": [
-          "Sofia is still choosing",
-          "She already chose / she was choosing"
-        ],
-        "correct": 0,
-        "miss": "Still deciding."
-      }
-    },
-    {
-      "id": "l4-19",
-      "level": 4,
-      "region": "Chioggia",
-      "culture": "Late lagoon bus.",
-      "prompt": "The bus finally SHOWED UP.",
-      "gloss": "sudden moment",
-      "person": "lui",
-      "captions": [
-        "Alla fine il bus è arrivato in ritardo",
-        "Alla fine il bus arriva in ritardo",
-        "Alla fine il bus arrivava in ritardo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = arriving. Finally showed = passato prossimo.",
-        "Imperfect = was arriving. Done — passato prossimo."
-      ],
-      "prove": {
-        "choices": [
-          "The bus finally arrived late",
-          "It’s arriving / it was arriving"
-        ],
-        "correct": 0,
-        "miss": "Finally = passato."
-      }
-    },
-    {
-      "id": "l4-20",
-      "level": 4,
-      "region": "Ravenna",
-      "culture": "Piazza snack habit.",
-      "prompt": "How afternoons USED TO end.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Dopo i mosaici mangiavamo sempre in piazza",
-        "Dopo i mosaici mangiamo sempre in piazza",
-        "Dopo i mosaici abbiamo mangiato in piazza"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is today. Used-to = imperfect.",
-        "Passato prossimo = one snack. Habit = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to eat in the piazza after",
-          "We eat / we ate once"
-        ],
-        "correct": 0,
-        "miss": "Used-to habit."
-      }
-    },
-    {
-      "id": "l4-21",
-      "level": 4,
-      "region": "Capri",
-      "culture": "Last photo dump.",
-      "prompt": "You JUST finished the photo dump.",
-      "gloss": "just finished",
-      "person": "io",
-      "captions": [
-        "Ho fatto tutte le foto — ora basta",
-        "Faccio tutte le foto — ora basta",
-        "Facevo tutte le foto — ora basta"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present = still shooting. You’re done — passato prossimo.",
-        "Imperfect = old habit. Today’s dump is finished."
-      ],
-      "prove": {
-        "choices": [
-          "I already took all the photos",
-          "I’m taking / I used to take"
-        ],
-        "correct": 0,
-        "miss": "Dump done."
-      }
-    },
-    {
-      "id": "l4-22",
-      "level": 4,
-      "region": "Bacoli",
-      "image": "images/hometown/lago-collina.jpg",
-      "culture": "Golfo goodbye.",
-      "prompt": "How evenings USED TO feel on this same spot.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Qui la sera eravamo sempre in silenzio a guardare il golfo",
-        "Qui la sera siamo sempre in silenzio a guardare il golfo",
-        "Qui la sera siamo stati in silenzio a guardare il golfo"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "Present is tonight. Used-to silence = imperfect.",
-        "Passato prossimo = one evening. Habit = imperfect."
-      ],
-      "prove": {
-        "choices": [
-          "We used to sit quiet looking at the gulf",
-          "We sit quiet now / we sat quiet once"
-        ],
-        "correct": 0,
-        "miss": "Used-to evenings."
+        "miss": "Old mornings."
       }
     }
   ]

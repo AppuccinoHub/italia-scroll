@@ -7,56 +7,98 @@
     return;
   }
 
+  const UNLOCK_EVERY = DATA.unlockEvery || 15;
+
   const STORAGE = {
-    progress: 'italiaScroll.progress.v1',
-    help: 'italiaScroll.helpLevel',
+    progress: 'italiaScroll.progress.v2',
     mute: 'italiaScroll.muted',
     theme: 'italiaScroll.theme',
+    student: 'italiaScroll.studentName',
+    roster: 'italiaScroll.roster.v1',
   };
 
-  const HELP_HINTS = {
-    more: 'English gloss + a gentle tip on every card. Soft retry on misses.',
-    mid: 'Clear context + English gloss. Soft explanation if you miss.',
-    challenge: 'Italian + context only. Short soft hint after a miss.',
+  const FOCUS = {
+    Capri: '68% 42%',
+    Tropea: '38% 40%',
+    Polignano: '50% 35%',
+    Alberobello: '50% 40%',
+    Matera: '52% 38%',
+    Amalfi: '50% 45%',
+    Procida: '50% 48%',
+    Ischia: '55% 45%',
+    Bacoli: '50% 50%',
+    'Monte di Procida': '50% 48%',
+    Bologna: '50% 40%',
+    Genova: '50% 45%',
+    Braies: '50% 55%',
+    Palermo: '50% 40%',
+    Ortigia: '50% 45%',
+    Torino: '50% 35%',
+    Sperlonga: '50% 45%',
+    Chioggia: '50% 45%',
+    Ravenna: '50% 40%',
+    Lecce: '50% 40%',
   };
 
   const $ = (id) => document.getElementById(id);
 
   const state = {
-    helpLevel: localStorage.getItem(STORAGE.help) || 'mid',
-    muted: localStorage.getItem(STORAGE.mute) !== '0', // muted by default
-    theme: (['light','fall','dark'].includes(localStorage.getItem(STORAGE.theme)) ? localStorage.getItem(STORAGE.theme) : 'light'),
-    unlocked: 1, // highest unlocked level id (1–4)
-    completed: {}, // { "1": { bestFirstTry, plays }, ... , "quick": {...} }
-    mode: null, // 'level' | 'quick'
+    studentName: localStorage.getItem(STORAGE.student) || '',
+    muted: localStorage.getItem(STORAGE.mute) !== '0',
+    theme: ['light', 'fall', 'dark'].includes(localStorage.getItem(STORAGE.theme))
+      ? localStorage.getItem(STORAGE.theme)
+      : 'light',
+    unlocked: 1,
+    clearsTowardUnlock: 0,
+    completed: {},
+    mode: null,
     levelId: null,
     cards: [],
     index: 0,
     firstTryCorrect: 0,
-    attempted: {}, // cardId -> true after first caption attempt
-    locked: false,
-    captionOk: {}, // cardId -> true after correct caption (before prove-it)
-    answeredOk: {}, // cardId -> true when caption + prove-it cleared
+    attempted: {},
+    captionOk: {},
+    answeredOk: {},
+    panelOpen: {},
   };
 
   let audioCtx = null;
 
-  // —— Progress persistence ——
   function loadProgress() {
     try {
       const raw = localStorage.getItem(STORAGE.progress);
       if (!raw) return;
       const p = JSON.parse(raw);
-      if (p.unlocked >= 1 && p.unlocked <= 4) state.unlocked = p.unlocked;
+      if (p.unlocked >= 1 && p.unlocked <= DATA.levels.length) state.unlocked = p.unlocked;
+      if (typeof p.clearsTowardUnlock === 'number') state.clearsTowardUnlock = p.clearsTowardUnlock;
       if (p.completed && typeof p.completed === 'object') state.completed = p.completed;
-    } catch (_) { /* ignore */ }
+    } catch (_) {}
   }
 
   function saveProgress() {
     localStorage.setItem(
       STORAGE.progress,
-      JSON.stringify({ unlocked: state.unlocked, completed: state.completed })
+      JSON.stringify({
+        unlocked: state.unlocked,
+        clearsTowardUnlock: state.clearsTowardUnlock,
+        completed: state.completed,
+      })
     );
+  }
+
+  function loadRoster() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE.roster) || '[]');
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function saveRosterEntry(entry) {
+    const roster = loadRoster();
+    roster.push(entry);
+    while (roster.length > 200) roster.shift();
+    localStorage.setItem(STORAGE.roster, JSON.stringify(roster));
   }
 
   function cardsForLevel(levelId) {
@@ -65,10 +107,10 @@
 
   function cardsForQuick() {
     const byId = Object.fromEntries(DATA.cards.map((c) => [c.id, c]));
-    return DATA.quickPlay.cardIds.map((id) => byId[id]).filter(Boolean);
+    const ids = (DATA.quickPlay && DATA.quickPlay.cardIds) || [];
+    return ids.map((id) => byId[id]).filter(Boolean);
   }
 
-  // —— Theme / mute / help ——
   const THEMES = ['light', 'fall', 'dark'];
   const THEME_META = {
     light: { color: '#cfe8f8', nextIcon: '🍂', label: 'Theme: Sky lemon. Tap for Fall' },
@@ -76,39 +118,22 @@
     dark: { color: '#141210', nextIcon: '🍋', label: 'Theme: Dark. Tap for Sky lemon' },
   };
 
-  function normalizeTheme(t) {
-    return THEMES.includes(t) ? t : 'light';
-  }
-
   function applyTheme() {
-    state.theme = normalizeTheme(state.theme);
     document.documentElement.setAttribute('data-theme', state.theme);
     const meta = $('metaTheme');
     const info = THEME_META[state.theme];
     if (meta) meta.setAttribute('content', info.color);
-    $('btnTheme').textContent = info.nextIcon;
-    $('btnTheme').setAttribute('aria-label', info.label);
-    $('btnTheme').setAttribute('title', info.label);
+    if ($('btnTheme')) {
+      $('btnTheme').textContent = info.nextIcon;
+      $('btnTheme').setAttribute('aria-label', info.label);
+      $('btnTheme').title = info.label;
+    }
   }
 
   function updateMuteUI() {
+    if (!$('btnMute')) return;
     $('btnMute').textContent = state.muted ? '🔇' : '🔊';
     $('btnMute').setAttribute('aria-label', state.muted ? 'Unmute sound' : 'Mute sound');
-  }
-
-  function syncHelpChips() {
-    document.querySelectorAll('.help-chip').forEach((chip) => {
-      chip.setAttribute('aria-pressed', chip.dataset.help === state.helpLevel ? 'true' : 'false');
-    });
-    const hh = $('helpHint');
-    if (hh) hh.textContent = HELP_HINTS[state.helpLevel] || HELP_HINTS.mid;
-  }
-
-  function setHelp(level) {
-    if (!HELP_HINTS[level]) return;
-    state.helpLevel = level;
-    localStorage.setItem(STORAGE.help, level);
-    syncHelpChips();
   }
 
   function beep(ok) {
@@ -125,55 +150,7 @@
       o.start();
       g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.18);
       o.stop(audioCtx.currentTime + 0.2);
-    } catch (_) { /* ignore */ }
-  }
-
-  // —— Screens ——
-  function showScreen(el) {
-    document.querySelectorAll('.screen').forEach((s) => {
-      const on = s === el;
-      s.classList.toggle('active', on);
-      if (on) s.removeAttribute('hidden');
-      else s.setAttribute('hidden', '');
-    });
-    const home = $('btnHome');
-    if (home) home.hidden = el === $('screenStart');
-    const phone = $('phone');
-    if (phone) phone.classList.toggle('play-mode', el === $('screenPlay'));
-  }
-
-  // —— Level list ——
-  function renderLevelList() {
-    const list = $('levelList');
-    list.innerHTML = '';
-    DATA.levels.forEach((lvl) => {
-      const unlocked = lvl.id <= state.unlocked;
-      const done = state.completed[String(lvl.id)];
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'level-card' + (unlocked ? '' : ' locked');
-      btn.setAttribute('role', 'listitem');
-      btn.disabled = !unlocked;
-      btn.innerHTML =
-        '<span class="level-num">' + (unlocked ? lvl.id : '🔒') + '</span>' +
-        '<span><p class="lvl-title">' + escapeHtml(lvl.title) + '</p>' +
-        '<p class="lvl-blurb">' + escapeHtml(lvl.blurb) + '</p></span>' +
-        '<span class="lvl-meta">' +
-        (done ? 'Best ' + done.bestFirstTry + '/' + done.total : escapeHtml(lvl.minutes)) +
-        '</span>';
-      if (unlocked) {
-        btn.addEventListener('click', () => startLevel(lvl.id));
-      }
-      list.appendChild(btn);
-    });
-    const next = Math.min(4, state.unlocked);
-    const lh = $('levelHint');
-    if (lh) {
-      lh.textContent =
-        state.unlocked >= 4
-          ? ''
-          : '';
-    }
+    } catch (_) {}
   }
 
   function escapeHtml(s) {
@@ -184,7 +161,86 @@
       .replace(/"/g, '&quot;');
   }
 
-  // —— Play ——
+  function showScreen(el) {
+    document.querySelectorAll('.screen').forEach((s) => {
+      const on = s === el;
+      s.classList.toggle('active', on);
+      if (on) s.removeAttribute('hidden');
+      else s.setAttribute('hidden', '');
+    });
+    const home = $('btnHome');
+    if (home) home.hidden = el === $('screenStart') || el === $('screenName');
+    const phone = $('phone');
+    if (phone) phone.classList.toggle('play-mode', el === $('screenPlay'));
+  }
+
+  function showNameGate() {
+    if (state.studentName) {
+      showHome();
+      return;
+    }
+    showScreen($('screenName'));
+    const input = $('studentName');
+    if (input) {
+      input.value = '';
+      setTimeout(() => input.focus(), 40);
+    }
+  }
+
+  function commitName() {
+    const input = $('studentName');
+    const name = ((input && input.value) || '').trim().slice(0, 40);
+    if (!name) {
+      if (input) {
+        input.classList.add('shake');
+        setTimeout(() => input.classList.remove('shake'), 400);
+        input.focus();
+      }
+      return;
+    }
+    state.studentName = name;
+    localStorage.setItem(STORAGE.student, name);
+    showHome();
+  }
+
+  function showHome() {
+    const greet = $('homeGreet');
+    if (greet) greet.textContent = state.studentName ? 'Ciao, ' + state.studentName : '';
+    renderLevelList();
+    showScreen($('screenStart'));
+    if ($('headerSubtitle')) $('headerSubtitle').textContent = 'For You · Italiano 3';
+  }
+
+  function renderLevelList() {
+    const list = $('levelList');
+    if (!list) return;
+    list.innerHTML = '';
+    DATA.levels.forEach((lvl) => {
+      const unlocked = lvl.id <= state.unlocked;
+      const done = state.completed[String(lvl.id)];
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'level-card' + (unlocked ? '' : ' locked');
+      btn.setAttribute('role', 'listitem');
+      btn.disabled = !unlocked;
+      const icon = unlocked ? (lvl.id === 1 ? '🌊' : lvl.id === 2 ? '☀️' : '🏔️') : '🔒';
+      btn.innerHTML =
+        '<span class="level-num">' +
+        icon +
+        '</span><span><p class="lvl-title">' +
+        escapeHtml(lvl.title) +
+        '</p><p class="lvl-blurb">' +
+        escapeHtml(lvl.blurb) +
+        '</p></span><span class="lvl-meta">' +
+        (done
+          ? '★ ' + done.bestFirstTry + '/' + done.total
+          : escapeHtml(lvl.minutes || '')) +
+        '</span>';
+      if (unlocked) btn.addEventListener('click', () => startLevel(lvl.id));
+      list.appendChild(btn);
+    });
+  }
+
   function startLevel(levelId) {
     state.mode = 'level';
     state.levelId = levelId;
@@ -205,16 +261,18 @@
     state.attempted = {};
     state.captionOk = {};
     state.answeredOk = {};
-    state.locked = false;
+    state.panelOpen = {};
+    const lvl = DATA.levels.find((l) => l.id === state.levelId);
     const badge =
       state.mode === 'quick'
-        ? 'Quick Play · ' + DATA.quickPlay.minutes
-        : 'Livello ' + state.levelId + ' · ' + (DATA.levels[state.levelId - 1] || {}).title;
-    $('levelBadge').textContent = badge;
-    $('headerSubtitle').textContent =
-      state.mode === 'quick'
-        ? 'Quick Play · ' + (DATA.quickPlay.minutes || '≈ 2–3 min')
-        : 'Livello ' + state.levelId + ' · Italiano 3';
+        ? 'Quick · ' + ((DATA.quickPlay && DATA.quickPlay.minutes) || '')
+        : (lvl && lvl.title) || 'Tappa ' + state.levelId;
+    if ($('levelBadge')) $('levelBadge').textContent = badge;
+    if ($('headerSubtitle')) {
+      $('headerSubtitle').textContent = state.studentName
+        ? state.studentName + ' · trip'
+        : 'Italiano 3';
+    }
     showScreen($('screenPlay'));
     renderFeed();
     updateSoftScore();
@@ -224,22 +282,32 @@
 
   function updateSoftScore() {
     const done = Object.keys(state.answeredOk).length;
-    $('softScore').textContent =
-      state.firstTryCorrect + ' · ' + done + '/' + state.cards.length;
-    $('feedPos').textContent = state.index + 1 + ' / ' + state.cards.length;
+    if ($('softScore')) {
+      $('softScore').textContent =
+        state.firstTryCorrect + ' · ' + done + '/' + state.cards.length;
+    }
+    if ($('feedPos')) {
+      $('feedPos').textContent = state.index + 1 + ' / ' + state.cards.length;
+    }
   }
 
   function renderFeed() {
     const feed = $('feed');
     feed.innerHTML = '';
-    state.cards.forEach((card, i) => {
-      feed.appendChild(buildCardEl(card, i));
-    });
+    state.cards.forEach((card, i) => feed.appendChild(buildCardEl(card, i)));
+  }
+
+  function pickImage(card, i) {
+    if (card.image) return card.image;
+    const placeImg = DATA.placeImages && DATA.placeImages[card.region];
+    if (!placeImg) return '';
+    if (Array.isArray(placeImg)) return placeImg[i % placeImg.length] || placeImg[0] || '';
+    return placeImg;
   }
 
   function buildCardEl(card, i) {
     const art = document.createElement('article');
-    art.className = 'feed-card';
+    art.className = 'feed-card' + (card.hook ? ' hook-card' : '');
     art.dataset.index = String(i);
     art.dataset.id = card.id;
 
@@ -247,13 +315,11 @@
     visual.className = 'card-visual ' + (card.bg || 'bg-cinque');
     visual.innerHTML =
       '<div class="glow"></div>' +
-      '<div class="card-emoji" aria-hidden="true">' + escapeHtml(card.emoji || '🇮🇹') + '</div>' +
-      '<div class="card-shade"></div>';
+      '<div class="card-emoji" aria-hidden="true">' +
+      escapeHtml(card.emoji || '🇮🇹') +
+      '</div><div class="card-shade"></div>';
 
-    const placeImg = DATA.placeImages && DATA.placeImages[card.region];
-    const imgUrl = card.image
-      || (Array.isArray(placeImg) ? placeImg[i % placeImg.length] : placeImg)
-      || '';
+    const imgUrl = pickImage(card, i);
     if (imgUrl) {
       const img = document.createElement('img');
       img.className = 'card-photo';
@@ -261,9 +327,8 @@
       img.decoding = 'async';
       img.loading = i < 2 ? 'eager' : 'lazy';
       img.src = imgUrl;
-      img.addEventListener('load', () => {
-        visual.classList.add('has-photo');
-      });
+      img.style.objectPosition = FOCUS[card.region] || '50% 45%';
+      img.addEventListener('load', () => visual.classList.add('has-photo'));
       img.addEventListener('error', () => {
         img.hidden = true;
         visual.classList.remove('has-photo');
@@ -273,25 +338,46 @@
 
     const body = document.createElement('div');
     body.className = 'card-body';
-    const tag = card.tag ? '<span class="region-sub">' + escapeHtml(card.tag) + '</span>' : '';
-    // Show don't tell: place + one culture line. Captions are the lesson.
+    const tag = card.tag
+      ? '<span class="region-sub">' + escapeHtml(card.tag) + '</span>'
+      : '';
     body.innerHTML =
       '<div class="region-row"><span class="region-tag">' +
       escapeHtml(card.region) +
       '</span>' +
       tag +
-      '</div>' +
-      '<p class="culture">' +
+      '</div><p class="culture">' +
       escapeHtml(card.culture || '') +
       '</p>';
 
-    // Optional short gloss only when help is on (mid/more). Never a how-to essay.
-    if (state.helpLevel !== 'challenge' && card.gloss) {
-      const gloss = document.createElement('p');
-      gloss.className = 'gloss';
-      gloss.textContent = card.gloss;
-      body.appendChild(gloss);
-    }
+    const tools = document.createElement('div');
+    tools.className = 'card-tools';
+    const btnHelp = document.createElement('button');
+    btnHelp.type = 'button';
+    btnHelp.className = 'tool-btn';
+    btnHelp.textContent = 'Help';
+    btnHelp.setAttribute('aria-expanded', 'false');
+    const btnExplain = document.createElement('button');
+    btnExplain.type = 'button';
+    btnExplain.className = 'tool-btn';
+    btnExplain.textContent = 'Explanation';
+    btnExplain.setAttribute('aria-expanded', 'false');
+
+    const panel = document.createElement('div');
+    panel.className = 'card-panel';
+    panel.hidden = true;
+    panel.setAttribute('role', 'region');
+
+    btnHelp.addEventListener('click', () =>
+      togglePanel(card, 'help', btnHelp, btnExplain, panel)
+    );
+    btnExplain.addEventListener('click', () =>
+      togglePanel(card, 'explain', btnHelp, btnExplain, panel)
+    );
+    tools.appendChild(btnHelp);
+    tools.appendChild(btnExplain);
+    body.appendChild(tools);
+    body.appendChild(panel);
 
     const row = document.createElement('div');
     row.className = 'caption-row';
@@ -322,25 +408,72 @@
       lockCardCorrect(art, card);
     } else if (state.captionOk[card.id]) {
       const btns = art.querySelectorAll('.caption-btn');
-      btns.forEach((b, i) => {
+      btns.forEach((b, idx) => {
         b.disabled = true;
-        if (i === card.correct) b.classList.add('correct-flash');
+        if (idx === card.correct) b.classList.add('correct-flash');
       });
-      const fb = art.querySelector('.feedback');
-      if (fb) {
-        fb.hidden = false;
-        fb.className = 'feedback ok';
-        fb.textContent = '✓';
-      }
+      fb.hidden = false;
+      fb.className = 'feedback ok';
+      fb.textContent = '✓';
       showProveIt(art, card);
     }
 
     return art;
   }
 
+  function togglePanel(card, kind, btnHelp, btnExplain, panel) {
+    const cur = state.panelOpen[card.id];
+    if (cur === kind) {
+      state.panelOpen[card.id] = null;
+      panel.hidden = true;
+      panel.innerHTML = '';
+      btnHelp.setAttribute('aria-expanded', 'false');
+      btnExplain.setAttribute('aria-expanded', 'false');
+      btnHelp.classList.remove('on');
+      btnExplain.classList.remove('on');
+      return;
+    }
+    state.panelOpen[card.id] = kind;
+    panel.hidden = false;
+    btnHelp.classList.toggle('on', kind === 'help');
+    btnExplain.classList.toggle('on', kind === 'explain');
+    btnHelp.setAttribute('aria-expanded', kind === 'help' ? 'true' : 'false');
+    btnExplain.setAttribute('aria-expanded', kind === 'explain' ? 'true' : 'false');
+
+    if (kind === 'help') {
+      panel.innerHTML =
+        '<p class="panel-label">Help</p><p>' +
+        escapeHtml(
+          card.help ||
+            'Match the moment: happening now, or a past scene / used-to?'
+        ) +
+        '</p>';
+    } else {
+      const answered = !!(state.captionOk[card.id] || state.answeredOk[card.id]);
+      const text = answered
+        ? (card.explain || '').trim() ||
+          'This caption matches the moment on the card.'
+        : card.softExplain ||
+          'One caption is live now / today’s habit. The other paints a past scene or “used to.” Match the moment — no spoilers.';
+      panel.innerHTML =
+        '<p class="panel-label">Explanation</p><p>' + escapeHtml(text) + '</p>';
+    }
+  }
+
+  function refreshExplainIfOpen(card, art) {
+    if (state.panelOpen[card.id] !== 'explain') return;
+    const panel = art.querySelector('.card-panel');
+    if (!panel) return;
+    const why =
+      (card.explain || '').trim() ||
+      'This caption matches the moment on the card.';
+    panel.innerHTML =
+      '<p class="panel-label">Explanation</p><p>' + escapeHtml(why) + '</p>';
+    panel.hidden = false;
+  }
+
   function lockCardCorrect(art, card) {
-    const btns = art.querySelectorAll('.caption-btn');
-    btns.forEach((b, i) => {
+    art.querySelectorAll('.caption-btn').forEach((b, i) => {
       b.disabled = true;
       if (i === card.correct) b.classList.add('correct-flash');
     });
@@ -350,14 +483,11 @@
       fb.className = 'feedback ok';
       fb.textContent = '✓';
     }
-    // Fully cleared: hide prove panel if present
     const prove = art.querySelector('.prove');
-    if (prove) {
-      prove.hidden = true;
-    }
+    if (prove) prove.hidden = true;
   }
 
-  function ensureProveEl(art, card) {
+  function ensureProveEl(art) {
     let prove = art.querySelector('.prove');
     if (prove) return prove;
     prove = document.createElement('div');
@@ -366,16 +496,15 @@
     prove.setAttribute('role', 'group');
     prove.setAttribute('aria-label', 'Prove it');
     const fb = art.querySelector('.feedback');
-    if (fb && fb.parentNode === art && fb.nextSibling) art.insertBefore(prove, fb.nextSibling);
+    if (fb && fb.parentNode === art) art.insertBefore(prove, fb.nextSibling);
     else art.appendChild(prove);
     return prove;
   }
 
   function showProveIt(art, card) {
-    const prove = ensureProveEl(art, card);
+    const prove = ensureProveEl(art);
     const p = card.prove;
     if (!p || !p.choices || !p.choices.length) {
-      // No prove data — treat as cleared
       clearCard(art, card);
       return;
     }
@@ -388,7 +517,6 @@
       b.type = 'button';
       b.className = 'prove-btn';
       b.textContent = text;
-      b.dataset.idx = String(i);
       b.addEventListener('click', () => onProve(card, i, art));
       row.appendChild(b);
     });
@@ -396,19 +524,16 @@
     miss.className = 'prove-miss';
     miss.hidden = true;
     miss.setAttribute('role', 'status');
-    miss.setAttribute('aria-live', 'polite');
     prove.appendChild(row);
     prove.appendChild(miss);
   }
 
   function onProve(card, choiceIdx, art) {
-    if (state.answeredOk[card.id]) return;
-    if (!state.captionOk[card.id]) return;
+    if (state.answeredOk[card.id] || !state.captionOk[card.id]) return;
     const p = card.prove;
     const prove = art.querySelector('.prove');
     const miss = prove && prove.querySelector('.prove-miss');
     const btns = prove ? prove.querySelectorAll('.prove-btn') : [];
-
     if (choiceIdx === p.correct) {
       beep(true);
       btns.forEach((b, i) => {
@@ -423,9 +548,7 @@
       clearCard(art, card);
     } else {
       beep(false);
-      btns.forEach((b, i) => {
-        b.classList.toggle('miss', i === choiceIdx);
-      });
+      btns.forEach((b, i) => b.classList.toggle('miss', i === choiceIdx));
       if (miss) {
         miss.hidden = false;
         miss.textContent = p.miss || 'Not quite — try again.';
@@ -433,16 +556,28 @@
     }
   }
 
+  function maybeSilentUnlock() {
+    if (state.unlocked >= DATA.levels.length) return;
+    state.clearsTowardUnlock += 1;
+    if (state.clearsTowardUnlock >= UNLOCK_EVERY) {
+      state.unlocked = Math.min(DATA.levels.length, state.unlocked + 1);
+      state.clearsTowardUnlock = 0;
+    }
+    saveProgress();
+  }
+
   function clearCard(art, card) {
+    const already = !!state.answeredOk[card.id];
     state.answeredOk[card.id] = true;
     lockCardCorrect(art, card);
+    refreshExplainIfOpen(card, art);
+    if (!already) maybeSilentUnlock();
     updateSoftScore();
     updateNavLock();
 
     const allDone = state.cards.every((c) => state.answeredOk[c.id]);
-    if (allDone) {
-      setTimeout(finishLevel, 700);
-    } else {
+    if (allDone) setTimeout(finishLevel, 700);
+    else {
       setTimeout(() => {
         if (state.index < state.cards.length - 1) goTo(state.index + 1);
       }, 650);
@@ -453,7 +588,6 @@
     if (state.answeredOk[card.id] || state.captionOk[card.id]) return;
     const firstTry = !state.attempted[card.id];
     state.attempted[card.id] = true;
-
     const fb = art.querySelector('.feedback');
     const btns = art.querySelectorAll('.caption-btn');
 
@@ -470,20 +604,16 @@
       fb.className = 'feedback ok';
       fb.textContent = '✓';
       updateSoftScore();
-      // Do NOT unlock next yet — prove-it first
+      refreshExplainIfOpen(card, art);
       showProveIt(art, card);
     } else {
       beep(false);
-      btns.forEach((b, i) => {
-        b.classList.toggle('miss', i === choiceIdx);
-      });
+      btns.forEach((b, i) => b.classList.toggle('miss', i === choiceIdx));
       fb.hidden = false;
       fb.className = 'feedback';
-      let msg = (card.why && card.why[choiceIdx]) || 'Not quite — same person, different tense. Try again.';
-      if (state.helpLevel === 'challenge') {
-        msg = (card.why && card.why[choiceIdx]) || 'Not quite — think now vs used-to vs finished. Try again.';
-      }
-      fb.textContent = msg;
+      fb.textContent =
+        (card.why && card.why[choiceIdx]) ||
+        'Not quite — same person, different time feel. Try again.';
       updateSoftScore();
       updateNavLock();
     }
@@ -498,40 +628,64 @@
       total: total,
       plays: (prev.plays || 0) + 1,
     };
-
-    if (state.mode === 'level' && state.levelId === state.unlocked && state.unlocked < 4) {
-      state.unlocked += 1;
-    }
     saveProgress();
+
+    saveRosterEntry({
+      name: state.studentName || 'Anonimo',
+      mode: state.mode,
+      levelId: state.levelId,
+      levelTitle:
+        state.mode === 'quick'
+          ? 'Quick Play'
+          : (DATA.levels.find((l) => l.id === state.levelId) || {}).title || key,
+      firstTry: state.firstTryCorrect,
+      total: total,
+      at: new Date().toISOString(),
+    });
 
     showScreen($('screenEnd'));
     const title =
       state.mode === 'quick'
         ? 'Quick Play fatto!'
-        : 'Livello ' + state.levelId + ' completato';
-    $('endTitle').textContent = title;
-    $('endScore').textContent = state.firstTryCorrect + '/' + total;
-    let note = '';
-    if (state.mode === 'level' && state.levelId < 4 && state.unlocked > state.levelId) {
-      note = '→ ' + (state.levelId + 1);
+        : ((DATA.levels.find((l) => l.id === state.levelId) || {}).title ||
+            'Tappa') + ' — fatto!';
+    if ($('endTitle')) $('endTitle').textContent = title;
+    if ($('endScore')) {
+      $('endScore').textContent =
+        (state.studentName ? state.studentName + ' · ' : '') +
+        state.firstTryCorrect +
+        '/' +
+        total +
+        ' first try';
     }
-    $('endNote').textContent = note;
-    $('endNote').hidden = !note;
-
+    let note = '';
+    if (state.mode === 'level' && state.unlocked > state.levelId) {
+      const next = DATA.levels.find((l) => l.id === state.levelId + 1);
+      if (next) note = '→ ' + next.title;
+    }
+    if ($('endNote')) {
+      $('endNote').textContent = note;
+      $('endNote').hidden = !note;
+    }
     const nextBtn = $('btnNextLevel');
-    if (state.mode === 'level' && state.levelId < 4 && state.unlocked >= state.levelId + 1) {
-      nextBtn.hidden = false;
-      nextBtn.textContent = 'Livello ' + (state.levelId + 1) + ' →';
-    } else {
-      nextBtn.hidden = true;
+    if (nextBtn) {
+      if (
+        state.mode === 'level' &&
+        state.levelId < DATA.levels.length &&
+        state.unlocked >= state.levelId + 1
+      ) {
+        nextBtn.hidden = false;
+        const next = DATA.levels.find((l) => l.id === state.levelId + 1);
+        nextBtn.textContent = (next ? next.title : 'Next') + ' →';
+      } else {
+        nextBtn.hidden = true;
+      }
     }
   }
 
-  // —— Feed navigation (next card locked until current is correct) ——
   function canVisit(i) {
     if (i < 0 || i >= state.cards.length) return false;
     if (i === 0) return true;
-    // May revisit any cleared card, or the first uncleared card in order
     for (let j = 0; j < i; j++) {
       if (!state.answeredOk[state.cards[j].id]) return false;
     }
@@ -543,7 +697,7 @@
     for (let j = 0; j < state.cards.length; j++) {
       if (state.answeredOk[state.cards[j].id]) max = j + 1;
       else {
-        max = j; // may sit on the first uncleared
+        max = j;
         break;
       }
     }
@@ -564,7 +718,10 @@
     const feed = $('feed');
     const el = feed.querySelector('.feed-card[data-index="' + i + '"]');
     if (!el) return;
-    el.scrollIntoView({ behavior: smooth === false ? 'auto' : 'smooth', block: 'start' });
+    el.scrollIntoView({
+      behavior: smooth === false ? 'auto' : 'smooth',
+      block: 'start',
+    });
     state.index = i;
     updateSoftScore();
     updateNavLock();
@@ -591,9 +748,7 @@
       }
     });
     if (!canVisit(best)) {
-      const capped = maxReachableIndex();
-      if (capped !== state.index) scrollToIndex(capped, true);
-      else scrollToIndex(capped, false);
+      scrollToIndex(maxReachableIndex(), true);
       return;
     }
     if (best !== state.index) {
@@ -603,33 +758,20 @@
     }
   }
 
-  // —— Events ——
   function wire() {
     $('btnMute').addEventListener('click', () => {
       state.muted = !state.muted;
       localStorage.setItem(STORAGE.mute, state.muted ? '1' : '0');
       updateMuteUI();
     });
-
     $('btnTheme').addEventListener('click', () => {
-      const i = THEMES.indexOf(normalizeTheme(state.theme));
+      const i = THEMES.indexOf(state.theme);
       state.theme = THEMES[(i + 1) % THEMES.length];
       localStorage.setItem(STORAGE.theme, state.theme);
       applyTheme();
     });
-
-    $('btnHome').addEventListener('click', () => {
-      showScreen($('screenStart'));
-      renderLevelList();
-      $('headerSubtitle').textContent = 'For You · Italiano 3';
-    });
-
+    $('btnHome').addEventListener('click', showHome);
     $('btnQuick').addEventListener('click', startQuick);
-
-    document.querySelectorAll('.help-chip').forEach((chip) => {
-      chip.addEventListener('click', () => setHelp(chip.dataset.help));
-    });
-
     $('btnPrev').addEventListener('click', () => goTo(state.index - 1));
     $('btnNext').addEventListener('click', () => goTo(state.index + 1));
 
@@ -644,8 +786,14 @@
       { passive: true }
     );
 
-    // Keyboard / trackpad helpers on Chromebook
     document.addEventListener('keydown', (e) => {
+      if ($('screenName') && $('screenName').classList.contains('active')) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          commitName();
+        }
+        return;
+      }
       if (!$('screenPlay').classList.contains('active')) return;
       if (e.key === 'ArrowDown' || e.key === 'j' || e.key === 'PageDown') {
         e.preventDefault();
@@ -660,24 +808,33 @@
       if (state.mode === 'quick') startQuick();
       else startLevel(state.levelId);
     });
-
     $('btnNextLevel').addEventListener('click', () => {
-      if (state.mode === 'level' && state.levelId < 4) startLevel(state.levelId + 1);
+      if (
+        state.mode === 'level' &&
+        state.levelId < DATA.levels.length &&
+        state.unlocked >= state.levelId + 1
+      ) {
+        startLevel(state.levelId + 1);
+      }
     });
+    $('btnBackHome').addEventListener('click', showHome);
 
-    $('btnBackHome').addEventListener('click', () => {
-      showScreen($('screenStart'));
-      renderLevelList();
-      $('headerSubtitle').textContent = 'For You · Italiano 3';
-    });
+    const btnGo = $('btnNameGo');
+    if (btnGo) btnGo.addEventListener('click', commitName);
+    const btnChange = $('btnChangeName');
+    if (btnChange) {
+      btnChange.addEventListener('click', () => {
+        state.studentName = '';
+        localStorage.removeItem(STORAGE.student);
+        showNameGate();
+      });
+    }
   }
 
-  // —— Init ——
   loadProgress();
+  if (state.unlocked > DATA.levels.length) state.unlocked = DATA.levels.length;
   applyTheme();
   updateMuteUI();
-  syncHelpChips();
-  renderLevelList();
   wire();
-  showScreen($('screenStart'));
+  showNameGate();
 })();
