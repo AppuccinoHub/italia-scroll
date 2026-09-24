@@ -6,33 +6,33 @@
    Person scope: ONLY io, tu, lui/lei, noi (no voi, no loro).
    Distractors = same person/number, different tense. */
 window.ITALIA_SCROLL = {
-  version: 5,
+  version: 6,
   levels: [
     {
       id: 1,
       title: 'Ora o abitudine?',
-      blurb: 'Presente vs Imperfetto.',
+      blurb: 'Presente · Imperfetto',
       minutes: '≈ 8–10 min',
       contrast: 'presente-imperfetto',
     },
     {
       id: 2,
       title: 'Ora o fatto?',
-      blurb: 'Presente vs Passato prossimo.',
+      blurb: 'Presente · Passato',
       minutes: '≈ 8–10 min',
       contrast: 'presente-passato',
     },
     {
       id: 3,
       title: 'Sfondo o momento?',
-      blurb: 'Passato prossimo vs Imperfetto.',
+      blurb: 'Passato · Imperfetto',
       minutes: '≈ 8–10 min',
       contrast: 'passato-imperfetto',
     },
     {
       id: 4,
       title: 'Mix totale',
-      blurb: 'All three tenses — pick the vibe.',
+      blurb: 'Mix',
       minutes: '≈ 8–10 min',
       contrast: 'mixed',
     },
@@ -66,9 +66,9 @@ window.ITALIA_SCROLL = {
     /* ========== LEVEL 1: Presente vs Imperfetto (9) — noi / tu / lui ========== */
     {
       id: 'l1-1', level: 1, region: 'Bacoli', tag: 'Campania · golfo', emoji: '🌊🌅', bg: 'bg-bacoli',
-      culture: 'Lake, sea, late-summer light over the gulf.',
+      culture: 'Golfo light. Tonight.',
       prompt: 'You’re on the Bacoli waterfront RIGHT NOW. Caption it.',
-      gloss: 'Live coastal moment — not an old habit.',
+      gloss: 'right now',
       person: 'noi',
       captions: [
         'Siamo a Bacoli e il golfo è incredibile stasera',
@@ -82,9 +82,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l1-2', level: 1, region: 'Monte di Procida', tag: 'Campania · casa della prof', emoji: '🏔️🇮🇹', bg: 'bg-mdp',
-      culture: 'Hometown of Professoressa Scotto — cliff belvedere over the gulf.',
+      culture: 'Casa della professoressa.',
       prompt: 'Class trip: you’re at the belvedere in her town. Caption RIGHT NOW.',
-      gloss: 'Live overlook — “la professoressa è di qui.”',
+      gloss: 'right now',
       person: 'noi',
       captions: [
         'Siamo al belvedere di Monte di Procida — la professoressa è di qui!',
@@ -98,9 +98,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l1-3', level: 1, region: 'Ischia', tag: 'Campania · isola', emoji: '♨️🏖️', bg: 'bg-ischia',
-      culture: 'Thermal steam + beach bag — island summers.',
+      culture: 'Island summers.',
       prompt: 'Caption how summers USED TO feel on the island.',
-      gloss: 'Repeated summers → imperfect.',
+      gloss: 'used to',
       person: 'noi',
       captions: [
         'Ogni estate andavamo a Ischia e restavamo ore in spiaggia',
@@ -114,9 +114,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l1-4', level: 1, region: 'Capri', tag: 'Campania · faraglioni', emoji: '⛵💙', bg: 'bg-capri',
-      culture: 'Faraglioni from the boat — phones up, wind in your face.',
+      culture: 'Faraglioni from the boat.',
       prompt: 'Boat is moving NOW toward the Faraglioni. Live caption?',
-      gloss: 'Happening as you post → present.',
+      gloss: 'right now',
       person: 'noi',
       captions: [
         'Vediamo i Faraglioni dalla barca, raga 🔥',
@@ -130,9 +130,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l1-5', level: 1, region: 'Tropea', tag: 'Calabria', emoji: '🏖️🧅', bg: 'bg-tropea',
-      culture: 'Red onions, turquoise water, beach path fruit stalls.',
+      culture: 'Turquoise + cipolla rossa.',
       prompt: 'Posting LIVE from the sand.',
-      gloss: 'Right now on the beach → present.',
+      gloss: 'right now',
       person: 'noi',
       captions: [
         'Siamo a Tropea e il mare è pazzesco oggi 💙',
@@ -146,9 +146,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l1-6', level: 1, region: 'Polignano', tag: 'Puglia', emoji: '🤿🌅', bg: 'bg-puglia',
-      culture: 'Cliff jumpers + gelato on the lungomare.',
+      culture: 'Cliff + gelato evenings.',
       prompt: 'How August evenings USED TO feel here.',
-      gloss: 'Repeated past evenings → imperfect.',
+      gloss: 'used to',
       person: 'noi',
       captions: [
         'Ogni sera ad agosto ci tuffavamo e poi prendevamo un gelato',
@@ -162,9 +162,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l1-7', level: 1, region: 'Matera', tag: 'Basilicata', emoji: '🪨🌙', bg: 'bg-matera',
-      culture: 'Sassi lit up at dusk — stone lanes, soft voices.',
+      culture: 'Sassi at dusk.',
       prompt: 'How evenings USED TO feel when you first visited.',
-      gloss: 'Remembered atmosphere → imperfect.',
+      gloss: 'used to',
       person: 'noi',
       captions: [
         'A Matera la sera camminiamo in silenzio tra i Sassi',
@@ -178,9 +178,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l1-8', level: 1, region: 'Alberobello', tag: 'Puglia', emoji: '🏠⚪', bg: 'bg-trulli',
-      culture: 'Trulli roofs, souvenir magnets, gelato between cone houses.',
+      culture: 'Trulli + gelato.',
       prompt: 'Wandering the trulli streets RIGHT NOW.',
-      gloss: 'Live stroll → present.',
+      gloss: 'right now',
       person: 'tu',
       captions: [
         'Giri tra i trulli e mangi un gelato, classico',
@@ -194,9 +194,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l1-9', level: 1, region: 'Bologna', tag: 'Emilia-Romagna', emoji: '🍝🏫', bg: 'bg-bologna',
-      culture: 'Portici + tortellini opinions after school.',
+      culture: 'Portici after school.',
       prompt: 'How afternoons USED TO go near Via Zamboni.',
-      gloss: 'Past student routine → imperfect.',
+      gloss: 'used to',
       person: 'noi',
       captions: [
         'Dopo scuola andavamo sempre sotto i portici a mangiare qualcosa',
@@ -212,9 +212,9 @@ window.ITALIA_SCROLL = {
     /* ========== LEVEL 2: Presente vs Passato prossimo (9) ========== */
     {
       id: 'l2-1', level: 2, region: 'Bacoli', tag: 'Campania · golfo', emoji: '🏖️📸', bg: 'bg-bacoli',
-      culture: 'Stairs down to the water — salt on your phone case.',
+      culture: 'Stairs → sand.',
       prompt: 'You JUST reached the sand. Finished climb.',
-      gloss: 'Completed arrival → passato prossimo.',
+      gloss: 'just finished',
       person: 'noi',
       captions: [
         'Siamo scesi in spiaggia a Bacoli, finalmente!',
@@ -228,9 +228,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l2-2', level: 2, region: 'Monte di Procida', tag: 'Campania · casa della prof', emoji: '🍦🌄', bg: 'bg-mdp',
-      culture: 'Gelato stop with a gulf view — belvedere light.',
+      culture: 'Gelato, gulf view.',
       prompt: 'Still choosing a flavor at the gelateria LIVE.',
-      gloss: 'In progress → present.',
+      gloss: 'still deciding',
       person: 'io',
       captions: [
         'Aspetta, scelgo il gusto guardando il golfo…',
@@ -244,9 +244,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l2-3', level: 2, region: 'Ischia', tag: 'Campania · isola', emoji: '⛴️🌞', bg: 'bg-ischia',
-      culture: 'Ferry crossing with too many backpacks.',
+      culture: 'Ferry at the porto.',
       prompt: 'Ferry just DOCKED. Mark the arrival.',
-      gloss: 'Finished event → passato prossimo.',
+      gloss: 'just finished',
       person: 'lui',
       captions: [
         'Il traghetto è arrivato a Ischia — ci vediamo al porto!',
@@ -260,9 +260,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l2-4', level: 2, region: 'Capri', tag: 'Campania · faraglioni', emoji: '📸💙', bg: 'bg-capri',
-      culture: 'Piazzetta energy — quick photo, then keep moving.',
+      culture: 'Piazzetta photos.',
       prompt: 'Snapping photos NOW.',
-      gloss: 'Live shooting → present.',
+      gloss: 'right now',
       person: 'io',
       captions: [
         'Faccio un sacco di foto a Capri, aspetta',
@@ -276,9 +276,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l2-5', level: 2, region: 'Lecce', tag: 'Puglia', emoji: '🏛️🍨', bg: 'bg-lecce',
-      culture: 'Baroque stone + pasticciotto sugar crash.',
+      culture: 'Pasticciotti run.',
       prompt: 'You just GRABBED pasticciotti for the group. Done.',
-      gloss: 'Completed errand → passato prossimo.',
+      gloss: 'just finished',
       person: 'io',
       captions: [
         'Ok fatto, ho preso i pasticciotti per tutti',
@@ -292,9 +292,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l2-6', level: 2, region: 'Genova', tag: 'Liguria', emoji: '🚢🌿', bg: 'bg-genova',
-      culture: 'Vicoli, focaccia, sudden rain near the porto antico.',
+      culture: 'Focaccia counter.',
       prompt: 'Ordering focaccia at the counter LIVE.',
-      gloss: 'Current order → present.',
+      gloss: 'right now',
       person: 'io',
       captions: [
         'Prendo una focaccia e corro al porto',
@@ -308,9 +308,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l2-7', level: 2, region: 'Braies', tag: 'Dolomiti', emoji: '🏔️🚣', bg: 'bg-braies',
-      culture: 'Lake selfie line — cold water, big mountains.',
+      culture: 'Rowboat on the lake.',
       prompt: 'You JUST rented the rowboat.',
-      gloss: 'Completed rental → passato prossimo.',
+      gloss: 'just finished',
       person: 'noi',
       captions: [
         'Abbiamo noleggiato la barca — andiamo sul lago!',
@@ -324,9 +324,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l2-8', level: 2, region: 'Palermo', tag: 'Sicilia', emoji: '🥙🔥', bg: 'bg-palermo',
-      culture: 'Ballarò market — panelle, noise, scooter mirrors.',
+      culture: 'Ballarò noise.',
       prompt: 'Walking through the market NOW.',
-      gloss: 'Live wander → present.',
+      gloss: 'right now',
       person: 'noi',
       captions: [
         'Giriamo a Ballarò e mangiamo panelle al volo',
@@ -340,9 +340,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l2-9', level: 2, region: 'Ortigia', tag: 'Sicilia', emoji: '🐟🌅', bg: 'bg-ortigia',
-      culture: 'Market fish, island alleys, sunset on the bridge.',
+      culture: 'Sofia’s text.',
       prompt: 'Sofia JUST texted the group from the market.',
-      gloss: 'Message already sent → passato prossimo.',
+      gloss: 'just finished',
       person: 'lei',
       captions: [
         'Sofia ha scritto: “raga Ortigia è pazzesca”',
@@ -358,9 +358,9 @@ window.ITALIA_SCROLL = {
     /* ========== LEVEL 3: Passato prossimo vs Imperfetto (9) ========== */
     {
       id: 'l3-1', level: 3, region: 'Monte di Procida', tag: 'Campania · casa della prof', emoji: '🌅💨', bg: 'bg-mdp',
-      culture: 'Wind on the belvedere — gulf glittering below.',
+      culture: 'Windy belvedere.',
       prompt: 'Set the SCENE of that windy evening overlook.',
-      gloss: 'Background weather / vibe → imperfect.',
+      gloss: 'the scene',
       person: 'lui',
       captions: [
         'C’era vento sul belvedere ma il golfo era bellissimo',
@@ -374,9 +374,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l3-2', level: 3, region: 'Ischia', tag: 'Campania · isola', emoji: '🚌😱', bg: 'bg-ischia',
-      culture: 'Island bus on a tiny road — mirrors and prayers.',
+      culture: 'Bus on a tiny road.',
       prompt: 'A bus suddenly PASSED you. Mark the EVENT.',
-      gloss: 'Sudden finished moment → passato prossimo.',
+      gloss: 'sudden moment',
       person: 'lui',
       captions: [
         'All’improvviso un bus mi è passato a un centimetro',
@@ -390,9 +390,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l3-3', level: 3, region: 'Capri', tag: 'Campania · faraglioni', emoji: '⛵💙', bg: 'bg-capri',
-      culture: 'Boat tour pause under the Faraglioni.',
+      culture: 'Under the Faraglioni.',
       prompt: 'How the water FELT while you floated there.',
-      gloss: 'Atmosphere → imperfect.',
+      gloss: 'the scene',
       person: 'lei',
       captions: [
         'Sotto i Faraglioni l’acqua era trasparente',
@@ -406,9 +406,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l3-4', level: 3, region: 'Bologna', tag: 'Emilia-Romagna', emoji: '🎂🎉', bg: 'bg-bologna',
-      culture: 'Surprise torta in a tiny trattoria after exams.',
+      culture: 'Surprise torta.',
       prompt: 'The cake suddenly ARRIVED. Event.',
-      gloss: 'Sudden completed beat → passato prossimo.',
+      gloss: 'sudden moment',
       person: 'lei',
       captions: [
         'Poi è arrivata la torta e noi abbiamo cantato',
@@ -422,9 +422,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l3-5', level: 3, region: 'Matera', tag: 'Basilicata', emoji: '🕯️🪨', bg: 'bg-matera',
-      culture: 'Night walk in the Sassi with the class trip.',
+      culture: 'Night in the Sassi.',
       prompt: 'How the stone city FELT that night.',
-      gloss: 'Atmosphere → imperfect.',
+      gloss: 'the scene',
       person: 'lui',
       captions: [
         'Nei Sassi faceva fresco e le luci erano d’oro',
@@ -438,9 +438,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l3-6', level: 3, region: 'Palermo', tag: 'Sicilia', emoji: '⚽💥', bg: 'bg-palermo',
-      culture: 'Street calcio — sudden winning goal.',
+      culture: 'Street calcio.',
       prompt: 'YOU scored the GOAL. Finished moment.',
-      gloss: 'Single completed event → passato prossimo.',
+      gloss: 'sudden moment',
       person: 'noi',
       captions: [
         'All’ultimo minuto abbiamo segnato e abbiamo urlato',
@@ -454,9 +454,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l3-7', level: 3, region: 'Torino', tag: 'Piemonte', emoji: '🌙🍫', bg: 'bg-torino',
-      culture: 'Late walk with gianduiotto in hand.',
+      culture: 'Gianduiotto walk.',
       prompt: 'How YOU felt that evening while walking.',
-      gloss: 'Ongoing evening mood → imperfect.',
+      gloss: 'the scene',
       person: 'io',
       captions: [
         'Era tardi ma non volevo tornare a casa',
@@ -470,9 +470,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l3-8', level: 3, region: 'Tropea', tag: 'Calabria', emoji: '🚌😅', bg: 'bg-tropea',
-      culture: 'Coastal bus finally shows — 40 minutes late.',
+      culture: 'Late coastal bus.',
       prompt: 'The bus finally SHOWED UP. Event.',
-      gloss: 'Completed arrival → passato prossimo.',
+      gloss: 'sudden moment',
       person: 'lui',
       captions: [
         'Alla fine il bus è arrivato con quaranta minuti di ritardo',
@@ -486,9 +486,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l3-9', level: 3, region: 'Braies', tag: 'Dolomiti', emoji: '🎧❄️', bg: 'bg-braies',
-      culture: 'Cabin study session while snow taps the window.',
+      culture: 'Snow + headphones.',
       prompt: 'Background: snow + quiet study vibe.',
-      gloss: 'Ongoing scene → imperfect.',
+      gloss: 'the scene',
       person: 'noi',
       captions: [
         'Fuori nevicava e noi studiavamo con la musica bassa',
@@ -504,9 +504,9 @@ window.ITALIA_SCROLL = {
     /* ========== LEVEL 4: Mixed — 3 captions (9) ========== */
     {
       id: 'l4-1', level: 4, region: 'Bacoli', tag: 'Campania · golfo', emoji: '📲🌊', bg: 'bg-bacoli',
-      culture: 'Last light over the gulf — story time.',
+      culture: 'Last light, story.',
       prompt: 'You JUST posted the story. Finished action.',
-      gloss: 'Completed post → passato prossimo.',
+      gloss: 'just finished',
       person: 'io',
       captions: [
         'Ho messo la storia da Bacoli, guardate',
@@ -522,9 +522,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l4-2', level: 4, region: 'Monte di Procida', tag: 'Campania · casa della prof', emoji: '🚌☀️', bg: 'bg-mdp',
-      culture: 'Class bus rolling into the cliff town over the gulf.',
+      culture: 'Bus into her town.',
       prompt: 'Live update FROM the bus as you arrive.',
-      gloss: 'Happening now → present.',
+      gloss: 'right now',
       person: 'noi',
       captions: [
         'Siamo sul bus per Monte di Procida — la professoressa è di qui! 🇮🇹',
@@ -540,9 +540,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l4-3', level: 4, region: 'Ischia', tag: 'Campania · isola', emoji: '♨️🕰️', bg: 'bg-ischia',
-      culture: 'Quiet thermal garden after the crowds thin out.',
+      culture: 'Thermal garden quiet.',
       prompt: 'How the garden FELT while you wandered.',
-      gloss: 'Past atmosphere → imperfect.',
+      gloss: 'the scene',
       person: 'noi',
       captions: [
         'Nel giardino termale c’era pace e noi parlavamo piano',
@@ -558,9 +558,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l4-4', level: 4, region: 'Capri', tag: 'Campania · faraglioni', emoji: '⛵✨', bg: 'bg-capri',
-      culture: 'Sudden clear view of the Faraglioni after clouds break.',
+      culture: 'Clouds break.',
       prompt: 'The view suddenly OPENED. Mark the event.',
-      gloss: 'Finished beat → passato prossimo.',
+      gloss: 'sudden moment',
       person: 'noi',
       captions: [
         'All’improvviso abbiamo visto i Faraglioni e siamo rimasti senza parole',
@@ -576,9 +576,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l4-5', level: 4, region: 'Polignano', tag: 'Puglia', emoji: '📸🌅', bg: 'bg-puglia',
-      culture: 'Cliff selfie with the Adriatic behind you.',
+      culture: 'Cliff selfie.',
       prompt: 'You’re posing RIGHT NOW.',
-      gloss: 'Live selfie → present.',
+      gloss: 'right now',
       person: 'noi',
       captions: [
         'Facciamo una foto sulla scogliera — uno, due, tre!',
@@ -594,9 +594,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l4-6', level: 4, region: 'Ortigia', tag: 'Sicilia', emoji: '🍦🌙', bg: 'bg-ortigia',
-      culture: 'Gelato walk after dinner with cousins.',
+      culture: 'Gelato after cena.',
       prompt: 'How evenings USED TO go at zia’s.',
-      gloss: 'Repeated past evenings → imperfect.',
+      gloss: 'used to',
       person: 'noi',
       captions: [
         'Da zia uscivamo sempre dopo cena per un gelato',
@@ -612,9 +612,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l4-7', level: 4, region: 'Genova', tag: 'Liguria', emoji: '🎸👏', bg: 'bg-genova',
-      culture: 'Street concert in the vicoli — phones up.',
+      culture: 'Vicoli concert.',
       prompt: 'The band JUST finished the last song. (Marco = lui)',
-      gloss: 'Completed set → passato prossimo.',
+      gloss: 'just finished',
       person: 'lui',
       captions: [
         'Marco ha finito di suonare e io ho applaudito',
@@ -630,9 +630,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l4-8', level: 4, region: 'Lecce', tag: 'Puglia', emoji: '🧊☀️', bg: 'bg-lecce',
-      culture: 'July stone heat + iced caffè at the bar.',
+      culture: 'July heat, iced caffè.',
       prompt: 'Live complaint FROM the bar counter.',
-      gloss: 'Happening now → present.',
+      gloss: 'right now',
       person: 'io',
       captions: [
         'Prendo un caffè freddo perché sto morendo di caldo',
@@ -648,9 +648,9 @@ window.ITALIA_SCROLL = {
     },
     {
       id: 'l4-9', level: 4, region: 'Matera', tag: 'Basilicata', emoji: '🪨🌧️', bg: 'bg-matera',
-      culture: 'Rainy evening in the Sassi — soft lights, quiet lanes.',
+      culture: 'Rainy Sassi Sunday.',
       prompt: 'Paint LAST Sunday’s cozy scene.',
-      gloss: 'Past atmosphere → imperfect.',
+      gloss: 'the scene',
       person: 'noi',
       captions: [
         'Domenica scorsa pioveva e camminavamo tra i Sassi tutto il pomeriggio',

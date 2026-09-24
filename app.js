@@ -99,7 +99,8 @@
     document.querySelectorAll('.help-chip').forEach((chip) => {
       chip.setAttribute('aria-pressed', chip.dataset.help === state.helpLevel ? 'true' : 'false');
     });
-    $('helpHint').textContent = HELP_HINTS[state.helpLevel] || HELP_HINTS.mid;
+    const hh = $('helpHint');
+    if (hh) hh.textContent = HELP_HINTS[state.helpLevel] || HELP_HINTS.mid;
   }
 
   function setHelp(level) {
@@ -165,10 +166,13 @@
       list.appendChild(btn);
     });
     const next = Math.min(4, state.unlocked);
-    $('levelHint').textContent =
-      state.unlocked >= 4
-        ? 'All four levels unlocked. Replay any · or try Quick Play (~5 min).'
-        : 'Completa il livello ' + state.unlocked + ' per sbloccare il ' + (state.unlocked + 1) + '.';
+    const lh = $('levelHint');
+    if (lh) {
+      lh.textContent =
+        state.unlocked >= 4
+          ? ''
+          : '';
+    }
   }
 
   function escapeHtml(s) {
@@ -217,7 +221,7 @@
   function updateSoftScore() {
     const done = Object.keys(state.answeredOk).length;
     $('softScore').textContent =
-      'First-try ' + state.firstTryCorrect + ' · cleared ' + done + '/' + state.cards.length;
+      state.firstTryCorrect + ' · ' + done + '/' + state.cards.length;
     $('feedPos').textContent = state.index + 1 + ' / ' + state.cards.length;
   }
 
@@ -263,6 +267,7 @@
     const body = document.createElement('div');
     body.className = 'card-body';
     const tag = card.tag ? '<span class="region-sub">' + escapeHtml(card.tag) + '</span>' : '';
+    // Show don't tell: place + one culture line. Captions are the lesson.
     body.innerHTML =
       '<div class="region-row"><span class="region-tag">' +
       escapeHtml(card.region) +
@@ -270,23 +275,15 @@
       tag +
       '</div>' +
       '<p class="culture">' +
-      escapeHtml(card.culture) +
-      '</p>' +
-      '<p class="prompt">' +
-      escapeHtml(card.prompt) +
+      escapeHtml(card.culture || '') +
       '</p>';
 
-    const gloss = document.createElement('p');
-    gloss.className = 'gloss';
-    gloss.textContent = card.gloss || '';
-    gloss.hidden = state.helpLevel === 'challenge';
-    body.appendChild(gloss);
-
-    if (state.helpLevel === 'more') {
-      const tip = document.createElement('p');
-      tip.className = 'tip';
-      tip.textContent = 'Tip: read the prompt vibe, then match the caption.';
-      body.appendChild(tip);
+    // Optional short gloss only when help is on (mid/more). Never a how-to essay.
+    if (state.helpLevel !== 'challenge' && card.gloss) {
+      const gloss = document.createElement('p');
+      gloss.className = 'gloss';
+      gloss.textContent = card.gloss;
+      body.appendChild(gloss);
     }
 
     const row = document.createElement('div');
@@ -331,7 +328,7 @@
     if (fb) {
       fb.hidden = false;
       fb.className = 'feedback ok';
-      fb.textContent = 'Nice · next card unlocked ↓';
+      fb.textContent = '✓';
     }
   }
 
@@ -354,7 +351,7 @@
       });
       fb.hidden = false;
       fb.className = 'feedback ok';
-      fb.textContent = 'Nice · next card unlocked ↓';
+      fb.textContent = '✓';
       updateSoftScore();
       updateNavLock();
 
@@ -406,15 +403,13 @@
         ? 'Quick Play fatto!'
         : 'Livello ' + state.levelId + ' completato';
     $('endTitle').textContent = title;
-    $('endScore').textContent =
-      'Soft score: ' + state.firstTryCorrect + '/' + total + ' first-try';
-    let note = 'You can replay anytime. Soft score — progress is completing the level.';
+    $('endScore').textContent = state.firstTryCorrect + '/' + total;
+    let note = '';
     if (state.mode === 'level' && state.levelId < 4 && state.unlocked > state.levelId) {
-      note = 'Livello ' + (state.levelId + 1) + ' sbloccato. Next class day = next level (~8–10 min).';
-    } else if (state.mode === 'level' && state.levelId === 4) {
-      note = 'Tutti e quattro i livelli aperti. Mix totale done — replay or Quick Play anytime.';
+      note = '→ ' + (state.levelId + 1);
     }
     $('endNote').textContent = note;
+    $('endNote').hidden = !note;
 
     const nextBtn = $('btnNextLevel');
     if (state.mode === 'level' && state.levelId < 4 && state.unlocked >= state.levelId + 1) {

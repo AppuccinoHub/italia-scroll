@@ -241,10 +241,10 @@ html[data-theme="dark"] .phone {
   margin-bottom: 10px;
 }
 .hero-art {
-  height: 72px;
-  border-radius: 16px;
+  height: 56px;
+  border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   position: relative;
   background:
     linear-gradient(135deg, #7ec4ef 0%, #a8dcf5 40%, #ffe56a 100%);
@@ -679,3 +679,31 @@ html[data-theme="dark"] .card-shade {
 .bg-mdp .glow { background: linear-gradient(160deg, #1a4060, #3a88a8 40%, #f0c070 85%, #e07050); }
 .bg-ischia .glow { background: linear-gradient(160deg, #0d6a6a, #2aa0a0 40%, #f0d090); }
 .bg-capri .glow { background: linear-gradient(160deg, #0a5080, #3a90c0 45%, #f5e8d0); }
+
+
+/* Show-don't-tell: tiny optional help */
+.help-panel--tiny {
+  margin-top: 18px;
+  padding: 0;
+  opacity: 0.85;
+}
+.help-panel--tiny .help-row {
+  justify-content: center;
+  gap: 8px;
+}
+.help-panel--tiny .help-chip {
+  flex: 0 0 auto;
+  min-width: 40px;
+  width: 40px;
+  min-height: 36px;
+  padding: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 999px;
+}
+.prompt { /* demoted — usually hidden */ font-size: 14px; font-weight: 650; opacity: 0.92; }
+.culture { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+.caption-btn { font-size: 15px; min-height: 56px; }
+.play-meta { padding: 4px 12px; opacity: 0.85; }
+.soft-score { font-size: 11px; }
+.level-badge { font-size: 11px; }
