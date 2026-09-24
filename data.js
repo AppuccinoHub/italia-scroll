@@ -1,12 +1,14 @@
-/* Italia Scroll — content pack (v13, media audited)
+/* Italia Scroll — content pack (v14, media audited + verified clips)
    Phase 1: English statement → pick matching Italian caption.
    Sneak: now vs past-scene feel + high-frequency chunks. No tense labels.
    Person scope: io, tu, lui/lei, noi (spread evenly per level). Silent unlock every 15 clears.
    Every card has ONE explicit, visually verified photo of the place named on the card.
-   No rotation arrays, no generic stock video. Correct-answer slot varies per card.
+   No rotation arrays. v14: 9 place-verified muted clips (card.video, photo = poster/fallback),
+   4 place-verified people photos, 1 bonus YouTube sing-along card (tap to play, never autoplay).
+   Correct-answer slot varies per card.
 */
 window.ITALIA_SCROLL = {
-  "version": 13,
+  "version": 14,
   "unlockEvery": 15,
   "levels": [
     {
@@ -154,6 +156,7 @@ window.ITALIA_SCROLL = {
       "level": 1,
       "region": "Capri",
       "image": "images/places/capri-1.jpg",
+      "video": "videos/capri-faraglioni.mp4",
       "culture": "Capri · pointing them out",
       "prompt": "Do you see the Faraglioni? Look over there!",
       "gloss": "right now",
@@ -259,6 +262,7 @@ window.ITALIA_SCROLL = {
       "level": 1,
       "region": "Amalfi",
       "image": "images/places/amalfi-2.jpg",
+      "video": "videos/amalfi-dal-mare.mp4",
       "culture": "Amalfi · lemon gelato memory",
       "prompt": "In Amalfi you always used to get a lemon gelato.",
       "gloss": "used to",
@@ -294,6 +298,7 @@ window.ITALIA_SCROLL = {
       "level": 1,
       "region": "Capri",
       "image": "images/places/capri-2.jpg",
+      "video": "videos/capri-belvedere.mp4",
       "culture": "Capri · belvedere story time",
       "prompt": "She’s filming a story at the belvedere right now — wait.",
       "gloss": "right now",
@@ -570,10 +575,52 @@ window.ITALIA_SCROLL = {
       }
     },
     {
+      "id": "c1-16",
+      "level": 1,
+      "region": "Bonus 🎶",
+      "image": "images/bonus/sara-perche-ti-amo.jpg",
+      "youtube": {
+        "id": "-s1Uzjhe4EQ",
+        "title": "NAPOLI METRO LOVE SARÀ PERCHÉ TI AMO ❤️",
+        "channel": "Metroman ITALY",
+        "url": "https://www.youtube.com/watch?v=-s1Uzjhe4EQ"
+      },
+      "culture": "Bonus · a metro-car sing-along of a 1981 classic",
+      "prompt": "We’re all singing ‘Sarà perché ti amo’ together right now!",
+      "gloss": "right now",
+      "person": "noi",
+      "captions": [
+        "Cantiamo tutti insieme «Sarà perché ti amo»!",
+        "Cantavamo sempre tutti insieme «Sarà perché ti amo»"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "That one is how it used to go. English is right now."
+      ],
+      "help": "Tap ▶ to hear the crowd sing (sound on), then pick. cantiamo = we sing / we’re singing. insieme = together.",
+      "explain": "Cantiamo tutti insieme… = we’re singing together right now — live.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "We used to sing it together",
+          "We’re singing it together now"
+        ],
+        "correct": 1,
+        "miss": "Live sing-along = now."
+      },
+      "hook": true,
+      "lockIn": {
+        "it": "cantiamo insieme",
+        "en": "we sing / we’re singing together"
+      }
+    },
+    {
       "id": "c2-01",
       "level": 2,
       "region": "Tropea",
       "image": "images/places/tropea-1.jpg",
+      "video": "videos/tropea-isola.mp4",
       "culture": "Tropea · Santa Maria dell’Isola",
       "prompt": "We’re in Tropea right now and the sea looks insane today 💙",
       "gloss": "right now",
@@ -609,6 +656,7 @@ window.ITALIA_SCROLL = {
       "level": 2,
       "region": "Palermo",
       "image": "images/places/palermo-1.jpg",
+      "video": "videos/palermo-cattedrale.mp4",
       "culture": "Palermo · panelle by the Cattedrale",
       "prompt": "Luca is eating panelle in front of the Cathedral — wait for him!",
       "gloss": "right now",
@@ -643,7 +691,7 @@ window.ITALIA_SCROLL = {
       "id": "c2-02",
       "level": 2,
       "region": "Polignano",
-      "image": "images/places/polignano-1.jpg",
+      "image": "images/people/polignano-tuffo.jpg",
       "culture": "Polignano · August nights",
       "prompt": "Every August evening you used to jump in and then get a gelato.",
       "gloss": "used to",
@@ -678,7 +726,7 @@ window.ITALIA_SCROLL = {
       "id": "c2-12",
       "level": 2,
       "region": "Matera",
-      "image": "images/places/matera-2.jpg",
+      "image": "images/people/matera-sassi-ragazza.jpg",
       "culture": "Matera · first look at the Sassi",
       "prompt": "I’m looking at the Sassi and I’m speechless.",
       "gloss": "right now",
@@ -783,14 +831,14 @@ window.ITALIA_SCROLL = {
       "id": "c2-05",
       "level": 2,
       "region": "Alberobello",
-      "image": "images/places/alberobello-via.jpg",
+      "image": "images/people/alberobello-passeggiata.jpg",
       "culture": "Alberobello · trulli stroll",
-      "prompt": "You’re walking around the trulli with a gelato — classic!",
+      "prompt": "You’re walking around the trulli — classic!",
       "gloss": "right now",
       "person": "tu",
       "captions": [
-        "Fai un giro tra i trulli con un gelato, classico!",
-        "Facevi sempre un giro tra i trulli con un gelato"
+        "Fai un giro tra i trulli, classico!",
+        "Facevi sempre un giro tra i trulli"
       ],
       "correct": 0,
       "why": [
@@ -802,8 +850,8 @@ window.ITALIA_SCROLL = {
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "You used to wander with gelato",
-          "You’re wandering with gelato now"
+          "You used to wander around the trulli",
+          "You’re wandering around the trulli now"
         ],
         "correct": 1,
         "miss": "Right now = present."
@@ -994,6 +1042,7 @@ window.ITALIA_SCROLL = {
       "level": 2,
       "region": "Alberobello",
       "image": "images/places/alberobello-rione-monti.jpg",
+      "video": "videos/alberobello-trulli.mp4",
       "culture": "Alberobello · sister’s photos",
       "prompt": "My sister always used to take pictures of the trulli.",
       "gloss": "used to",
@@ -1099,6 +1148,7 @@ window.ITALIA_SCROLL = {
       "level": 3,
       "region": "Genova",
       "image": "images/places/genova-1.jpg",
+      "video": "videos/genova-porto-antico.mp4",
       "culture": "Genova · focaccia dash",
       "prompt": "Grab a focaccia and run to the harbor!",
       "gloss": "right now",
@@ -1168,7 +1218,7 @@ window.ITALIA_SCROLL = {
       "id": "c3-03",
       "level": 3,
       "region": "Braies",
-      "image": "images/places/braies-pontile.jpg",
+      "image": "images/people/braies-barca-ragazza.jpg",
       "culture": "Braies · quiet mornings",
       "prompt": "I used to go to the lake early and stay quiet.",
       "gloss": "used to",
@@ -1414,6 +1464,7 @@ window.ITALIA_SCROLL = {
       "level": 3,
       "region": "Braies",
       "image": "images/places/braies-barche.jpg",
+      "video": "videos/braies-lago.mp4",
       "culture": "Braies · lake quiet now",
       "prompt": "We’re at the lake right now and staying quiet.",
       "gloss": "right now",
@@ -1589,6 +1640,7 @@ window.ITALIA_SCROLL = {
       "level": 3,
       "region": "Torino",
       "image": "images/places/torino-1.jpg",
+      "video": "videos/torino-mole.mp4",
       "culture": "Torino · Saturdays at the Mole",
       "prompt": "Every Saturday my dad used to take me to the Mole.",
       "gloss": "used to",
