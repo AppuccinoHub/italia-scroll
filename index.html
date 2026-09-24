@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#e8f4fb" id="metaTheme" />
+  <meta name="theme-color" content="#cfe8f8" id="metaTheme" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="description" content="Italia Scroll — Italian 3: TikTok-style vertical scroll through Italy. Pick the right caption (Presente, Imperfetto, Passato prossimo)." />
@@ -15,8 +15,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <title>Italia Scroll · Italiano 3</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles.css?v=3" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e8f4fb'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='28'%3E%F0%9F%87%AE%F0%9F%87%B9%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23cfe8f8'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='28'%3E%F0%9F%87%AE%F0%9F%87%B9%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
   <div class="stage">
@@ -33,39 +33,33 @@
         <div class="header-actions">
           <button type="button" class="icon-btn" id="btnMute" aria-label="Mute sound" title="Sound">🔇</button>
           <button type="button" class="icon-btn" id="btnTheme" aria-label="Theme: Sky lemon. Tap for Fall" title="Theme: Sky lemon. Tap for Fall">🍂</button>
-          <button type="button" class="icon-btn" id="btnHelp" aria-label="Help level" title="Help">🎚️</button>
         </div>
       </header>
 
       <!-- START -->
       <section class="screen active" id="screenStart" aria-label="Start">
         <div class="hero">
-          <div class="hero-tag">Full app · 4 livelli · ~8–10 min ciascuno</div>
-          <div class="hero-art" aria-hidden="true">
-            <div class="scroll-preview">
-              <div class="pv-card pv-a"><span>Riomaggiore</span><p>Facciamo l’ultimo bagno…</p></div>
-              <div class="pv-card pv-b"><span>Matera</span><p>Nei Sassi faceva fresco…</p></div>
+          <div class="hero-tag">4 livelli · ~8–10 min</div>
+          <div class="hero-art" aria-hidden="true"></div>
+          <p class="hero-pitch">Scorri l’Italia — scegli la <strong>didascalia</strong> giusta.</p>
+
+          <div class="help-panel" id="helpPanelStart">
+            <p class="help-label">Livello di aiuto <span class="soft-pill">for everyone</span></p>
+            <div class="help-row" role="group" aria-label="Help level">
+              <button type="button" class="help-chip" data-help="more">More help</button>
+              <button type="button" class="help-chip" data-help="mid" aria-pressed="true">Just right</button>
+              <button type="button" class="help-chip" data-help="challenge">Challenge me</button>
             </div>
+            <p class="help-hint" id="helpHint">English gloss + clear context under each card.</p>
           </div>
-          <p class="hero-pitch">Scorri l’Italia come un For You Page. Ogni card: un momento + un morso di cultura. Scegli la <strong>didascalia italiana</strong> giusta — frasi vere, non i nomi dei tempi.</p>
 
           <div class="level-panel">
             <p class="help-label">Scegli un livello</p>
             <div class="level-list" id="levelList" role="list"></div>
-            <p class="level-hint" id="levelHint">Completa un livello per sbloccare il successivo (~8–10 min). Puoi rifare quelli già aperti.</p>
+            <p class="level-hint" id="levelHint">Completa un livello per sbloccare il successivo.</p>
           </div>
 
-          <button type="button" class="quick-btn" id="btnQuick">⚡ Quick Play · ≈ 5 min · 5 cards</button>
-        </div>
-
-        <div class="help-panel" id="helpPanelStart">
-          <p class="help-label">Livello di aiuto <span class="soft-pill">for everyone</span></p>
-          <div class="help-row" role="group" aria-label="Help level">
-            <button type="button" class="help-chip" data-help="more">More help</button>
-            <button type="button" class="help-chip" data-help="mid" aria-pressed="true">Just right</button>
-            <button type="button" class="help-chip" data-help="challenge">Challenge me</button>
-          </div>
-          <p class="help-hint" id="helpHint">English gloss + clear context under each card.</p>
+          <button type="button" class="quick-btn" id="btnQuick">⚡ Quick Play · ≈ 5 min</button>
         </div>
       </section>
 
@@ -102,7 +96,7 @@
     </div>
   </div>
 
-  <script src="data.js?v=3"></script>
-  <script src="app.js?v=3"></script>
+  <script src="data.js?v=5"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

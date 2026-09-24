@@ -70,7 +70,7 @@
   // —— Theme / mute / help ——
   const THEMES = ['light', 'fall', 'dark'];
   const THEME_META = {
-    light: { color: '#e8f4fb', nextIcon: '🍂', label: 'Theme: Sky lemon. Tap for Fall' },
+    light: { color: '#cfe8f8', nextIcon: '🍂', label: 'Theme: Sky lemon. Tap for Fall' },
     fall: { color: '#f6ebe0', nextIcon: '🌙', label: 'Theme: Fall. Tap for Dark' },
     dark: { color: '#141210', nextIcon: '🍋', label: 'Theme: Dark. Tap for Sky lemon' },
   };
@@ -136,6 +136,8 @@
     });
     const home = $('btnHome');
     if (home) home.hidden = el === $('screenStart');
+    const phone = $('phone');
+    if (phone) phone.classList.toggle('play-mode', el === $('screenPlay'));
   }
 
   // —— Level list ——
@@ -166,7 +168,7 @@
     $('levelHint').textContent =
       state.unlocked >= 4
         ? 'All four levels unlocked. Replay any · or try Quick Play (~5 min).'
-        : 'Completa il livello ' + state.unlocked + ' per sbloccare il ' + (state.unlocked + 1) + '. Ogni livello ≈ 8–10 min.';
+        : 'Completa il livello ' + state.unlocked + ' per sbloccare il ' + (state.unlocked + 1) + '.';
   }
 
   function escapeHtml(s) {
@@ -208,6 +210,7 @@
     showScreen($('screenPlay'));
     renderFeed();
     updateSoftScore();
+    updateNavLock();
     requestAnimationFrame(() => scrollToIndex(0, false));
   }
 
@@ -238,6 +241,24 @@
       '<div class="glow"></div>' +
       '<div class="card-emoji" aria-hidden="true">' + escapeHtml(card.emoji || '🇮🇹') + '</div>' +
       '<div class="card-shade"></div>';
+
+    const imgUrl = card.image || (DATA.placeImages && DATA.placeImages[card.region]) || '';
+    if (imgUrl) {
+      const img = document.createElement('img');
+      img.className = 'card-photo';
+      img.alt = '';
+      img.decoding = 'async';
+      img.loading = i < 2 ? 'eager' : 'lazy';
+      img.src = imgUrl;
+      img.addEventListener('load', () => {
+        visual.classList.add('has-photo');
+      });
+      img.addEventListener('error', () => {
+        img.hidden = true;
+        visual.classList.remove('has-photo');
+      });
+      visual.insertBefore(img, visual.querySelector('.card-shade'));
+    }
 
     const body = document.createElement('div');
     body.className = 'card-body';
@@ -310,7 +331,7 @@
     if (fb) {
       fb.hidden = false;
       fb.className = 'feedback ok';
-      fb.textContent = 'Nice · swipe for the next moment ↓';
+      fb.textContent = 'Nice · next card unlocked ↓';
     }
   }
 
@@ -333,14 +354,15 @@
       });
       fb.hidden = false;
       fb.className = 'feedback ok';
-      fb.textContent = 'Nice · swipe for the next moment ↓';
+      fb.textContent = 'Nice · next card unlocked ↓';
       updateSoftScore();
+      updateNavLock();
 
       const allDone = state.cards.every((c) => state.answeredOk[c.id]);
       if (allDone) {
         setTimeout(finishLevel, 700);
       } else {
-        // soft advance after brief beat
+        // Advance only after correct — next card is now unlocked
         setTimeout(() => {
           if (state.index < state.cards.length - 1) goTo(state.index + 1);
         }, 650);
@@ -348,16 +370,18 @@
     } else {
       beep(false);
       btns.forEach((b, i) => {
-        if (i === choiceIdx) b.classList.add('miss');
+        b.classList.toggle('miss', i === choiceIdx);
       });
       fb.hidden = false;
       fb.className = 'feedback';
-      let msg = (card.why && card.why[choiceIdx]) || 'Not quite — try the other caption.';
+      // Always explain in English and stay on this card — no advance until correct.
+      let msg = (card.why && card.why[choiceIdx]) || 'Not quite — same person, different tense. Try again.';
       if (state.helpLevel === 'challenge') {
-        msg = 'Not quite — think now vs used-to vs finished moment. Try again.';
+        msg = (card.why && card.why[choiceIdx]) || 'Not quite — think now vs used-to vs finished. Try again.';
       }
       fb.textContent = msg;
       updateSoftScore();
+      updateNavLock();
     }
   }
 
@@ -401,18 +425,52 @@
     }
   }
 
-  // —— Feed navigation ——
+  // —— Feed navigation (next card locked until current is correct) ——
+  function canVisit(i) {
+    if (i < 0 || i >= state.cards.length) return false;
+    if (i === 0) return true;
+    // May revisit any cleared card, or the first uncleared card in order
+    for (let j = 0; j < i; j++) {
+      if (!state.answeredOk[state.cards[j].id]) return false;
+    }
+    return true;
+  }
+
+  function maxReachableIndex() {
+    let max = 0;
+    for (let j = 0; j < state.cards.length; j++) {
+      if (state.answeredOk[state.cards[j].id]) max = j + 1;
+      else {
+        max = j; // may sit on the first uncleared
+        break;
+      }
+    }
+    return Math.min(max, state.cards.length - 1);
+  }
+
+  function updateNavLock() {
+    const prev = $('btnPrev');
+    const next = $('btnNext');
+    if (!prev || !next) return;
+    prev.disabled = state.index <= 0;
+    const nextIdx = state.index + 1;
+    next.disabled = nextIdx >= state.cards.length || !canVisit(nextIdx);
+  }
+
   function scrollToIndex(i, smooth) {
+    if (!canVisit(i)) i = maxReachableIndex();
     const feed = $('feed');
     const el = feed.querySelector('.feed-card[data-index="' + i + '"]');
     if (!el) return;
     el.scrollIntoView({ behavior: smooth === false ? 'auto' : 'smooth', block: 'start' });
     state.index = i;
     updateSoftScore();
+    updateNavLock();
   }
 
   function goTo(i) {
     if (i < 0 || i >= state.cards.length) return;
+    if (!canVisit(i)) return;
     scrollToIndex(i, true);
   }
 
@@ -430,9 +488,16 @@
         best = i;
       }
     });
+    if (!canVisit(best)) {
+      const capped = maxReachableIndex();
+      if (capped !== state.index) scrollToIndex(capped, true);
+      else scrollToIndex(capped, false);
+      return;
+    }
     if (best !== state.index) {
       state.index = best;
       updateSoftScore();
+      updateNavLock();
     }
   }
 
@@ -449,21 +514,6 @@
       state.theme = THEMES[(i + 1) % THEMES.length];
       localStorage.setItem(STORAGE.theme, state.theme);
       applyTheme();
-    });
-
-    $('btnHelp').addEventListener('click', () => {
-      if ($('screenStart').classList.contains('active')) {
-        const order = ['more', 'mid', 'challenge'];
-        const i = order.indexOf(state.helpLevel);
-        setHelp(order[(i + 1) % order.length]);
-        $('helpPanelStart').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      } else {
-        showScreen($('screenStart'));
-        renderLevelList();
-        requestAnimationFrame(() => {
-          $('helpPanelStart').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        });
-      }
     });
 
     $('btnHome').addEventListener('click', () => {
