@@ -584,6 +584,54 @@ html[data-theme="dark"] .card-shade {
 }
 .feedback[hidden] { display: none !important; }
 
+.prove {
+  margin: 0 14px 12px;
+  padding: 10px;
+  border-radius: 14px;
+  position: relative;
+  z-index: 3;
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  text-shadow: none;
+}
+.prove[hidden] { display: none !important; }
+.prove-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.prove-btn {
+  text-align: left;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--card) 96%, transparent);
+  color: var(--ink);
+  border: 2px solid transparent;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.3;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.prove-btn:active:not(:disabled) { transform: scale(0.99); }
+.prove-btn.correct-flash {
+  border-color: var(--success);
+  background: var(--success-bg);
+}
+.prove-btn.miss {
+  border-color: color-mix(in srgb, #c45c26 50%, var(--line));
+  opacity: 0.85;
+}
+.prove-miss {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--warn-ink);
+}
+.prove-miss[hidden] { display: none !important; }
+
+
 .feed-nav {
   flex: 0 0 auto;
   display: flex;

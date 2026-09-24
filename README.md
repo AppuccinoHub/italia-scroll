@@ -10,10 +10,10 @@ Each card = a **region moment** + culture/food bite + **choose the correct Itali
 
 | Mode | Length | Notes |
 |------|--------|--------|
-| Levels 1–4 | ≈ 8–10 min each (~9 cards) | One level per class day works best |
-| Quick Play | ≈ 5 min (5 cards) | Warm-up or exit ticket |
+| Levels 1–4 | ≈ 8–10 min each (~22 cards + prove-it) | One level per class day works best |
+| Quick Play | ≈ 2–3 min (8 cards + prove-it) | Warm-up or exit ticket |
 
-Kids turn 10-minute plans into 20 and get bored — keep sessions short.
+Each correct caption unlocks a short **prove-it** meaning check before the next card. High-frequency chunks recycle across a level (io/tu/lui-lei/noi).
 
 ## Unlock path
 
@@ -24,7 +24,7 @@ Kids turn 10-minute plans into 20 and get bored — keep sessions short.
 
 Complete a level to unlock the next (IEP-friendly). Soft first-try score. Replay unlocked levels. Progress in `localStorage`.
 
-On a miss: short high-school English explanation, then try again. Help for everyone (English gloss default-on).
+On a miss: short high-school English explanation, then try again. After a correct caption: one-tap **prove-it** (match the English meaning) — wrong → short English + retry; stay until right. Help for everyone (English gloss default-on).
 
 ## Regions (Campania coast first → unique Italy)
 
@@ -42,7 +42,7 @@ Vanilla HTML/CSS/JS. No build step.
 index.html  styles.css  app.js  data.js  manifest.webmanifest  og.png
 ```
 
-Cache-bust: `?v=3` on assets. Themes (header tap cycles, persisted): **Sky lemon** (default light) → **Fall** (terracotta / muted gold) → **Dark**. Sound muted by default. Mute + theme always in the header — no modal sheets.
+Cache-bust: `?v=7` on assets. Themes (header tap cycles, persisted): **Sky lemon** (default light) → **Fall** (terracotta / muted gold) → **Dark**. Sound muted by default. Mute + theme always in the header — no modal sheets.
 
 Chromebook: centered ~400px feed, trackpad scroll, ↑↓ / click next. Phone: full-viewport snap scroll.
 

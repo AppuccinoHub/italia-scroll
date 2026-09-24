@@ -33,9 +33,10 @@
     cards: [],
     index: 0,
     firstTryCorrect: 0,
-    attempted: {}, // cardId -> true after first attempt
+    attempted: {}, // cardId -> true after first caption attempt
     locked: false,
-    answeredOk: {}, // cardId -> true when correct
+    captionOk: {}, // cardId -> true after correct caption (before prove-it)
+    answeredOk: {}, // cardId -> true when caption + prove-it cleared
   };
 
   let audioCtx = null;
@@ -202,6 +203,7 @@
     state.index = 0;
     state.firstTryCorrect = 0;
     state.attempted = {};
+    state.captionOk = {};
     state.answeredOk = {};
     state.locked = false;
     const badge =
@@ -210,7 +212,9 @@
         : 'Livello ' + state.levelId + ' · ' + (DATA.levels[state.levelId - 1] || {}).title;
     $('levelBadge').textContent = badge;
     $('headerSubtitle').textContent =
-      state.mode === 'quick' ? 'Quick Play · ≈ 5 min' : 'Livello ' + state.levelId + ' · Italiano 3';
+      state.mode === 'quick'
+        ? 'Quick Play · ' + (DATA.quickPlay.minutes || '≈ 2–3 min')
+        : 'Livello ' + state.levelId + ' · Italiano 3';
     showScreen($('screenPlay'));
     renderFeed();
     updateSoftScore();
@@ -313,6 +317,19 @@
 
     if (state.answeredOk[card.id]) {
       lockCardCorrect(art, card);
+    } else if (state.captionOk[card.id]) {
+      const btns = art.querySelectorAll('.caption-btn');
+      btns.forEach((b, i) => {
+        b.disabled = true;
+        if (i === card.correct) b.classList.add('correct-flash');
+      });
+      const fb = art.querySelector('.feedback');
+      if (fb) {
+        fb.hidden = false;
+        fb.className = 'feedback ok';
+        fb.textContent = '✓';
+      }
+      showProveIt(art, card);
     }
 
     return art;
@@ -330,10 +347,107 @@
       fb.className = 'feedback ok';
       fb.textContent = '✓';
     }
+    // Fully cleared: hide prove panel if present
+    const prove = art.querySelector('.prove');
+    if (prove) {
+      prove.hidden = true;
+    }
+  }
+
+  function ensureProveEl(art, card) {
+    let prove = art.querySelector('.prove');
+    if (prove) return prove;
+    prove = document.createElement('div');
+    prove.className = 'prove';
+    prove.hidden = true;
+    prove.setAttribute('role', 'group');
+    prove.setAttribute('aria-label', 'Prove it');
+    const fb = art.querySelector('.feedback');
+    if (fb && fb.parentNode === art && fb.nextSibling) art.insertBefore(prove, fb.nextSibling);
+    else art.appendChild(prove);
+    return prove;
+  }
+
+  function showProveIt(art, card) {
+    const prove = ensureProveEl(art, card);
+    const p = card.prove;
+    if (!p || !p.choices || !p.choices.length) {
+      // No prove data — treat as cleared
+      clearCard(art, card);
+      return;
+    }
+    prove.hidden = false;
+    prove.innerHTML = '';
+    const row = document.createElement('div');
+    row.className = 'prove-row';
+    p.choices.forEach((text, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'prove-btn';
+      b.textContent = text;
+      b.dataset.idx = String(i);
+      b.addEventListener('click', () => onProve(card, i, art));
+      row.appendChild(b);
+    });
+    const miss = document.createElement('div');
+    miss.className = 'prove-miss';
+    miss.hidden = true;
+    miss.setAttribute('role', 'status');
+    miss.setAttribute('aria-live', 'polite');
+    prove.appendChild(row);
+    prove.appendChild(miss);
+  }
+
+  function onProve(card, choiceIdx, art) {
+    if (state.answeredOk[card.id]) return;
+    if (!state.captionOk[card.id]) return;
+    const p = card.prove;
+    const prove = art.querySelector('.prove');
+    const miss = prove && prove.querySelector('.prove-miss');
+    const btns = prove ? prove.querySelectorAll('.prove-btn') : [];
+
+    if (choiceIdx === p.correct) {
+      beep(true);
+      btns.forEach((b, i) => {
+        b.disabled = true;
+        if (i === choiceIdx) b.classList.add('correct-flash');
+        b.classList.remove('miss');
+      });
+      if (miss) {
+        miss.hidden = true;
+        miss.textContent = '';
+      }
+      clearCard(art, card);
+    } else {
+      beep(false);
+      btns.forEach((b, i) => {
+        b.classList.toggle('miss', i === choiceIdx);
+      });
+      if (miss) {
+        miss.hidden = false;
+        miss.textContent = p.miss || 'Not quite — try again.';
+      }
+    }
+  }
+
+  function clearCard(art, card) {
+    state.answeredOk[card.id] = true;
+    lockCardCorrect(art, card);
+    updateSoftScore();
+    updateNavLock();
+
+    const allDone = state.cards.every((c) => state.answeredOk[c.id]);
+    if (allDone) {
+      setTimeout(finishLevel, 700);
+    } else {
+      setTimeout(() => {
+        if (state.index < state.cards.length - 1) goTo(state.index + 1);
+      }, 650);
+    }
   }
 
   function onCaption(card, choiceIdx, art) {
-    if (state.answeredOk[card.id]) return;
+    if (state.answeredOk[card.id] || state.captionOk[card.id]) return;
     const firstTry = !state.attempted[card.id];
     state.attempted[card.id] = true;
 
@@ -342,7 +456,7 @@
 
     if (choiceIdx === card.correct) {
       if (firstTry) state.firstTryCorrect += 1;
-      state.answeredOk[card.id] = true;
+      state.captionOk[card.id] = true;
       beep(true);
       btns.forEach((b, i) => {
         b.disabled = true;
@@ -353,17 +467,8 @@
       fb.className = 'feedback ok';
       fb.textContent = '✓';
       updateSoftScore();
-      updateNavLock();
-
-      const allDone = state.cards.every((c) => state.answeredOk[c.id]);
-      if (allDone) {
-        setTimeout(finishLevel, 700);
-      } else {
-        // Advance only after correct — next card is now unlocked
-        setTimeout(() => {
-          if (state.index < state.cards.length - 1) goTo(state.index + 1);
-        }, 650);
-      }
+      // Do NOT unlock next yet — prove-it first
+      showProveIt(art, card);
     } else {
       beep(false);
       btns.forEach((b, i) => {
@@ -371,7 +476,6 @@
       });
       fb.hidden = false;
       fb.className = 'feedback';
-      // Always explain in English and stay on this card — no advance until correct.
       let msg = (card.why && card.why[choiceIdx]) || 'Not quite — same person, different tense. Try again.';
       if (state.helpLevel === 'challenge') {
         msg = (card.why && card.why[choiceIdx]) || 'Not quite — think now vs used-to vs finished. Try again.';
