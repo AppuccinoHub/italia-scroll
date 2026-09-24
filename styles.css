@@ -620,3 +620,8 @@ html[data-theme="dark"] .card-shade {
 @media (prefers-reduced-motion: reduce) {
   .pv-card, .card-emoji { animation: none; }
 }
+
+.bg-bacoli .glow { background: linear-gradient(160deg, #0a5c7a, #2a98b0 40%, #e8a868); }
+.bg-mdp .glow { background: linear-gradient(160deg, #1a4060, #3a88a8 40%, #f0c070 85%, #e07050); }
+.bg-ischia .glow { background: linear-gradient(160deg, #0d6a6a, #2aa0a0 40%, #f0d090); }
+.bg-capri .glow { background: linear-gradient(160deg, #0a5080, #3a90c0 45%, #f5e8d0); }

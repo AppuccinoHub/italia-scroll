@@ -26,11 +26,11 @@ Complete a level to unlock the next (IEP-friendly). Soft first-try score. Replay
 
 On a miss: short high-school English explanation, then try again. Help for everyone (English gloss default-on).
 
-## Regions (beach-first → unique inland)
+## Regions (Campania coast first → unique Italy)
 
-Coast / late summer: Riomaggiore (Cinque Terre), Polignano, Tropea, San Vito Lo Capo, Procida, Sperlonga, Costa Smeralda, Elba, Salento, Positano (light).
+**Opener (Sue’s area):** Bacoli → **Monte di Procida** (hometown of Professoressa Scotto — light teacher cameo) → Ischia → Capri.
 
-Unique inland / food / gems: Matera, Alberobello, Bologna, Torino, Genova, Ortigia, Lecce, Palermo markets, Braies (Dolomiti), Ravenna, Chioggia.
+Then: Tropea, Polignano, Matera, Alberobello, Bologna, Lecce, Genova, Braies, Palermo, Ortigia, Torino, and more.
 
 **Not** a Rome/Venice tourist brochure lead.
 
