@@ -250,7 +250,10 @@
       '<div class="card-emoji" aria-hidden="true">' + escapeHtml(card.emoji || '🇮🇹') + '</div>' +
       '<div class="card-shade"></div>';
 
-    const imgUrl = card.image || (DATA.placeImages && DATA.placeImages[card.region]) || '';
+    const placeImg = DATA.placeImages && DATA.placeImages[card.region];
+    const imgUrl = card.image
+      || (Array.isArray(placeImg) ? placeImg[i % placeImg.length] : placeImg)
+      || '';
     if (imgUrl) {
       const img = document.createElement('img');
       img.className = 'card-photo';
