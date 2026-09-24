@@ -25,7 +25,7 @@
   const state = {
     helpLevel: localStorage.getItem(STORAGE.help) || 'mid',
     muted: localStorage.getItem(STORAGE.mute) !== '0', // muted by default
-    theme: localStorage.getItem(STORAGE.theme) || 'light',
+    theme: (['light','fall','dark'].includes(localStorage.getItem(STORAGE.theme)) ? localStorage.getItem(STORAGE.theme) : 'light'),
     unlocked: 1, // highest unlocked level id (1–4)
     completed: {}, // { "1": { bestFirstTry, plays }, ... , "quick": {...} }
     mode: null, // 'level' | 'quick'
@@ -68,15 +68,26 @@
   }
 
   // —— Theme / mute / help ——
+  const THEMES = ['light', 'fall', 'dark'];
+  const THEME_META = {
+    light: { color: '#e8f4fb', nextIcon: '🍂', label: 'Theme: Sky lemon. Tap for Fall' },
+    fall: { color: '#f6ebe0', nextIcon: '🌙', label: 'Theme: Fall. Tap for Dark' },
+    dark: { color: '#141210', nextIcon: '🍋', label: 'Theme: Dark. Tap for Sky lemon' },
+  };
+
+  function normalizeTheme(t) {
+    return THEMES.includes(t) ? t : 'light';
+  }
+
   function applyTheme() {
+    state.theme = normalizeTheme(state.theme);
     document.documentElement.setAttribute('data-theme', state.theme);
     const meta = $('metaTheme');
-    if (meta) meta.setAttribute('content', state.theme === 'dark' ? '#141210' : '#f7f3eb');
-    $('btnTheme').textContent = state.theme === 'dark' ? '☀️' : '🌙';
-    $('btnTheme').setAttribute(
-      'aria-label',
-      state.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-    );
+    const info = THEME_META[state.theme];
+    if (meta) meta.setAttribute('content', info.color);
+    $('btnTheme').textContent = info.nextIcon;
+    $('btnTheme').setAttribute('aria-label', info.label);
+    $('btnTheme').setAttribute('title', info.label);
   }
 
   function updateMuteUI() {
@@ -434,7 +445,8 @@
     });
 
     $('btnTheme').addEventListener('click', () => {
-      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      const i = THEMES.indexOf(normalizeTheme(state.theme));
+      state.theme = THEMES[(i + 1) % THEMES.length];
       localStorage.setItem(STORAGE.theme, state.theme);
       applyTheme();
     });

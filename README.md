@@ -42,7 +42,7 @@ Vanilla HTML/CSS/JS. No build step.
 index.html  styles.css  app.js  data.js  manifest.webmanifest  og.png
 ```
 
-Cache-bust: `?v=1` on assets. Light mode default + dark toggle (persisted). Sound muted by default. Mute + theme always in the header.
+Cache-bust: `?v=3` on assets. Themes (header tap cycles, persisted): **Sky lemon** (default light) → **Fall** (terracotta / muted gold) → **Dark**. Sound muted by default. Mute + theme always in the header — no modal sheets.
 
 Chromebook: centered ~400px feed, trackpad scroll, ↑↓ / click next. Phone: full-viewport snap scroll.
 
