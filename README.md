@@ -2,7 +2,7 @@
 
 **Laptop-first** trip through Italy (two-pane on Chromebooks; vertical snap on phones) for Sue Scotto’s Italian 3 (AppuccinoHub).
 
-Each card = **English statement** → pick the Italian that says it (photo/video is vibe).
+Each card = **English statement** → pick the Italian that says it (the photo shows the place named on the card).
 Sneak: now-vs-past feel + high-frequency chunks (`Ti va di…`, `il golfo`, food, places). No tense-name labels.
 After a correct pick: tiny “you locked in” gloss. Some cards use short muted Italy loops.
 
@@ -28,5 +28,5 @@ Quick Play ≈ 8 cards. Person scope: io / tu / lui-lei / noi.
 
 ## Tech
 
-Vanilla HTML/CSS/JS. Cache-bust: `?v=12`. Themes: Sky lemon → Fall → Dark.
+Vanilla HTML/CSS/JS. Cache-bust: `?v=13`. Themes: Sky lemon → Fall → Dark.
 No modal sheets / Chiudi overlays.

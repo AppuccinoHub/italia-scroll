@@ -38,6 +38,7 @@
     Chioggia: '50% 45%',
     Ravenna: '50% 40%',
     Lecce: '50% 40%',
+    Roma: '50% 55%',
   };
 
   const $ = (id) => document.getElementById(id);

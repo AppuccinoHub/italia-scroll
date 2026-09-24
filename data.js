@@ -1,11 +1,12 @@
-/* Italia Scroll — content pack
+/* Italia Scroll — content pack (v13, media audited)
    Phase 1: English statement → pick matching Italian caption.
    Sneak: now vs past-scene feel + high-frequency chunks. No tense labels.
-   Person scope: io, tu, lui/lei, noi. Silent unlock every 15 clears.
-   Mix stills + short muted video loops. Action teen hooks.
+   Person scope: io, tu, lui/lei, noi (spread evenly per level). Silent unlock every 15 clears.
+   Every card has ONE explicit, visually verified photo of the place named on the card.
+   No rotation arrays, no generic stock video. Correct-answer slot varies per card.
 */
 window.ITALIA_SCROLL = {
-  "version": 12,
+  "version": 13,
   "unlockEvery": 15,
   "levels": [
     {
@@ -32,107 +33,14 @@ window.ITALIA_SCROLL = {
     "blurb": "Eight cards · about two–three minutes.",
     "minutes": "≈ 2–3 min",
     "cardIds": [
-      "c1-01",
       "c1-05",
-      "c2-01",
-      "c2-06",
-      "c3-01",
       "c1-09",
-      "c2-09",
-      "c3-12"
-    ]
-  },
-  "placeImages": {
-    "Bacoli": [
-      "images/hometown/capo-miseno.jpg",
-      "images/hometown/molo-tramonto.jpg",
-      "images/hometown/scogli-golfo.jpg",
-      "images/hometown/faro.jpg",
-      "images/hometown/lago-collina.jpg",
-      "images/hometown/notte-luna.jpg",
-      "images/hometown/dal-mare.jpg"
-    ],
-    "Monte di Procida": [
-      "images/hometown/dal-mare.jpg",
-      "images/hometown/capo-miseno.jpg",
-      "images/hometown/faro.jpg",
-      "images/hometown/lago-collina.jpg",
-      "images/hometown/notte-luna.jpg",
-      "images/hometown/scogli-golfo.jpg",
-      "images/hometown/molo-tramonto.jpg"
-    ],
-    "Ischia": [
-      "images/places/ischia-1.jpg",
-      "images/places/ischia-2.jpg"
-    ],
-    "Capri": [
-      "images/places/capri-fara-alt.jpg",
-      "images/places/capri-1.jpg",
-      "images/places/capri-2.jpg"
-    ],
-    "Tropea": [
-      "images/places/tropea-1.jpg",
-      "images/places/tropea-2.jpg"
-    ],
-    "Polignano": [
-      "images/places/polignano-1.jpg",
-      "images/places/polignano-2.jpg"
-    ],
-    "Matera": [
-      "images/places/matera-1.jpg",
-      "images/places/matera-2.jpg"
-    ],
-    "Alberobello": [
-      "images/places/alberobello-1.jpg",
-      "images/places/alberobello-2.jpg"
-    ],
-    "Bologna": [
-      "images/places/bologna-1.jpg",
-      "images/places/bologna-2.jpg"
-    ],
-    "Lecce": [
-      "images/places/lecce-1.jpg",
-      "images/places/lecce-2.jpg"
-    ],
-    "Genova": [
-      "images/places/genova-1.jpg",
-      "images/places/genova-2.jpg"
-    ],
-    "Braies": [
-      "images/places/braies-1.jpg",
-      "images/places/braies-2.jpg"
-    ],
-    "Palermo": [
-      "images/places/palermo-1.jpg",
-      "images/places/palermo-2.jpg"
-    ],
-    "Ortigia": [
-      "images/places/ortigia-1.jpg",
-      "images/places/ortigia-2.jpg"
-    ],
-    "Torino": [
-      "images/places/torino-1.jpg",
-      "images/places/torino-2.jpg"
-    ],
-    "Amalfi": [
-      "images/places/amalfi-1.jpg",
-      "images/places/amalfi-2.jpg"
-    ],
-    "Procida": [
-      "images/places/procida-1.jpg",
-      "images/places/procida-2.jpg"
-    ],
-    "Sperlonga": [
-      "images/places/sperlonga-1.jpg",
-      "images/places/sperlonga-2.jpg"
-    ],
-    "Ravenna": [
-      "images/places/ravenna-1.jpg",
-      "images/places/ravenna-2.jpg"
-    ],
-    "Chioggia": [
-      "images/places/chioggia-1.jpg",
-      "images/places/chioggia-2.jpg"
+      "c1-03",
+      "c2-12",
+      "c2-02",
+      "c3-07",
+      "c3-02",
+      "c3-01"
     ]
   },
   "cards": [
@@ -140,22 +48,22 @@ window.ITALIA_SCROLL = {
       "id": "c1-01",
       "level": 1,
       "region": "Bacoli",
-      "image": "images/hometown/molo-tramonto.jpg",
-      "culture": "Bacoli waterfront · tonight",
-      "prompt": "We’re in Bacoli right now and the gulf looks incredible tonight.",
+      "image": "images/hometown/notte-luna.jpg",
+      "culture": "Bacoli · moon on the gulf",
+      "prompt": "We’re in Bacoli and the gulf looks amazing tonight.",
       "gloss": "right now",
       "person": "noi",
       "captions": [
-        "Siamo a Bacoli e il golfo è incredibile stasera",
-        "Eravamo a Bacoli e il golfo era sempre incredibile"
+        "Eravamo a Bacoli e il golfo era sempre stupendo",
+        "Siamo a Bacoli e stasera il golfo è stupendo"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is how it used to feel. Your English says tonight."
+        "That one is how it used to feel. Your English says tonight.",
+        ""
       ],
       "help": "Match the English: you’re there tonight. New chunk: il golfo = the gulf.",
-      "explain": "Siamo… è… matches “we’re there / it is” tonight — live, not a memory.",
+      "explain": "Siamo… è… stasera = we’re there, it is, tonight — live, not a memory.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
@@ -172,59 +80,60 @@ window.ITALIA_SCROLL = {
       }
     },
     {
-      "id": "c1-02",
+      "id": "c1-05",
       "level": 1,
-      "region": "Monte di Procida",
-      "image": "images/hometown/capo-miseno.jpg",
-      "culture": "Monte · her hometown overlook",
-      "prompt": "We’re at the belvedere in Monte di Procida right now — our teacher is from here!",
+      "region": "Roma",
+      "image": "images/places/roma-ferrari-colosseo.jpg",
+      "culture": "Roma · rosso corsa at the Colosseo",
+      "prompt": "I see a red Ferrari in front of the Colosseum — wild!",
       "gloss": "right now",
-      "person": "noi",
+      "person": "io",
       "captions": [
-        "Siamo al belvedere di Monte di Procida — la professoressa è di qui!",
-        "Eravamo al belvedere di Monte di Procida — la professoressa era di qui!"
+        "Vedo una Ferrari rossa davanti al Colosseo, pazzesco!",
+        "Vedevo sempre una Ferrari rossa davanti al Colosseo"
       ],
       "correct": 0,
       "why": [
         "",
-        "That one paints a past visit. English is right now."
+        "That one is what you used to see. English is this second."
       ],
-      "help": "Match “we’re at the belvedere now.” belvedere = scenic overlook.",
-      "explain": "Siamo al belvedere… è di qui matches standing there now.",
+      "help": "Match “I see it now.” Vedo = I see. davanti a = in front of.",
+      "explain": "Vedo… = spotting it live this second.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We’re at her town overlook now",
-          "We used to visit her town"
+          "I used to see that Ferrari",
+          "I see the red Ferrari now"
         ],
-        "correct": 0,
-        "miss": "You’re there live."
+        "correct": 1,
+        "miss": "Live look = now."
       },
-      "hook": false,
+      "hook": true,
       "lockIn": {
-        "it": "il belvedere",
-        "en": "scenic overlook / viewpoint"
+        "it": "davanti al Colosseo",
+        "en": "in front of the Colosseum"
       }
     },
     {
       "id": "c1-03",
       "level": 1,
       "region": "Ischia",
+      "image": "images/places/ischia-2.jpg",
       "culture": "Ischia summers · looking back",
       "prompt": "Every summer we used to go to Ischia and stay on the beach for hours.",
       "gloss": "used to",
       "person": "noi",
       "captions": [
-        "Ogni estate andavamo a Ischia e restavamo ore in spiaggia",
-        "Ogni estate andiamo a Ischia e restiamo ore in spiaggia"
+        "Ogni estate andavamo a Ischia e stavamo in spiaggia per ore",
+        "Ogni estate andiamo a Ischia e stiamo in spiaggia per ore"
       ],
       "correct": 0,
       "why": [
         "",
         "That one is today’s habit. English looks back."
       ],
-      "help": "Match the old summer habit. spiaggia = beach.",
-      "explain": "andavamo / restavamo = how summers used to go — not today’s plan.",
+      "help": "Match the old summer habit. la spiaggia = the beach.",
+      "explain": "andavamo / stavamo = how summers used to go — not today’s plan.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
@@ -238,176 +147,33 @@ window.ITALIA_SCROLL = {
       "lockIn": {
         "it": "la spiaggia",
         "en": "the beach"
-      },
-      "image": "images/places/ischia-1.jpg",
-      "video": "videos/beach-run.mp4"
-    },
-    {
-      "id": "c1-04",
-      "level": 1,
-      "region": "Capri",
-      "culture": "Capri · boat view",
-      "prompt": "We’re seeing the Faraglioni from the boat right now, guys 🔥",
-      "gloss": "right now",
-      "person": "noi",
-      "captions": [
-        "Vediamo i Faraglioni dalla barca, raga 🔥",
-        "Vedevamo i Faraglioni dalla barca, raga"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is a memory. English is live on the boat."
-      ],
-      "help": "Match live from the boat. i Faraglioni = Capri’s famous rocks.",
-      "explain": "Vediamo… dalla barca = seeing them now from the boat.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "We see them live from the boat",
-          "We used to see them from the boat"
-        ],
-        "correct": 0,
-        "miss": "Live view = present."
-      },
-      "hook": false,
-      "lockIn": {
-        "it": "i Faraglioni",
-        "en": "Capri’s famous sea rocks"
-      },
-      "image": "images/places/capri-fara-alt.jpg",
-      "video": "videos/venice-boats.mp4"
-    },
-    {
-      "id": "c1-05",
-      "level": 1,
-      "region": "Capri",
-      "hook": true,
-      "image": "images/hooks/ferrari-1.jpg",
-      "culture": "Capri coast · rosso corsa",
-      "prompt": "I’m looking at that red Ferrari right now — wild!",
-      "gloss": "right now",
-      "person": "io",
-      "captions": [
-        "Guardo quella Ferrari rossa — pazzesca!",
-        "Guardavo sempre quella Ferrari rossa"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is how you used to watch it. English is this second."
-      ],
-      "help": "Match “I’m looking at it now.” Guardo = I’m looking at.",
-      "explain": "Guardo… matches spotting it live this second.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "I’m looking at the red Ferrari now",
-          "I used to look at that Ferrari"
-        ],
-        "correct": 0,
-        "miss": "Live look = now."
-      },
-      "lockIn": {
-        "it": "Guardo…",
-        "en": "I’m looking at…"
       }
-    },
-    {
-      "id": "c1-06",
-      "level": 1,
-      "region": "Procida",
-      "culture": "Procida · colorful harbor",
-      "prompt": "Marco is in Procida right now looking at the harbor colors.",
-      "gloss": "right now",
-      "person": "lui",
-      "captions": [
-        "Marco è a Procida e guarda i colori del porto",
-        "Marco era a Procida e guardava i colori del porto"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is a past scene. English is live."
-      ],
-      "help": "Match Marco live there. il porto = the harbor.",
-      "explain": "Marco è… guarda… = he is there looking now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "Marco is there looking at the harbor",
-          "Marco used to look at the harbor"
-        ],
-        "correct": 0,
-        "miss": "He’s there now."
-      },
-      "hook": false,
-      "lockIn": {
-        "it": "il porto",
-        "en": "the harbor"
-      },
-      "image": "images/places/procida-1.jpg"
-    },
-    {
-      "id": "c1-07",
-      "level": 1,
-      "region": "Amalfi",
-      "culture": "Amalfi · lemon gelato",
-      "prompt": "I’m in Amalfi right now eating a lemon gelato.",
-      "gloss": "right now",
-      "person": "io",
-      "captions": [
-        "Sono ad Amalfi e mangio un gelato al limone",
-        "Ero ad Amalfi e mangiavo un gelato al limone"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is a past gelato stop. English is now."
-      ],
-      "help": "Match “I’m eating gelato now.” gelato al limone = lemon gelato.",
-      "explain": "Sono… mangio… = there now, eating now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "I am in Amalfi eating gelato",
-          "I used to be in Amalfi eating gelato"
-        ],
-        "correct": 0,
-        "miss": "Live selfie = present."
-      },
-      "hook": true,
-      "lockIn": {
-        "it": "gelato al limone",
-        "en": "lemon gelato"
-      },
-      "image": "images/hooks/teen-gelato.jpg",
-      "video": "videos/gelato-girl.mp4"
     },
     {
       "id": "c1-08",
       "level": 1,
       "region": "Capri",
+      "image": "images/places/capri-1.jpg",
       "culture": "Capri · pointing them out",
       "prompt": "Do you see the Faraglioni? Look over there!",
       "gloss": "right now",
       "person": "tu",
       "captions": [
-        "Vedi i Faraglioni? Guarda lì!",
-        "Vedevi i Faraglioni? Guardavi lì!"
+        "Da piccolo vedevi i Faraglioni da lì?",
+        "Li vedi i Faraglioni? Guarda lì!"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is how you used to point. English is live."
+        "That one asks about when you were little. English is live.",
+        ""
       ],
-      "help": "Match you talking to a friend live. Guarda lì! = Look there!",
-      "explain": "Vedi…? Guarda lì! = you’re pointing it out right now.",
+      "help": "Match you talking to a friend live. Guarda lì! = Look over there!",
+      "explain": "Li vedi…? Guarda lì! = you’re pointing them out right now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
           "You see them right now",
-          "You used to see them"
+          "You used to see them as a kid"
         ],
         "correct": 0,
         "miss": "Live point."
@@ -416,44 +182,42 @@ window.ITALIA_SCROLL = {
       "lockIn": {
         "it": "Guarda lì!",
         "en": "Look over there!"
-      },
-      "image": "images/places/capri-1.jpg"
+      }
     },
     {
-      "id": "c1-09",
+      "id": "c1-06",
       "level": 1,
-      "region": "Capri",
-      "hook": true,
-      "image": "images/hooks/teen-photo.jpg",
-      "culture": "Belvedere · story time",
-      "prompt": "She’s filming a story at the belvedere right now — wait.",
-      "gloss": "right now",
-      "person": "lei",
+      "region": "Procida",
+      "image": "images/places/procida-1.jpg",
+      "culture": "Procida · colorful harbor",
+      "prompt": "Every summer Marco used to draw the colors of the harbor.",
+      "gloss": "used to",
+      "person": "lui",
       "captions": [
-        "Lei fa una storia al belvedere, aspetta",
-        "Lei faceva sempre una storia al belvedere"
+        "Ogni estate Marco disegnava i colori del porto",
+        "Ogni estate Marco disegna i colori del porto"
       ],
       "correct": 0,
       "why": [
         "",
-        "That one is how she used to post. English is live."
+        "That one is what he does now. English looks back."
       ],
-      "help": "Match her live story. fa una storia = she’s posting/filming a story.",
-      "explain": "Lei fa una storia… aspetta = happening this second.",
+      "help": "Match Marco’s old summer habit. il porto = the harbor.",
+      "explain": "disegnava = he used to draw — a past-scene habit.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "She’s posting a story now",
-          "She used to post stories here"
+          "Marco draws the harbor now",
+          "Marco used to draw the harbor"
         ],
-        "correct": 0,
-        "miss": "Live story."
+        "correct": 1,
+        "miss": "Old summers."
       },
+      "hook": false,
       "lockIn": {
-        "it": "fa una storia",
-        "en": "is filming / posting a story"
-      },
-      "video": "videos/rome-photos.mp4"
+        "it": "il porto",
+        "en": "the harbor"
+      }
     },
     {
       "id": "c1-10",
@@ -465,23 +229,23 @@ window.ITALIA_SCROLL = {
       "gloss": "right now",
       "person": "io",
       "captions": [
-        "Resto a Bacoli fino al tramonto, non parto",
-        "Restavo a Bacoli fino al tramonto, non partivo"
+        "Restavo sempre a Bacoli fino al tramonto",
+        "Resto a Bacoli fino al tramonto, non me ne vado"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is an old habit. English is tonight."
+        "That one is an old habit. English is tonight.",
+        ""
       ],
       "help": "Match staying for sunset now. il tramonto = sunset.",
-      "explain": "Resto… non parto = staying now, not leaving.",
+      "explain": "Resto… non me ne vado = staying now, not leaving.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "I’m staying for sunset",
-          "I used to stay for sunset"
+          "I used to stay for sunset",
+          "I’m staying for sunset"
         ],
-        "correct": 0,
+        "correct": 1,
         "miss": "Tonight = present."
       },
       "hook": false,
@@ -491,188 +255,331 @@ window.ITALIA_SCROLL = {
       }
     },
     {
-      "id": "c1-11",
+      "id": "c1-07",
       "level": 1,
-      "region": "Monte di Procida",
-      "image": "images/hometown/lago-collina.jpg",
-      "culture": "Monte · gelato memory",
-      "prompt": "At the belvedere we always used to get a gelato while watching the gulf.",
+      "region": "Amalfi",
+      "image": "images/places/amalfi-2.jpg",
+      "culture": "Amalfi · lemon gelato memory",
+      "prompt": "In Amalfi you always used to get a lemon gelato.",
       "gloss": "used to",
-      "person": "noi",
+      "person": "tu",
       "captions": [
-        "Al belvedere prendevamo sempre un gelato guardando il golfo",
-        "Al belvedere prendiamo sempre un gelato guardando il golfo"
+        "Ad Amalfi prendi sempre un gelato al limone",
+        "Ad Amalfi prendevi sempre un gelato al limone"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is today’s habit. English looks back."
+        "That one is your habit today. English looks back.",
+        ""
       ],
-      "help": "Match the old gelato habit. prendevamo = we used to get.",
-      "explain": "prendevamo sempre… = how gelato stops used to go.",
+      "help": "Match your old Amalfi habit. gelato al limone = lemon gelato.",
+      "explain": "prendevi sempre… = what you always used to get.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to get gelato at the overlook",
-          "We get gelato at the overlook today"
+          "You used to get lemon gelato",
+          "You get lemon gelato now"
         ],
         "correct": 0,
-        "miss": "Old gelato loop."
+        "miss": "Used-to habit."
       },
+      "hook": true,
       "lockIn": {
-        "it": "prendevamo un gelato",
-        "en": "we used to get a gelato"
+        "it": "gelato al limone",
+        "en": "lemon gelato"
       }
     },
     {
-      "id": "c1-12",
+      "id": "c1-09",
       "level": 1,
-      "region": "Ischia",
-      "image": "images/places/ischia-2.jpg",
-      "culture": "Ischia · ferry wait",
-      "prompt": "We’re waiting for the ferry in Ischia — see you at the harbor!",
+      "region": "Capri",
+      "image": "images/places/capri-2.jpg",
+      "culture": "Capri · belvedere story time",
+      "prompt": "She’s filming a story at the belvedere right now — wait.",
       "gloss": "right now",
-      "person": "noi",
+      "person": "lei",
       "captions": [
-        "Aspettiamo il traghetto a Ischia — ci vediamo al porto!",
-        "Aspettavamo sempre il traghetto a Ischia"
+        "Sta facendo una storia al belvedere, aspetta",
+        "Faceva sempre le storie al belvedere"
       ],
       "correct": 0,
       "why": [
         "",
-        "That one is how waiting used to feel. English is live."
+        "That one is how she used to post. English is live."
       ],
-      "help": "Match waiting live. il traghetto = the ferry.",
-      "explain": "Aspettiamo il traghetto… = waiting now.",
+      "help": "Match her live story. sta facendo una storia = she’s filming a story.",
+      "explain": "Sta facendo… aspetta = happening this second.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We’re waiting for the ferry now",
-          "We used to wait for the ferry"
+          "She used to post stories here",
+          "She’s posting a story now"
+        ],
+        "correct": 1,
+        "miss": "Live story."
+      },
+      "hook": true,
+      "lockIn": {
+        "it": "fare una storia",
+        "en": "to film / post a story"
+      }
+    },
+    {
+      "id": "c1-15",
+      "level": 1,
+      "region": "Bacoli",
+      "image": "images/hometown/faro.jpg",
+      "culture": "Bacoli · Sunday lighthouse walks",
+      "prompt": "Every Sunday I used to go to the lighthouse with my grandpa.",
+      "gloss": "used to",
+      "person": "io",
+      "captions": [
+        "Ogni domenica vado al faro con il nonno",
+        "Ogni domenica andavo al faro con il nonno"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is what you do now. English looks back.",
+        ""
+      ],
+      "help": "Match the old Sunday habit. il faro = the lighthouse.",
+      "explain": "andavo = I used to go — a memory with nonno.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "I used to go with Grandpa",
+          "I go with Grandpa now"
         ],
         "correct": 0,
-        "miss": "Live wait."
+        "miss": "Old Sundays."
       },
+      "hook": false,
       "lockIn": {
-        "it": "il traghetto",
-        "en": "the ferry"
+        "it": "il faro",
+        "en": "the lighthouse"
+      }
+    },
+    {
+      "id": "c1-02",
+      "level": 1,
+      "region": "Monte di Procida",
+      "image": "images/hometown/capo-miseno.jpg",
+      "culture": "Monte · her hometown overlook",
+      "prompt": "You’re at the belvedere in Monte di Procida — our teacher’s hometown!",
+      "gloss": "right now",
+      "person": "tu",
+      "captions": [
+        "Sei al belvedere di Monte di Procida, il paese della prof!",
+        "Eri al belvedere di Monte di Procida, il paese della prof"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "That one paints a past visit. English is right now."
+      ],
+      "help": "Match “you’re at the belvedere now.” il belvedere = scenic overlook.",
+      "explain": "Sei al belvedere… = you’re standing there now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "You were at her town overlook",
+          "You’re at her town overlook now"
+        ],
+        "correct": 1,
+        "miss": "You’re there live."
+      },
+      "hook": false,
+      "lockIn": {
+        "it": "il belvedere",
+        "en": "scenic overlook / viewpoint"
       }
     },
     {
       "id": "c1-13",
       "level": 1,
       "region": "Amalfi",
-      "hook": true,
-      "image": "images/hooks/teen-streets.jpg",
+      "image": "images/places/amalfi-1.jpg",
       "culture": "Amalfi · group pic",
       "prompt": "He’s smiling for the photo in Amalfi right now.",
       "gloss": "right now",
       "person": "lui",
       "captions": [
-        "Lui sorride per la foto ad Amalfi",
-        "Lui sorrideva sempre per le foto ad Amalfi"
+        "Sorride per la foto ad Amalfi",
+        "Sorrideva sempre nelle foto ad Amalfi"
       ],
       "correct": 0,
       "why": [
         "",
-        "That one is how he used to smile for pics. English is now."
+        "That one is how he used to smile in pics. English is now."
       ],
       "help": "Match his live smile. sorride = he’s smiling.",
-      "explain": "Lui sorride… = smile happening now.",
+      "explain": "Sorride… = smile happening now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "He’s smiling for the photo now",
-          "He used to smile for photos"
+          "He used to smile in photos",
+          "He’s smiling for the photo now"
         ],
-        "correct": 0,
+        "correct": 1,
         "miss": "Live smile."
       },
+      "hook": true,
       "lockIn": {
         "it": "sorride",
         "en": "he/she is smiling"
+      }
+    },
+    {
+      "id": "c1-11",
+      "level": 1,
+      "region": "Monte di Procida",
+      "image": "images/hometown/scogli-golfo.jpg",
+      "culture": "Monte · the teacher’s gelato memory",
+      "prompt": "On the seafront our teacher always used to get a gelato while watching the gulf.",
+      "gloss": "used to",
+      "person": "lei",
+      "captions": [
+        "Sul lungomare la prof prende sempre un gelato guardando il golfo",
+        "Sul lungomare la prof prendeva sempre un gelato guardando il golfo"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is her habit today. English looks back.",
+        ""
+      ],
+      "help": "Match her old gelato habit. prendeva = she used to get.",
+      "explain": "prendeva sempre… = how gelato stops used to go.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "She used to get gelato by the sea",
+          "She gets gelato by the sea today"
+        ],
+        "correct": 0,
+        "miss": "Old gelato loop."
       },
-      "video": "videos/rome-streets.mp4"
+      "hook": false,
+      "lockIn": {
+        "it": "prendeva un gelato",
+        "en": "she used to get a gelato"
+      }
+    },
+    {
+      "id": "c1-04",
+      "level": 1,
+      "region": "Capri",
+      "image": "images/places/capri-piazzetta.jpg",
+      "culture": "Capri · the Piazzetta",
+      "prompt": "Every summer I used to have a granita in the Piazzetta.",
+      "gloss": "used to",
+      "person": "io",
+      "captions": [
+        "Ogni estate prendevo una granita in Piazzetta",
+        "Ogni estate prendo una granita in Piazzetta"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "That one is your summer habit now. English looks back."
+      ],
+      "help": "Match the old summer habit. la Piazzetta = Capri’s little main square.",
+      "explain": "prendevo = I used to get — a past-scene habit.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "I used to get a granita there",
+          "I get a granita there now"
+        ],
+        "correct": 0,
+        "miss": "Old summers."
+      },
+      "hook": false,
+      "lockIn": {
+        "it": "in Piazzetta",
+        "en": "in Capri’s main square"
+      }
     },
     {
       "id": "c1-14",
       "level": 1,
       "region": "Procida",
-      "culture": "Procida · harbor evenings",
-      "prompt": "In the evening at the harbor we used to watch the colors and talk quietly.",
-      "gloss": "used to",
+      "image": "images/places/procida-2.jpg",
+      "culture": "Procida · harbor tonight",
+      "prompt": "We’re at the harbor in Procida watching the colors and chatting.",
+      "gloss": "right now",
       "person": "noi",
       "captions": [
-        "La sera al porto guardavamo i colori e parlavamo piano",
-        "La sera al porto guardiamo i colori e parliamo piano"
+        "Stavamo al porto di Procida, guardavamo i colori e chiacchieravamo",
+        "Siamo al porto di Procida, guardiamo i colori e chiacchieriamo"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is tonight’s plan. English looks back."
+        "That one is a past evening. English is live.",
+        ""
       ],
-      "help": "Match the old evening vibe. la sera = in the evening.",
-      "explain": "guardavamo… parlavamo = how evenings used to feel.",
+      "help": "Match the live harbor moment. chiacchieriamo = we’re chatting.",
+      "explain": "Siamo… guardiamo… chiacchieriamo = all happening now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to watch the harbor colors",
-          "We watch the harbor colors tonight"
+          "We used to sit at the harbor",
+          "We’re at the harbor now"
         ],
-        "correct": 0,
-        "miss": "Old evenings."
+        "correct": 1,
+        "miss": "Live evening."
       },
+      "hook": false,
       "lockIn": {
-        "it": "la sera",
-        "en": "in the evening"
-      },
-      "image": "images/places/procida-2.jpg"
+        "it": "chiacchieriamo",
+        "en": "we’re chatting"
+      }
     },
     {
-      "id": "c1-15",
+      "id": "c1-12",
       "level": 1,
-      "region": "Capri",
-      "hook": true,
-      "image": "images/hooks/ferrari-2.jpg",
-      "culture": "Capri · rosso memory",
-      "prompt": "On Capri we always used to see a red Ferrari in front of the bar.",
+      "region": "Ischia",
+      "image": "images/places/ischia-1.jpg",
+      "culture": "Ischia · ferry memories",
+      "prompt": "In Ischia you always used to wait for the ferry at the harbor bar.",
       "gloss": "used to",
-      "person": "noi",
+      "person": "tu",
       "captions": [
-        "A Capri vedevamo sempre una Ferrari rossa davanti al bar",
-        "A Capri vediamo sempre una Ferrari rossa davanti al bar"
+        "A Ischia aspetti sempre il traghetto al bar del porto",
+        "A Ischia aspettavi sempre il traghetto al bar del porto"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is today’s habit. English looks back."
+        "That one is how you wait today. English looks back.",
+        ""
       ],
-      "help": "Match the old Capri habit of spotting Ferraris.",
-      "explain": "vedevamo sempre… = how spotting used to go.",
+      "help": "Match the old waiting habit. il traghetto = the ferry.",
+      "explain": "aspettavi sempre… = how waiting used to go.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to see a red Ferrari by the bar",
-          "We see a red Ferrari by the bar today"
+          "You used to wait for the ferry there",
+          "You wait for the ferry there now"
         ],
         "correct": 0,
-        "miss": "Used-to Capri flex."
+        "miss": "Old habit."
       },
+      "hook": false,
       "lockIn": {
-        "it": "davanti al bar",
-        "en": "in front of the bar"
+        "it": "il traghetto",
+        "en": "the ferry"
       }
     },
     {
       "id": "c2-01",
       "level": 2,
       "region": "Tropea",
-      "culture": "Tropea · turquoise now",
+      "image": "images/places/tropea-1.jpg",
+      "culture": "Tropea · Santa Maria dell’Isola",
       "prompt": "We’re in Tropea right now and the sea looks insane today 💙",
       "gloss": "right now",
       "person": "noi",
       "captions": [
-        "Siamo a Tropea e il mare è pazzesco oggi 💙",
+        "Siamo a Tropea e oggi il mare è pazzesco 💙",
         "Eravamo a Tropea e il mare era pazzesco"
       ],
       "correct": 0,
@@ -681,178 +588,174 @@ window.ITALIA_SCROLL = {
         "That one is a past beach day. English is today."
       ],
       "help": "Match live from the sand. il mare = the sea.",
-      "explain": "Siamo… il mare è… oggi = there now, sea today.",
+      "explain": "Siamo… oggi il mare è… = there now, sea today.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We’re on the sand today",
-          "We used to be on the sand"
+          "We used to be there",
+          "We’re there today"
         ],
-        "correct": 0,
+        "correct": 1,
         "miss": "Today = present."
       },
       "hook": false,
       "lockIn": {
         "it": "il mare",
         "en": "the sea"
+      }
+    },
+    {
+      "id": "c2-08",
+      "level": 2,
+      "region": "Palermo",
+      "image": "images/places/palermo-1.jpg",
+      "culture": "Palermo · panelle by the Cattedrale",
+      "prompt": "Luca is eating panelle in front of the Cathedral — wait for him!",
+      "gloss": "right now",
+      "person": "lui",
+      "captions": [
+        "Luca mangiava sempre le panelle davanti alla Cattedrale",
+        "Luca mangia le panelle davanti alla Cattedrale, aspettalo!"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is Luca’s old habit. English is now.",
+        ""
+      ],
+      "help": "Match Luca eating now. le panelle = chickpea fritters (Palermo street food).",
+      "explain": "Luca mangia… aspettalo! = eating right now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "Luca is eating panelle now",
+          "Luca used to eat panelle there"
+        ],
+        "correct": 0,
+        "miss": "Mid-bite = present."
       },
-      "image": "images/places/tropea-1.jpg",
-      "video": "videos/seaside-run.mp4"
+      "hook": false,
+      "lockIn": {
+        "it": "le panelle",
+        "en": "chickpea fritters (Palermo)"
+      }
     },
     {
       "id": "c2-02",
       "level": 2,
       "region": "Polignano",
-      "culture": "Polignano · August memory",
-      "prompt": "Every August evening we used to jump in and then get a gelato.",
+      "image": "images/places/polignano-1.jpg",
+      "culture": "Polignano · August nights",
+      "prompt": "Every August evening you used to jump in and then get a gelato.",
       "gloss": "used to",
-      "person": "noi",
+      "person": "tu",
       "captions": [
-        "Ogni sera ad agosto ci tuffavamo e poi prendevamo un gelato",
-        "Ogni sera ad agosto ci tuffiamo e poi prendiamo un gelato"
+        "Ogni sera d’agosto ti tuffi e poi prendi un gelato",
+        "Ogni sera d’agosto ti tuffavi e poi prendevi un gelato"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is this August. English looks back."
+        "That one is this August. English looks back.",
+        ""
       ],
-      "help": "Match the old August habit. ci tuffavamo = we used to dive/jump in.",
-      "explain": "ci tuffavamo… prendevamo = how August nights used to go.",
+      "help": "Match the old August habit. ti tuffavi = you used to dive / jump in.",
+      "explain": "ti tuffavi… prendevi = how August nights used to go.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to dive then get gelato",
-          "We dive then get gelato tonight"
+          "You used to dive, then get gelato",
+          "You dive, then get gelato now"
         ],
         "correct": 0,
         "miss": "Old August loop."
       },
       "hook": false,
       "lockIn": {
-        "it": "ci tuffavamo",
-        "en": "we used to dive / jump in"
-      },
-      "image": "images/places/polignano-1.jpg",
-      "video": "videos/beach-run.mp4"
-    },
-    {
-      "id": "c2-03",
-      "level": 2,
-      "region": "Tropea",
-      "hook": true,
-      "image": "images/hooks/ferrari-street.jpg",
-      "culture": "Tropea · lungomare rosso",
-      "prompt": "There’s a red Ferrari in front of the bar in Tropea right now.",
-      "gloss": "right now",
-      "person": "noi",
-      "captions": [
-        "C’è una Ferrari rossa davanti al bar a Tropea",
-        "C’era sempre una Ferrari rossa davanti al bar a Tropea"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is how it used to sit there. English is now."
-      ],
-      "help": "Match what’s parked there live. C’è = there is.",
-      "explain": "C’è una Ferrari… = it’s there now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "There’s a red Ferrari there now",
-          "There used to be a red Ferrari there"
-        ],
-        "correct": 0,
-        "miss": "Live park."
-      },
-      "lockIn": {
-        "it": "C’è…",
-        "en": "There is…"
+        "it": "ti tuffavi",
+        "en": "you used to dive / jump in"
       }
     },
     {
-      "id": "c2-04",
+      "id": "c2-12",
       "level": 2,
       "region": "Matera",
-      "culture": "Matera · dusk memory",
-      "prompt": "In Matera in the evening we used to walk quietly among the Sassi.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "A Matera la sera camminiamo in silenzio tra i Sassi",
-        "A Matera la sera camminavamo in silenzio tra i Sassi"
-      ],
-      "correct": 1,
-      "why": [
-        "",
-        "That one is tonight’s walk. English looks back."
-      ],
-      "help": "Match the old evening walks. i Sassi = Matera’s stone neighborhoods.",
-      "explain": "camminavamo… = how evenings used to feel on first visits.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "We walk there now",
-          "We used to walk there in the evenings"
-        ],
-        "correct": 1,
-        "miss": "“Used to” = past-scene form."
-      },
-      "hook": false,
-      "lockIn": {
-        "it": "i Sassi",
-        "en": "Matera’s stone neighborhoods"
-      },
-      "image": "images/places/matera-1.jpg"
-    },
-    {
-      "id": "c2-05",
-      "level": 2,
-      "region": "Alberobello",
-      "culture": "Alberobello · trulli stroll",
-      "prompt": "You’re walking among the trulli and eating a gelato — classic.",
+      "image": "images/places/matera-2.jpg",
+      "culture": "Matera · first look at the Sassi",
+      "prompt": "I’m looking at the Sassi and I’m speechless.",
       "gloss": "right now",
-      "person": "tu",
+      "person": "io",
       "captions": [
-        "Giri tra i trulli e mangi un gelato, classico",
-        "Giravi tra i trulli e mangiavi un gelato"
+        "Guardo i Sassi e resto senza parole",
+        "Guardavo i Sassi e restavo senza parole"
       ],
       "correct": 0,
       "why": [
         "",
-        "That one is a past stroll. English is now."
+        "That one is a past visit. English is now."
       ],
-      "help": "Match you doing it live. i trulli = cone-shaped houses.",
-      "explain": "Giri… mangi… = you’re doing it now.",
+      "help": "Match your live reaction. senza parole = speechless.",
+      "explain": "Guardo… resto… = happening now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "You’re wandering + gelato now",
-          "You used to wander + gelato"
+          "I used to look at the Sassi",
+          "I’m looking at the Sassi now"
         ],
-        "correct": 0,
-        "miss": "Right now = present."
+        "correct": 1,
+        "miss": "Live look."
+      },
+      "hook": true,
+      "lockIn": {
+        "it": "senza parole",
+        "en": "speechless"
+      }
+    },
+    {
+      "id": "c2-07",
+      "level": 2,
+      "region": "Lecce",
+      "image": "images/places/lecce-duomo-notte.jpg",
+      "culture": "Lecce · evening lights",
+      "prompt": "In the evening we always used to see the lights on the baroque buildings.",
+      "gloss": "used to",
+      "person": "noi",
+      "captions": [
+        "La sera vediamo sempre le luci sui palazzi barocchi",
+        "La sera vedevamo sempre le luci sui palazzi barocchi"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is tonight. English looks back.",
+        ""
+      ],
+      "help": "Match the old evening lights. i palazzi barocchi = baroque buildings.",
+      "explain": "vedevamo sempre… = how evenings used to look.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "We see the lights every evening now",
+          "We used to see the lights every evening"
+        ],
+        "correct": 1,
+        "miss": "Used-to evenings."
       },
       "hook": false,
       "lockIn": {
-        "it": "i trulli",
-        "en": "Alberobello’s cone houses"
-      },
-      "image": "images/places/alberobello-1.jpg"
+        "it": "i palazzi barocchi",
+        "en": "the baroque buildings"
+      }
     },
     {
       "id": "c2-06",
       "level": 2,
       "region": "Polignano",
-      "hook": true,
-      "image": "images/hooks/teen-beach.jpg",
+      "image": "images/places/polignano-2.jpg",
       "culture": "Polignano · cliff laughs",
       "prompt": "On the cliffs she always used to laugh with her friends.",
       "gloss": "used to",
       "person": "lei",
       "captions": [
-        "Sulla scogliera lei rideva sempre con gli amici",
-        "Sulla scogliera lei ride sempre con gli amici"
+        "Sulla scogliera rideva sempre con le amiche",
+        "Sulla scogliera ride sempre con le amiche"
       ],
       "correct": 0,
       "why": [
@@ -870,156 +773,297 @@ window.ITALIA_SCROLL = {
         "correct": 0,
         "miss": "Used-to laugh."
       },
+      "hook": true,
       "lockIn": {
         "it": "la scogliera",
         "en": "the cliff / rocky shore"
-      },
-      "video": "videos/beach-run.mp4"
+      }
     },
     {
-      "id": "c2-07",
+      "id": "c2-05",
       "level": 2,
-      "region": "Lecce",
-      "culture": "Lecce · evening lights",
-      "prompt": "In the evening we always used to see the lights on the baroque buildings.",
-      "gloss": "used to",
-      "person": "noi",
+      "region": "Alberobello",
+      "image": "images/places/alberobello-via.jpg",
+      "culture": "Alberobello · trulli stroll",
+      "prompt": "You’re walking around the trulli with a gelato — classic!",
+      "gloss": "right now",
+      "person": "tu",
       "captions": [
-        "La sera vedevamo sempre le luci sui palazzi barocchi",
-        "La sera vediamo sempre le luci sui palazzi barocchi"
+        "Fai un giro tra i trulli con un gelato, classico!",
+        "Facevi sempre un giro tra i trulli con un gelato"
       ],
       "correct": 0,
       "why": [
         "",
-        "That one is tonight. English looks back."
+        "That one is a past stroll. English is now."
       ],
-      "help": "Match the old evening lights. i palazzi barocchi = baroque buildings.",
-      "explain": "vedevamo sempre… = how evenings used to look.",
+      "help": "Match you doing it live. i trulli = cone-roofed houses.",
+      "explain": "Fai un giro… = you’re doing it now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to see the lights every evening",
-          "We see the lights every evening now"
+          "You used to wander with gelato",
+          "You’re wandering with gelato now"
         ],
-        "correct": 0,
-        "miss": "Used-to evenings."
+        "correct": 1,
+        "miss": "Right now = present."
       },
       "hook": false,
       "lockIn": {
-        "it": "i palazzi barocchi",
-        "en": "the baroque buildings"
-      },
-      "image": "images/places/lecce-1.jpg"
+        "it": "fare un giro",
+        "en": "to go for a stroll"
+      }
     },
     {
-      "id": "c2-08",
+      "id": "c2-10",
       "level": 2,
       "region": "Palermo",
-      "culture": "Palermo · Ballarò bite",
-      "prompt": "I’m eating panelle in Ballarò right now — wait.",
-      "gloss": "right now",
+      "image": "images/places/palermo-ballaro.jpg",
+      "culture": "Palermo · Ballarò market",
+      "prompt": "At Ballarò I always used to grab panelle on the go.",
+      "gloss": "used to",
       "person": "io",
       "captions": [
-        "Mangio panelle a Ballarò, aspetta",
-        "Mangiavo panelle a Ballarò, aspetta"
+        "A Ballarò prendo sempre le panelle al volo",
+        "A Ballarò prendevo sempre le panelle al volo"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is a past snack. English is now."
+        "That one is your habit today. English looks back.",
+        ""
       ],
-      "help": "Match eating now. panelle = chickpea fritters (Palermo street food).",
-      "explain": "Mangio panelle… = eating them now.",
+      "help": "Match the old market habit. al volo = on the go / quickly.",
+      "explain": "prendevo sempre… = how market runs used to go.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "I’m eating panelle now",
-          "I used to eat panelle"
+          "I used to grab panelle there",
+          "I grab panelle there now"
         ],
         "correct": 0,
-        "miss": "Mid-bite = present."
+        "miss": "Old market runs."
       },
       "hook": false,
       "lockIn": {
-        "it": "panelle",
-        "en": "chickpea fritters (Palermo)"
-      },
-      "image": "images/places/palermo-1.jpg"
+        "it": "al volo",
+        "en": "on the go / quickly"
+      }
     },
     {
       "id": "c2-09",
       "level": 2,
       "region": "Ortigia",
-      "culture": "Ortigia · gelato invite",
+      "image": "images/places/ortigia-2.jpg",
+      "culture": "Ortigia · gelato invite in Piazza Duomo",
       "prompt": "Sofia asks: “Want to get a gelato?”",
       "gloss": "right now",
       "person": "lei",
       "captions": [
-        "Sofia chiede: “Ti va di prendere un gelato?”",
-        "Sofia chiedeva: “Ti andava di prendere un gelato?”"
+        "Sofia chiedeva sempre: “Ti va un gelato?”",
+        "Sofia chiede: “Ti va un gelato?”"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is how she used to ask. English is live."
+        "That one is how she always used to ask. English is live.",
+        ""
       ],
-      "help": "Match Sofia asking live. Ti va di…? = Do you feel like… / Want to…?",
-      "explain": "Sofia chiede… Ti va di… = invitation happening now.",
+      "help": "Match Sofia asking live. Ti va…? = Do you feel like…? / Want…?",
+      "explain": "Sofia chiede… = invitation happening now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "She’s inviting you to gelato now",
-          "She used to invite you to gelato"
+          "She’s inviting you now",
+          "She used to invite you"
         ],
         "correct": 0,
         "miss": "Live invite."
       },
       "hook": false,
       "lockIn": {
-        "it": "Ti va di…?",
-        "en": "Want to…? / Feel like…?"
-      },
-      "image": "images/hooks/teen-gelato.jpg",
-      "video": "videos/gelato-girl.mp4"
+        "it": "Ti va…?",
+        "en": "Want…? / Feel like…?"
+      }
     },
     {
-      "id": "c2-10",
+      "id": "c2-04",
       "level": 2,
-      "region": "Palermo",
-      "culture": "Palermo · market dash",
-      "prompt": "We’re walking around Ballarò and grabbing panelle on the go.",
-      "gloss": "right now",
+      "region": "Matera",
+      "image": "images/places/matera-1.jpg",
+      "culture": "Matera · dusk memory",
+      "prompt": "In Matera in the evening we used to walk quietly among the Sassi.",
+      "gloss": "used to",
       "person": "noi",
       "captions": [
-        "Giriamo a Ballarò e mangiamo panelle al volo",
-        "Giravamo a Ballarò e mangiavamo panelle al volo"
+        "A Matera la sera camminavamo in silenzio tra i Sassi",
+        "A Matera la sera camminiamo in silenzio tra i Sassi"
       ],
       "correct": 0,
       "why": [
         "",
-        "That one is a past market day. English is now."
+        "That one is tonight’s walk. English looks back."
       ],
-      "help": "Match the live market walk. al volo = on the go / quickly.",
-      "explain": "Giriamo… mangiamo… = doing it now.",
+      "help": "Match the old evening walks. i Sassi = Matera’s cave-house neighborhoods.",
+      "explain": "camminavamo… = how evenings used to feel.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We’re walking Ballarò now",
-          "We used to walk Ballarò"
+          "We walk there now",
+          "We used to walk there in the evenings"
+        ],
+        "correct": 1,
+        "miss": "“Used to” = past-scene form."
+      },
+      "hook": false,
+      "lockIn": {
+        "it": "i Sassi",
+        "en": "Matera’s cave-house neighborhoods"
+      }
+    },
+    {
+      "id": "c2-03",
+      "level": 2,
+      "region": "Tropea",
+      "image": "images/places/tropea-spiaggia.jpg",
+      "culture": "Tropea · packed beach",
+      "prompt": "I’m at the beach in Tropea and there are so many people!",
+      "gloss": "right now",
+      "person": "io",
+      "captions": [
+        "Andavo sempre in spiaggia a Tropea e c’era un sacco di gente",
+        "Sono in spiaggia a Tropea e c’è un sacco di gente!"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is how beach days used to be. English is now.",
+        ""
+      ],
+      "help": "Match what you see now. c’è un sacco di gente = there are loads of people.",
+      "explain": "Sono… c’è… = it’s happening now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "I’m on the beach now",
+          "I used to go to that beach"
         ],
         "correct": 0,
-        "miss": "Live market."
+        "miss": "Live beach."
       },
+      "hook": true,
       "lockIn": {
-        "it": "al volo",
-        "en": "on the go / quickly"
+        "it": "c’è un sacco di gente",
+        "en": "there are loads of people"
+      }
+    },
+    {
+      "id": "c2-14",
+      "level": 2,
+      "region": "Ortigia",
+      "image": "images/places/ortigia-fonte-aretusa.jpg",
+      "culture": "Ortigia · yes to gelato",
+      "prompt": "You answer: “Yes, I really feel like a gelato.”",
+      "gloss": "right now",
+      "person": "tu",
+      "captions": [
+        "Rispondi: “Sì, mi va proprio un gelato”",
+        "Rispondevi sempre: “Sì, mi va un gelato”"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "That one is how you always used to answer. English is live."
+      ],
+      "help": "Match your live reply. mi va = I feel like it.",
+      "explain": "Rispondi… mi va… = answering now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "You always used to say yes",
+          "You’re saying yes now"
+        ],
+        "correct": 1,
+        "miss": "Live reply."
       },
-      "image": "images/places/palermo-2.jpg"
+      "hook": false,
+      "lockIn": {
+        "it": "mi va…",
+        "en": "I feel like…"
+      }
+    },
+    {
+      "id": "c2-13",
+      "level": 2,
+      "region": "Alberobello",
+      "image": "images/places/alberobello-rione-monti.jpg",
+      "culture": "Alberobello · sister’s photos",
+      "prompt": "My sister always used to take pictures of the trulli.",
+      "gloss": "used to",
+      "person": "lei",
+      "captions": [
+        "Mia sorella faceva sempre foto ai trulli",
+        "Mia sorella fa sempre foto ai trulli"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "That one is what she does now. English looks back."
+      ],
+      "help": "Match your sister’s old habit. fare foto = to take pictures.",
+      "explain": "faceva sempre… = she always used to.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "She takes trulli pics now",
+          "She used to take trulli pics"
+        ],
+        "correct": 1,
+        "miss": "Old habit."
+      },
+      "hook": false,
+      "lockIn": {
+        "it": "fare foto",
+        "en": "to take pictures"
+      }
+    },
+    {
+      "id": "c2-15",
+      "level": 2,
+      "region": "Lecce",
+      "image": "images/places/lecce-2.jpg",
+      "culture": "Lecce · Santa Croce",
+      "prompt": "I’m taking pictures in front of Santa Croce right now.",
+      "gloss": "right now",
+      "person": "io",
+      "captions": [
+        "Facevo sempre foto davanti a Santa Croce",
+        "Faccio foto davanti a Santa Croce"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is an old habit. English is now.",
+        ""
+      ],
+      "help": "Match what you’re doing live. davanti a = in front of.",
+      "explain": "Faccio foto… = happening now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "I’m taking pictures now",
+          "I used to take pictures there"
+        ],
+        "correct": 0,
+        "miss": "Live pics."
+      },
+      "hook": true,
+      "lockIn": {
+        "it": "davanti a",
+        "en": "in front of"
+      }
     },
     {
       "id": "c2-11",
       "level": 2,
       "region": "Sperlonga",
+      "image": "images/places/sperlonga-spiaggia.jpg",
       "culture": "Sperlonga · beach habit",
       "prompt": "After the beach we always used to get a gelato on the sand.",
       "gloss": "used to",
@@ -1033,221 +1077,47 @@ window.ITALIA_SCROLL = {
         "",
         "That one is today’s ending. English looks back."
       ],
-      "help": "Match the old beach-day ending. dopo il mare = after the sea/beach.",
+      "help": "Match the old beach-day ending. dopo il mare = after the beach.",
       "explain": "prendevamo sempre… = how beach days used to end.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to get gelato after the sea",
-          "We get gelato after the sea today"
+          "We get gelato after the sea today",
+          "We used to get gelato after the sea"
         ],
-        "correct": 0,
+        "correct": 1,
         "miss": "Old beach ending."
       },
       "hook": false,
       "lockIn": {
         "it": "dopo il mare",
         "en": "after the beach"
-      },
-      "image": "images/places/sperlonga-1.jpg"
-    },
-    {
-      "id": "c2-12",
-      "level": 2,
-      "region": "Matera",
-      "hook": true,
-      "image": "images/hooks/teen-photo.jpg",
-      "culture": "Matera · quiet look",
-      "prompt": "He’s looking at the Sassi and staying quiet right now.",
-      "gloss": "right now",
-      "person": "lui",
-      "captions": [
-        "Lui guarda i Sassi e resta in silenzio",
-        "Lui guardava i Sassi e restava in silenzio"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is how he used to look. English is now."
-      ],
-      "help": "Match his live look. resta in silenzio = stays quiet.",
-      "explain": "Lui guarda… resta… = happening now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "He’s looking at the Sassi now",
-          "He used to look at the Sassi"
-        ],
-        "correct": 0,
-        "miss": "Live look."
-      },
-      "lockIn": {
-        "it": "resta in silenzio",
-        "en": "stays quiet / silent"
-      },
-      "video": "videos/rome-view.mp4"
-    },
-    {
-      "id": "c2-13",
-      "level": 2,
-      "region": "Alberobello",
-      "culture": "Alberobello · evening memory",
-      "prompt": "In the evening among the trulli we used to walk slowly with a gelato.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "La sera tra i trulli camminavamo piano con un gelato",
-        "La sera tra i trulli camminiamo piano con un gelato"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is tonight. English looks back."
-      ],
-      "help": "Match the old trulli evenings. camminavamo piano = we used to walk slowly.",
-      "explain": "camminavamo piano… = how evenings used to feel.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "We used to walk among the trulli",
-          "We walk among the trulli tonight"
-        ],
-        "correct": 0,
-        "miss": "Old evenings."
-      },
-      "lockIn": {
-        "it": "camminavamo piano",
-        "en": "we used to walk slowly"
-      },
-      "image": "images/places/alberobello-2.jpg"
-    },
-    {
-      "id": "c2-14",
-      "level": 2,
-      "region": "Ortigia",
-      "culture": "Ortigia · yes to gelato",
-      "prompt": "You answer: “Yes, I feel like getting a gelato.”",
-      "gloss": "right now",
-      "person": "tu",
-      "captions": [
-        "Rispondi: “Sì, mi va di prendere un gelato”",
-        "Rispondevi: “Sì, mi andava di prendere un gelato”"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is how you used to answer. English is live."
-      ],
-      "help": "Match your live reply. mi va di… = I feel like…",
-      "explain": "Rispondi… mi va di… = answering now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "You’re saying yes to gelato now",
-          "You used to say yes to gelato"
-        ],
-        "correct": 0,
-        "miss": "Live reply."
-      },
-      "lockIn": {
-        "it": "mi va di…",
-        "en": "I feel like… / I want to…"
-      },
-      "image": "images/places/ortigia-1.jpg"
-    },
-    {
-      "id": "c2-15",
-      "level": 2,
-      "region": "Lecce",
-      "hook": true,
-      "image": "images/hooks/ferrari-3.jpg",
-      "culture": "Lecce · rosso memory",
-      "prompt": "Downtown I always used to see wild red cars.",
-      "gloss": "used to",
-      "person": "io",
-      "captions": [
-        "In centro vedevo sempre macchine rosse pazzesche",
-        "In centro vedo sempre macchine rosse pazzesche"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is what you see today. English looks back."
-      ],
-      "help": "Match the old spotting habit. in centro = downtown.",
-      "explain": "vedevo sempre… = how spotting used to go.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "I used to see wild red cars downtown",
-          "I see wild red cars downtown today"
-        ],
-        "correct": 0,
-        "miss": "Used-to flex."
-      },
-      "lockIn": {
-        "it": "in centro",
-        "en": "downtown"
       }
-    },
-    {
-      "id": "c3-01",
-      "level": 3,
-      "region": "Bologna",
-      "culture": "Bologna · after school",
-      "prompt": "After school we always used to go under the portici to grab something to eat.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "Dopo scuola andavamo sempre sotto i portici a mangiare qualcosa",
-        "Dopo scuola andiamo sotto i portici a mangiare qualcosa"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is today’s plan. English looks back."
-      ],
-      "help": "Match the old after-school habit. i portici = covered walkways/arcades.",
-      "explain": "andavamo sempre… = how afternoons used to go.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "We used to go under the arches",
-          "We go under the arches today"
-        ],
-        "correct": 0,
-        "miss": "Old loop = past-scene form."
-      },
-      "hook": false,
-      "lockIn": {
-        "it": "i portici",
-        "en": "covered walkways / arcades"
-      },
-      "image": "images/places/bologna-1.jpg"
     },
     {
       "id": "c3-02",
       "level": 3,
       "region": "Genova",
+      "image": "images/places/genova-1.jpg",
       "culture": "Genova · focaccia dash",
-      "prompt": "Grab a focaccia and run to the harbor.",
+      "prompt": "Grab a focaccia and run to the harbor!",
       "gloss": "right now",
       "person": "tu",
       "captions": [
-        "Prendi una focaccia e corri al porto",
-        "Prendevi una focaccia e correvi al porto"
+        "Prendevi sempre una focaccia e correvi al porto",
+        "Prendi una focaccia e corri al porto!"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is how you used to. English is now."
+        "That one is what you used to do. English is now.",
+        ""
       ],
-      "help": "Match telling a friend live. la focaccia = focaccia bread.",
-      "explain": "Prendi… corri… = you’re doing it now.",
+      "help": "Match telling a friend live. la focaccia = Ligurian flatbread.",
+      "explain": "Prendi… corri… = do it now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "You’re grabbing focaccia now",
+          "Grab it now",
           "You used to grab focaccia"
         ],
         "correct": 0,
@@ -1257,63 +1127,168 @@ window.ITALIA_SCROLL = {
       "lockIn": {
         "it": "la focaccia",
         "en": "focaccia (Liguria flatbread)"
-      },
-      "image": "images/places/genova-1.jpg"
+      }
     },
     {
-      "id": "c3-03",
+      "id": "c3-01",
       "level": 3,
-      "region": "Braies",
-      "culture": "Braies · quiet mornings",
-      "prompt": "We used to go to the lake early and stay quiet.",
+      "region": "Bologna",
+      "image": "images/places/bologna-portici.jpg",
+      "culture": "Bologna · after school",
+      "prompt": "After school we always used to go under the portici to grab something to eat.",
       "gloss": "used to",
       "person": "noi",
       "captions": [
-        "Al lago andavamo presto e restavamo in silenzio",
-        "Al lago andiamo presto e restiamo in silenzio"
+        "Dopo scuola andavamo sempre sotto i portici a mangiare qualcosa",
+        "Dopo scuola andiamo sempre sotto i portici a mangiare qualcosa"
       ],
       "correct": 0,
       "why": [
         "",
         "That one is today’s plan. English looks back."
       ],
-      "help": "Match the old lake mornings. il lago = the lake.",
-      "explain": "andavamo… restavamo… = how mornings used to go.",
+      "help": "Match the old after-school habit. i portici = covered walkways / arcades.",
+      "explain": "andavamo sempre… = how afternoons used to go.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to go early and stay quiet",
-          "We go early and stay quiet today"
+          "We go under the arches today",
+          "We used to go under the arches"
         ],
-        "correct": 0,
+        "correct": 1,
+        "miss": "Old loop = past-scene form."
+      },
+      "hook": false,
+      "lockIn": {
+        "it": "i portici",
+        "en": "covered walkways / arcades"
+      }
+    },
+    {
+      "id": "c3-03",
+      "level": 3,
+      "region": "Braies",
+      "image": "images/places/braies-pontile.jpg",
+      "culture": "Braies · quiet mornings",
+      "prompt": "I used to go to the lake early and stay quiet.",
+      "gloss": "used to",
+      "person": "io",
+      "captions": [
+        "Vado al lago presto e resto in silenzio",
+        "Andavo al lago presto e restavo in silenzio"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is today’s plan. English looks back.",
+        ""
+      ],
+      "help": "Match the old lake mornings. il lago = the lake.",
+      "explain": "andavo… restavo… = how mornings used to go.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "I go early and stay quiet today",
+          "I used to go early and stay quiet"
+        ],
+        "correct": 1,
         "miss": "Old mornings."
       },
       "hook": false,
       "lockIn": {
         "it": "il lago",
         "en": "the lake"
+      }
+    },
+    {
+      "id": "c3-12",
+      "level": 3,
+      "region": "Roma",
+      "image": "images/places/roma-ferrari-colosseo.jpg",
+      "culture": "Roma · rosso spot",
+      "prompt": "Do you see that red Ferrari in front of the Colosseum? It’s incredible!",
+      "gloss": "right now",
+      "person": "tu",
+      "captions": [
+        "Vedevi sempre quella Ferrari rossa davanti al Colosseo?",
+        "Vedi quella Ferrari rossa davanti al Colosseo? È incredibile!"
+      ],
+      "correct": 1,
+      "why": [
+        "That one asks what you used to see. English is now.",
+        ""
+      ],
+      "help": "Match pointing it out live. Vedi…? = Do you see…?",
+      "explain": "Vedi…? È incredibile = spotting it now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "You see the Ferrari now",
+          "You used to see that Ferrari"
+        ],
+        "correct": 0,
+        "miss": "Live spot."
       },
-      "image": "images/places/braies-1.jpg"
+      "hook": true,
+      "lockIn": {
+        "it": "È incredibile!",
+        "en": "It’s incredible!"
+      }
+    },
+    {
+      "id": "c3-05",
+      "level": 3,
+      "region": "Bologna",
+      "image": "images/places/bologna-portici-farini.jpg",
+      "culture": "Bologna · portici laughs",
+      "prompt": "She’s laughing with her friends under the portici right now.",
+      "gloss": "right now",
+      "person": "lei",
+      "captions": [
+        "Ride con le amiche sotto i portici",
+        "Rideva sempre con le amiche sotto i portici"
+      ],
+      "correct": 0,
+      "why": [
+        "",
+        "That one is how she used to laugh. English is now."
+      ],
+      "help": "Match her live laugh. ride = she’s laughing.",
+      "explain": "Ride… = laugh happening now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "She used to laugh under the arches",
+          "She’s laughing under the arches now"
+        ],
+        "correct": 1,
+        "miss": "Live laugh."
+      },
+      "hook": true,
+      "lockIn": {
+        "it": "ride",
+        "en": "he/she laughs / is laughing"
+      }
     },
     {
       "id": "c3-04",
       "level": 3,
       "region": "Torino",
-      "culture": "Torino · evening sweet",
-      "prompt": "In the evening we were always downtown with a gianduiotto.",
+      "image": "images/places/torino-murazzi.jpg",
+      "culture": "Torino · evening in centro",
+      "prompt": "In the evening we always used to hang out downtown eating gianduiotti.",
       "gloss": "used to",
       "person": "noi",
       "captions": [
-        "La sera eravamo sempre in centro con un gianduiotto",
-        "La sera siamo sempre in centro con un gianduiotto"
+        "La sera stavamo sempre in centro a mangiare gianduiotti",
+        "La sera stiamo sempre in centro a mangiare gianduiotti"
       ],
       "correct": 0,
       "why": [
         "",
         "That one is tonight’s habit. English looks back."
       ],
-      "help": "Match the old evening vibe. un gianduiotto = a gianduja chocolate.",
-      "explain": "eravamo sempre… = how evenings used to feel.",
+      "help": "Match the old evening vibe. i gianduiotti = gianduja chocolates.",
+      "explain": "stavamo sempre… = how evenings used to feel.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
@@ -1325,121 +1300,155 @@ window.ITALIA_SCROLL = {
       },
       "hook": false,
       "lockIn": {
-        "it": "un gianduiotto",
-        "en": "a gianduja chocolate (Torino)"
-      },
-      "image": "images/places/torino-1.jpg"
+        "it": "i gianduiotti",
+        "en": "gianduja chocolates (Torino)"
+      }
     },
     {
-      "id": "c3-05",
+      "id": "c3-13",
       "level": 3,
       "region": "Bologna",
-      "hook": true,
-      "image": "images/hooks/teen-dance.jpg",
-      "culture": "Bologna · portici laugh",
-      "prompt": "She’s laughing under the portici after school right now.",
+      "image": "images/places/bologna-2.jpg",
+      "culture": "Bologna · tortellini to go",
+      "prompt": "I’m getting tortellini to go — be right there!",
       "gloss": "right now",
-      "person": "lei",
+      "person": "io",
       "captions": [
-        "Lei ride sotto i portici dopo scuola",
-        "Lei rideva sempre sotto i portici dopo scuola"
+        "Prendevo sempre i tortellini da asporto",
+        "Prendo i tortellini da asporto e arrivo!"
       ],
-      "correct": 0,
+      "correct": 1,
       "why": [
-        "",
-        "That one is how she used to laugh. English is now."
+        "That one is an old lunch habit. English is now.",
+        ""
       ],
-      "help": "Match her live laugh. ride = she’s laughing.",
-      "explain": "Lei ride… = laugh happening now.",
+      "help": "Match ordering live. da asporto = to go / takeaway.",
+      "explain": "Prendo… e arrivo = ordering now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "She’s laughing under the arches now",
-          "She used to laugh under the arches"
+          "I’m grabbing tortellini now",
+          "I used to grab tortellini"
         ],
         "correct": 0,
-        "miss": "Live laugh."
-      },
-      "lockIn": {
-        "it": "ride",
-        "en": "he/she laughs / is laughing"
-      },
-      "video": "videos/street-dance.mp4"
-    },
-    {
-      "id": "c3-06",
-      "level": 3,
-      "region": "Chioggia",
-      "culture": "Chioggia · market run",
-      "prompt": "Luca is going to the market and buying fresh fish right now.",
-      "gloss": "right now",
-      "person": "lui",
-      "captions": [
-        "Luca va al mercato e compra il pesce fresco",
-        "Luca andava al mercato e comprava il pesce fresco"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is how Luca used to. English is now."
-      ],
-      "help": "Match Luca live. il mercato = the market; il pesce fresco = fresh fish.",
-      "explain": "Luca va… compra… = happening now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "Luca is going to the market now",
-          "Luca used to go to the market"
-        ],
-        "correct": 0,
-        "miss": "He’s going live."
+        "miss": "Live order."
       },
       "hook": false,
       "lockIn": {
-        "it": "il pesce fresco",
-        "en": "fresh fish"
-      },
-      "image": "images/places/chioggia-1.jpg"
+        "it": "da asporto",
+        "en": "to go / takeaway"
+      }
     },
     {
       "id": "c3-07",
       "level": 3,
       "region": "Ravenna",
-      "culture": "Ravenna · after mosaics",
-      "prompt": "After the mosaics we always used to eat something in the piazza.",
+      "image": "images/places/ravenna-1.jpg",
+      "culture": "Ravenna · after the mosaics",
+      "prompt": "After the mosaics, my aunt always used to buy us a piadina in the piazza.",
       "gloss": "used to",
-      "person": "noi",
+      "person": "lei",
       "captions": [
-        "Dopo i mosaici mangiavamo sempre qualcosa in piazza",
-        "Dopo i mosaici mangiamo sempre qualcosa in piazza"
+        "Dopo i mosaici la zia ci comprava sempre una piadina in piazza",
+        "Dopo i mosaici la zia ci compra sempre una piadina in piazza"
       ],
       "correct": 0,
       "why": [
         "",
-        "That one is today’s snack. English looks back."
+        "That one is what she does today. English looks back."
       ],
       "help": "Match the old afternoon habit. in piazza = in the square.",
-      "explain": "mangiavamo sempre… = how afternoons used to go.",
+      "explain": "ci comprava sempre… = how afternoons used to go.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to eat in the piazza after",
-          "We eat in the piazza after today"
+          "She buys us piadina today",
+          "She used to buy us piadina"
         ],
-        "correct": 0,
+        "correct": 1,
         "miss": "Old snack loop."
       },
       "hook": false,
       "lockIn": {
         "it": "in piazza",
         "en": "in the square"
+      }
+    },
+    {
+      "id": "c3-11",
+      "level": 3,
+      "region": "Chioggia",
+      "image": "images/places/chioggia-2.jpg",
+      "culture": "Chioggia · canal evenings",
+      "prompt": "In the evening you used to walk along the canals without rushing.",
+      "gloss": "used to",
+      "person": "tu",
+      "captions": [
+        "La sera cammini lungo i canali senza fretta",
+        "La sera camminavi lungo i canali senza fretta"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is tonight’s walk. English looks back.",
+        ""
+      ],
+      "help": "Match the old canal evenings. senza fretta = without rushing.",
+      "explain": "camminavi senza fretta = how evenings used to feel.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "You used to walk the canals slowly",
+          "You walk the canals slowly tonight"
+        ],
+        "correct": 0,
+        "miss": "Old evenings."
       },
-      "image": "images/places/ravenna-1.jpg"
+      "hook": false,
+      "lockIn": {
+        "it": "senza fretta",
+        "en": "without rushing / in no hurry"
+      }
+    },
+    {
+      "id": "c3-10",
+      "level": 3,
+      "region": "Braies",
+      "image": "images/places/braies-barche.jpg",
+      "culture": "Braies · lake quiet now",
+      "prompt": "We’re at the lake right now and staying quiet.",
+      "gloss": "right now",
+      "person": "noi",
+      "captions": [
+        "Eravamo al lago e stavamo in silenzio",
+        "Siamo al lago e stiamo in silenzio"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is a past quiet scene. English is now.",
+        ""
+      ],
+      "help": "Match being there live. stiamo in silenzio = we’re staying quiet.",
+      "explain": "Siamo… stiamo… = there now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "We used to stay quiet at the lake",
+          "We’re at the lake now"
+        ],
+        "correct": 1,
+        "miss": "Live lake."
+      },
+      "hook": false,
+      "lockIn": {
+        "it": "stiamo in silenzio",
+        "en": "we’re staying quiet"
+      }
     },
     {
       "id": "c3-08",
       "level": 3,
       "region": "Genova",
+      "image": "images/places/genova-2.jpg",
       "culture": "Genova · port mornings",
       "prompt": "At the harbor I always used to get a warm focaccia.",
       "gloss": "used to",
@@ -1458,203 +1467,30 @@ window.ITALIA_SCROLL = {
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "I used to grab warm focaccia",
-          "I grab warm focaccia today"
+          "I grab warm focaccia today",
+          "I used to grab warm focaccia"
         ],
-        "correct": 0,
+        "correct": 1,
         "miss": "Old mornings."
       },
+      "hook": false,
       "lockIn": {
         "it": "focaccia calda",
         "en": "warm focaccia"
-      },
-      "image": "images/places/genova-2.jpg"
-    },
-    {
-      "id": "c3-09",
-      "level": 3,
-      "region": "Torino",
-      "hook": true,
-      "image": "images/hooks/teen-scooter.jpg",
-      "culture": "Torino · evening look",
-      "prompt": "In the evening he was always serious with a gianduiotto.",
-      "gloss": "used to",
-      "person": "lui",
-      "captions": [
-        "La sera lui era sempre serio con un gianduiotto",
-        "La sera lui è sempre serio con un gianduiotto"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is how he seems tonight. English looks back."
-      ],
-      "help": "Match how he used to seem. serio = serious.",
-      "explain": "era sempre serio… = how he used to look on walks.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "He used to look serious with chocolate",
-          "He looks serious with chocolate tonight"
-        ],
-        "correct": 0,
-        "miss": "Used-to vibe."
-      },
-      "lockIn": {
-        "it": "serio",
-        "en": "serious"
-      },
-      "video": "videos/scooter-ride.mp4"
-    },
-    {
-      "id": "c3-10",
-      "level": 3,
-      "region": "Braies",
-      "culture": "Braies · lake quiet now",
-      "prompt": "We’re at the lake right now and staying quiet.",
-      "gloss": "right now",
-      "person": "noi",
-      "captions": [
-        "Siamo al lago e restiamo in silenzio",
-        "Eravamo al lago e restavamo in silenzio"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is a past quiet scene. English is now."
-      ],
-      "help": "Match being there live. restiamo in silenzio = we’re staying quiet.",
-      "explain": "Siamo… restiamo… = there now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "We’re at the lake staying quiet now",
-          "We used to stay quiet at the lake"
-        ],
-        "correct": 0,
-        "miss": "Live lake."
-      },
-      "lockIn": {
-        "it": "restiamo in silenzio",
-        "en": "we’re staying quiet"
-      },
-      "image": "images/places/braies-2.jpg"
-    },
-    {
-      "id": "c3-11",
-      "level": 3,
-      "region": "Chioggia",
-      "culture": "Chioggia · canal evenings",
-      "prompt": "In the evening on the canals we used to walk without rushing.",
-      "gloss": "used to",
-      "person": "noi",
-      "captions": [
-        "La sera sui canali camminavamo senza fretta",
-        "La sera sui canali camminiamo senza fretta"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is tonight’s walk. English looks back."
-      ],
-      "help": "Match the old canal evenings. senza fretta = without rushing.",
-      "explain": "camminavamo senza fretta = how evenings used to feel.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "We used to walk the canals slowly",
-          "We walk the canals slowly tonight"
-        ],
-        "correct": 0,
-        "miss": "Old evenings."
-      },
-      "lockIn": {
-        "it": "senza fretta",
-        "en": "without rushing / in no hurry"
-      },
-      "image": "images/places/chioggia-2.jpg",
-      "video": "videos/venice-walk.mp4"
-    },
-    {
-      "id": "c3-12",
-      "level": 3,
-      "region": "Ravenna",
-      "hook": true,
-      "image": "images/hooks/ferrari-1.jpg",
-      "culture": "Ravenna · rosso spot",
-      "prompt": "Do you see that red Ferrari? It’s incredible.",
-      "gloss": "right now",
-      "person": "tu",
-      "captions": [
-        "Vedi quella Ferrari rossa? È incredibile",
-        "Vedevi sempre quella Ferrari rossa"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is how you used to spot it. English is now."
-      ],
-      "help": "Match pointing it out live. Vedi…? = Do you see…?",
-      "explain": "Vedi…? È incredibile = spotting it now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "You see the red Ferrari now",
-          "You used to see that Ferrari"
-        ],
-        "correct": 0,
-        "miss": "Live spot."
-      },
-      "lockIn": {
-        "it": "È incredibile",
-        "en": "It’s incredible"
       }
-    },
-    {
-      "id": "c3-13",
-      "level": 3,
-      "region": "Bologna",
-      "culture": "Bologna · tortellini to-go",
-      "prompt": "I’m getting tortellini to go — coming!",
-      "gloss": "right now",
-      "person": "io",
-      "captions": [
-        "Prendo i tortellini da asporto, vengo",
-        "Prendevo sempre i tortellini da asporto"
-      ],
-      "correct": 0,
-      "why": [
-        "",
-        "That one is an old lunch habit. English is now."
-      ],
-      "help": "Match ordering live. da asporto = to go / takeaway.",
-      "explain": "Prendo… da asporto = ordering now.",
-      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
-      "prove": {
-        "choices": [
-          "I’m grabbing tortellini now",
-          "I used to grab tortellini"
-        ],
-        "correct": 0,
-        "miss": "Live order."
-      },
-      "lockIn": {
-        "it": "da asporto",
-        "en": "to go / takeaway"
-      },
-      "image": "images/places/bologna-2.jpg"
     },
     {
       "id": "c3-14",
       "level": 3,
       "region": "Torino",
-      "culture": "Torino · portici stroll",
-      "prompt": "You’re walking under the portici and eating a gianduiotto.",
+      "image": "images/places/torino-2.jpg",
+      "culture": "Torino · Piazza San Carlo portici",
+      "prompt": "You’re strolling under the portici eating a gianduiotto.",
       "gloss": "right now",
       "person": "tu",
       "captions": [
-        "Giri sotto i portici e mangi un gianduiotto",
-        "Giravi sotto i portici e mangiavi un gianduiotto"
+        "Passeggi sotto i portici e mangi un gianduiotto",
+        "Passeggiavi sempre sotto i portici mangiando un gianduiotto"
       ],
       "correct": 0,
       "why": [
@@ -1662,26 +1498,62 @@ window.ITALIA_SCROLL = {
         "That one is how walks used to go. English is now."
       ],
       "help": "Match you doing it live. sotto i portici = under the arcades.",
-      "explain": "Giri… mangi… = you’re doing it now.",
+      "explain": "Passeggi… mangi… = you’re doing it now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "You’re walking the arches now",
-          "You used to walk the arches"
+          "You’re strolling the arches now",
+          "You used to stroll the arches"
         ],
         "correct": 0,
         "miss": "Live stroll."
       },
+      "hook": false,
       "lockIn": {
         "it": "sotto i portici",
         "en": "under the arcades"
+      }
+    },
+    {
+      "id": "c3-06",
+      "level": 3,
+      "region": "Chioggia",
+      "image": "images/places/chioggia-1.jpg",
+      "culture": "Chioggia · market run",
+      "prompt": "Luca is going to the market to buy fresh fish right now.",
+      "gloss": "right now",
+      "person": "lui",
+      "captions": [
+        "Luca andava sempre al mercato a comprare il pesce fresco",
+        "Luca va al mercato a comprare il pesce fresco"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is what Luca used to do. English is now.",
+        ""
+      ],
+      "help": "Match Luca live. il mercato = the market; il pesce fresco = fresh fish.",
+      "explain": "Luca va… = happening now.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "Luca used to go",
+          "Luca is going now"
+        ],
+        "correct": 1,
+        "miss": "He’s going live."
       },
-      "image": "images/places/torino-2.jpg"
+      "hook": false,
+      "lockIn": {
+        "it": "il pesce fresco",
+        "en": "fresh fish"
+      }
     },
     {
       "id": "c3-15",
       "level": 3,
       "region": "Ravenna",
+      "image": "images/places/ravenna-2.jpg",
       "culture": "Ravenna · museum mornings",
       "prompt": "In the morning we used to look at the mosaics in silence.",
       "gloss": "used to",
@@ -1700,17 +1572,52 @@ window.ITALIA_SCROLL = {
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
-          "We used to look at mosaics quietly",
-          "We look at mosaics quietly today"
+          "We look at mosaics quietly today",
+          "We used to look at mosaics quietly"
         ],
-        "correct": 0,
+        "correct": 1,
         "miss": "Old mornings."
       },
+      "hook": false,
       "lockIn": {
         "it": "i mosaici",
         "en": "the mosaics"
+      }
+    },
+    {
+      "id": "c3-09",
+      "level": 3,
+      "region": "Torino",
+      "image": "images/places/torino-1.jpg",
+      "culture": "Torino · Saturdays at the Mole",
+      "prompt": "Every Saturday my dad used to take me to the Mole.",
+      "gloss": "used to",
+      "person": "lui",
+      "captions": [
+        "Ogni sabato mio padre mi porta alla Mole",
+        "Ogni sabato mio padre mi portava alla Mole"
+      ],
+      "correct": 1,
+      "why": [
+        "That one is what he does now. English looks back.",
+        ""
+      ],
+      "help": "Match the old Saturday habit. mi portava = he used to take me.",
+      "explain": "mi portava… = a past-scene habit.",
+      "softExplain": "Read the English line. Pick the Italian that says the same thing.",
+      "prove": {
+        "choices": [
+          "Dad used to take me",
+          "Dad takes me now"
+        ],
+        "correct": 0,
+        "miss": "Old Saturdays."
       },
-      "image": "images/places/ravenna-2.jpg"
+      "hook": false,
+      "lockIn": {
+        "it": "mi portava",
+        "en": "he/she used to take me"
+      }
     }
   ]
 };
