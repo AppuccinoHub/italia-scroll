@@ -818,10 +818,12 @@
         return;
       }
       if (!$('screenPlay').classList.contains('active')) return;
-      if (e.key === 'ArrowDown' || e.key === 'j' || e.key === 'PageDown') {
+      const tag = (e.target && e.target.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'j' || e.key === 'PageDown') {
         e.preventDefault();
         goTo(state.index + 1);
-      } else if (e.key === 'ArrowUp' || e.key === 'k' || e.key === 'PageUp') {
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'k' || e.key === 'PageUp') {
         e.preventDefault();
         goTo(state.index - 1);
       }

@@ -1,6 +1,6 @@
 # Italia Scroll · Italiano 3
 
-TikTok-style **vertical scroll through Italy** for Sue Scotto’s Italian 3 (AppuccinoHub).
+**Laptop-first** trip through Italy (two-pane on Chromebooks; vertical snap on phones) for Sue Scotto’s Italian 3 (AppuccinoHub).
 
 Each card = a place moment + culture bite + **choose the caption that fits**.
 Students learn a now-vs-past-scene contrast by feel — no grammar labels in the UI.
@@ -27,5 +27,5 @@ Quick Play ≈ 8 cards. Person scope: io / tu / lui-lei / noi.
 
 ## Tech
 
-Vanilla HTML/CSS/JS. Cache-bust: `?v=9`. Themes: Sky lemon → Fall → Dark.
+Vanilla HTML/CSS/JS. Cache-bust: `?v=11`. Themes: Sky lemon → Fall → Dark.
 No modal sheets / Chiudi overlays.
