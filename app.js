@@ -8,6 +8,13 @@
   }
 
   const UNLOCK_EVERY = DATA.unlockEvery || 15;
+  // Single-tap flow: correct pick → brief "Brava/Bravo" + new-word note → auto-advance.
+  const AUTO_ADVANCE_MS = 1400;
+  let advanceTimer = null;
+  function cancelAutoAdvance() {
+    if (advanceTimer) clearTimeout(advanceTimer);
+    advanceTimer = null;
+  }
 
   const STORAGE = {
     progress: 'italiaScroll.progress.v2',
@@ -58,7 +65,6 @@
     index: 0,
     firstTryCorrect: 0,
     attempted: {},
-    captionOk: {},
     answeredOk: {},
     panelOpen: {},
   };
@@ -205,6 +211,7 @@
   }
 
   function showHome() {
+    cancelAutoAdvance();
     resetOffscreenEmbeds(-1);
     const greet = $('homeGreet');
     if (greet) greet.textContent = state.studentName ? 'Ciao, ' + state.studentName : '';
@@ -258,10 +265,10 @@
   }
 
   function beginPlay() {
+    cancelAutoAdvance();
     state.index = 0;
     state.firstTryCorrect = 0;
     state.attempted = {};
-    state.captionOk = {};
     state.answeredOk = {};
     state.panelOpen = {};
     const lvl = DATA.levels.find((l) => l.id === state.levelId);
@@ -604,17 +611,7 @@
 
     if (state.answeredOk[card.id]) {
       lockCardCorrect(art, card);
-    } else if (state.captionOk[card.id]) {
-      const btns = art.querySelectorAll('.caption-btn');
-      btns.forEach((b, idx) => {
-        b.disabled = true;
-        if (idx === card.correct) b.classList.add('correct-flash');
-      });
-      fb.hidden = false;
-      fb.className = 'feedback ok';
-      fb.textContent = '✓';
       showLockIn(art, card);
-      showProveIt(art, card);
     }
 
     return art;
@@ -648,7 +645,7 @@
         ) +
         '</p>';
     } else {
-      const answered = !!(state.captionOk[card.id] || state.answeredOk[card.id]);
+      const answered = !!state.answeredOk[card.id];
       const text = answered
         ? (card.explain || '').trim() ||
           'This caption matches the moment on the card.'
@@ -680,27 +677,9 @@
     if (fb) {
       fb.hidden = false;
       fb.className = 'feedback ok';
-      fb.textContent = '✓';
+      fb.textContent = 'Brava/Bravo! ✓';
     }
-    const prove = art.querySelector('.prove');
-    if (prove) prove.hidden = true;
   }
-
-  function ensureProveEl(art) {
-    let prove = art.querySelector('.prove');
-    if (prove) return prove;
-    prove = document.createElement('div');
-    prove.className = 'prove';
-    prove.hidden = true;
-    prove.setAttribute('role', 'group');
-    prove.setAttribute('aria-label', 'Prove it');
-    const fb = art.querySelector('.feedback');
-    const dock = art.querySelector('.card-dock') || art;
-    if (fb && fb.parentNode) fb.parentNode.insertBefore(prove, fb.nextSibling);
-    else dock.appendChild(prove);
-    return prove;
-  }
-
 
   function showLockIn(art, card) {
     const dock = art.querySelector('.card-dock') || art;
@@ -730,61 +709,6 @@
       '</p>';
   }
 
-  function showProveIt(art, card) {
-    const prove = ensureProveEl(art);
-    const p = card.prove;
-    if (!p || !p.choices || !p.choices.length) {
-      clearCard(art, card);
-      return;
-    }
-    prove.hidden = false;
-    prove.innerHTML = '';
-    const row = document.createElement('div');
-    row.className = 'prove-row';
-    p.choices.forEach((text, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'prove-btn';
-      b.textContent = text;
-      b.addEventListener('click', () => onProve(card, i, art));
-      row.appendChild(b);
-    });
-    const miss = document.createElement('div');
-    miss.className = 'prove-miss';
-    miss.hidden = true;
-    miss.setAttribute('role', 'status');
-    prove.appendChild(row);
-    prove.appendChild(miss);
-  }
-
-  function onProve(card, choiceIdx, art) {
-    if (state.answeredOk[card.id] || !state.captionOk[card.id]) return;
-    const p = card.prove;
-    const prove = art.querySelector('.prove');
-    const miss = prove && prove.querySelector('.prove-miss');
-    const btns = prove ? prove.querySelectorAll('.prove-btn') : [];
-    if (choiceIdx === p.correct) {
-      beep(true);
-      btns.forEach((b, i) => {
-        b.disabled = true;
-        if (i === choiceIdx) b.classList.add('correct-flash');
-        b.classList.remove('miss');
-      });
-      if (miss) {
-        miss.hidden = true;
-        miss.textContent = '';
-      }
-      clearCard(art, card);
-    } else {
-      beep(false);
-      btns.forEach((b, i) => b.classList.toggle('miss', i === choiceIdx));
-      if (miss) {
-        miss.hidden = false;
-        miss.textContent = p.miss || 'Not quite — try again.';
-      }
-    }
-  }
-
   function maybeSilentUnlock() {
     if (state.unlocked >= DATA.levels.length) return;
     state.clearsTowardUnlock += 1;
@@ -807,14 +731,38 @@
     const allDone = state.cards.every((c) => state.answeredOk[c.id]);
     if (card.youtube) {
       // Let the song keep playing: no auto-advance. Student moves on when ready.
+      cancelAutoAdvance();
       if (allDone) showFinishButton(art);
       return;
     }
-    if (allDone) setTimeout(finishLevel, 700);
-    else {
-      setTimeout(() => {
-        if (state.index < state.cards.length - 1) goTo(state.index + 1);
-      }, 650);
+    const cardIdx = state.cards.indexOf(card);
+    cancelAutoAdvance();
+    advanceTimer = setTimeout(() => {
+      advanceTimer = null;
+      if (!$('screenPlay').classList.contains('active')) return;
+      if (allDone) {
+        finishLevel();
+        return;
+      }
+      // Only advance if she is still on this card (Next / arrow keys may have moved on already).
+      if (state.index === cardIdx && state.index < state.cards.length - 1) goTo(state.index + 1);
+    }, AUTO_ADVANCE_MS);
+  }
+
+  // On phones the dock scrolls: make sure the feedback / new-word note is actually visible.
+  function revealFeedback(art) {
+    const dock = art.querySelector('.card-dock');
+    if (!dock) return;
+    const li = art.querySelector('.lock-in');
+    const target = li && !li.hidden ? li : art.querySelector('.feedback');
+    if (!target || target.hidden) return;
+    const over = target.getBoundingClientRect().bottom - dock.getBoundingClientRect().bottom + 8;
+    if (over > 0) {
+      try {
+        dock.scrollBy({ top: over, behavior: 'smooth' });
+      } catch (_) {
+        dock.scrollTop += over;
+      }
     }
   }
 
@@ -834,7 +782,7 @@
   }
 
   function onCaption(card, choiceIdx, art) {
-    if (state.answeredOk[card.id] || state.captionOk[card.id]) return;
+    if (state.answeredOk[card.id]) return;
     const firstTry = !state.attempted[card.id];
     state.attempted[card.id] = true;
     const fb = art.querySelector('.feedback');
@@ -842,20 +790,11 @@
 
     if (choiceIdx === card.correct) {
       if (firstTry) state.firstTryCorrect += 1;
-      state.captionOk[card.id] = true;
       beep(true);
-      btns.forEach((b, i) => {
-        b.disabled = true;
-        if (i === choiceIdx) b.classList.add('correct-flash');
-        b.classList.remove('miss');
-      });
-      fb.hidden = false;
-      fb.className = 'feedback ok';
-      fb.textContent = '✓';
+      btns.forEach((b) => b.classList.remove('miss'));
       showLockIn(art, card);
-      updateSoftScore();
-      refreshExplainIfOpen(card, art);
-      showProveIt(art, card);
+      clearCard(art, card); // one answer per card: lock, score, auto-advance
+      revealFeedback(art);
     } else {
       beep(false);
       btns.forEach((b, i) => b.classList.toggle('miss', i === choiceIdx));
@@ -864,12 +803,14 @@
       fb.textContent =
         (card.why && card.why[choiceIdx]) ||
         'Not quite — same person, different time feel. Try again.';
+      revealFeedback(art);
       updateSoftScore();
       updateNavLock();
     }
   }
 
   function finishLevel() {
+    cancelAutoAdvance();
     resetOffscreenEmbeds(-1);
     const total = state.cards.length;
     const key = String(state.levelId);
