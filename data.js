@@ -1,4 +1,4 @@
-/* Italia Scroll — content pack (v13, media audited)
+/* Italia Scroll — content pack (v13.2, media audited + Italian grammar audit)
    Phase 1: English statement → pick matching Italian caption.
    Sneak: now vs past-scene feel + high-frequency chunks. No tense labels.
    Person scope: io, tu, lui/lei, noi (spread evenly per level). Silent unlock every 15 clears.
@@ -159,8 +159,8 @@ window.ITALIA_SCROLL = {
       "gloss": "right now",
       "person": "tu",
       "captions": [
-        "Da piccolo vedevi i Faraglioni da lì?",
-        "Li vedi i Faraglioni? Guarda lì!"
+        "Da piccolo vedevi i faraglioni da lì?",
+        "Vedi i faraglioni? Guarda lì!"
       ],
       "correct": 1,
       "why": [
@@ -168,7 +168,7 @@ window.ITALIA_SCROLL = {
         ""
       ],
       "help": "Match you talking to a friend live. Guarda lì! = Look over there!",
-      "explain": "Li vedi…? Guarda lì! = you’re pointing them out right now.",
+      "explain": "Vedi i faraglioni? Guarda lì! = you’re pointing them out right now.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
         "choices": [
@@ -509,7 +509,7 @@ window.ITALIA_SCROLL = {
       "gloss": "right now",
       "person": "noi",
       "captions": [
-        "Stavamo al porto di Procida, guardavamo i colori e chiacchieravamo",
+        "Eravamo al porto di Procida, guardavamo i colori e chiacchieravamo",
         "Siamo al porto di Procida, guardiamo i colori e chiacchieriamo"
       ],
       "correct": 1,
@@ -1490,7 +1490,7 @@ window.ITALIA_SCROLL = {
       "person": "tu",
       "captions": [
         "Passeggi sotto i portici e mangi un gianduiotto",
-        "Passeggiavi sempre sotto i portici mangiando un gianduiotto"
+        "Passeggiavi sempre sotto i portici e mangiavi un gianduiotto"
       ],
       "correct": 0,
       "why": [

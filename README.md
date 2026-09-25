@@ -28,5 +28,5 @@ Quick Play ≈ 8 cards. Person scope: io / tu / lui-lei / noi.
 
 ## Tech
 
-Vanilla HTML/CSS/JS. Cache-bust: `?v=13.1`. Themes: Sky lemon → Fall → Dark.
+Vanilla HTML/CSS/JS. Cache-bust: `?v=13.2`. Themes: Sky lemon → Fall → Dark.
 No modal sheets / Chiudi overlays.
