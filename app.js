@@ -212,6 +212,7 @@
 
   function showHome() {
     cancelAutoAdvance();
+    resetOffscreenEmbeds(-1);
     const greet = $('homeGreet');
     if (greet) greet.textContent = state.studentName ? 'Ciao, ' + state.studentName : '';
     renderLevelList();
@@ -347,6 +348,131 @@
     });
   }
 
+  /* Bonus YouTube card: tap-to-play only (never autoplay, sound is opt-in).
+     Uses the privacy-enhanced youtube-nocookie.com embed. If the school network
+     blocks YouTube, the local still stays visible and a "Watch on YouTube" link is
+     always shown, so the card never breaks. */
+  function buildYouTubeFacade(visual, card) {
+    const yt = card.youtube;
+    const wrap = document.createElement('div');
+    wrap.className = 'yt-wrap';
+    const play = document.createElement('button');
+    play.type = 'button';
+    play.className = 'yt-play';
+    play.setAttribute('aria-label', 'Play the video with sound');
+    play.innerHTML = '<span class="yt-play-icon" aria-hidden="true">▶</span><span>Tap to play · sound on</span>';
+    const link = document.createElement('a');
+    link.className = 'yt-link';
+    link.href = yt.url || 'https://www.youtube.com/watch?v=' + encodeURIComponent(yt.id);
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'Watch on YouTube ↗';
+    const note = document.createElement('p');
+    note.className = 'yt-note';
+    note.hidden = true;
+    note.textContent = 'The video didn’t load (YouTube may be blocked here). Use “Watch on YouTube”.';
+    play.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      if (wrap.querySelector('iframe') || wrap.dataset.probing) return;
+      // Probe first: if the network blocks YouTube, keep the local still + link.
+      wrap.dataset.probing = '1';
+      play.disabled = true;
+      probeYouTube(yt.id, (ok) => {
+        delete wrap.dataset.probing;
+        play.disabled = false;
+        if (!ok) {
+          note.hidden = false;
+          return;
+        }
+        insertFrame();
+      });
+    });
+    function insertFrame() {
+      const f = document.createElement('iframe');
+      f.className = 'yt-frame';
+      f.title = yt.title || 'YouTube video';
+      f.src =
+        'https://www.youtube-nocookie.com/embed/' +
+        encodeURIComponent(yt.id) +
+        '?autoplay=1&rel=0&playsinline=1&modestbranding=1&loop=1&playlist=' +
+        encodeURIComponent(yt.id); // loop = no end-screen suggestions
+      f.allow = 'autoplay; encrypted-media; picture-in-picture';
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      f.setAttribute('allowfullscreen', '');
+      let loaded = false;
+      const timer = setTimeout(() => {
+        if (loaded) return;
+        f.remove();
+        play.hidden = false;
+        note.hidden = false;
+      }, 9000);
+      f.addEventListener('load', () => {
+        loaded = true;
+        clearTimeout(timer);
+      });
+      f.addEventListener('error', () => {
+        clearTimeout(timer);
+        f.remove();
+        play.hidden = false;
+        note.hidden = false;
+      });
+      play.hidden = true;
+      note.hidden = true;
+      wrap.insertBefore(f, wrap.firstChild);
+    }
+    wrap.appendChild(play);
+    wrap.appendChild(note);
+    wrap.appendChild(link);
+    visual.classList.add('has-yt');
+    visual.insertBefore(wrap, visual.querySelector('.card-shade'));
+  }
+
+  // Both the embed host and the video's thumbnail must load (a school filter's
+  // block page is not an image, so it fails). 5 s budget.
+  function probeYouTube(id, cb) {
+    const urls = [
+      'https://www.youtube-nocookie.com/favicon.ico',
+      'https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/default.jpg',
+    ];
+    let left = urls.length;
+    let done = false;
+    const finish = (ok) => {
+      if (done) return;
+      done = true;
+      cb(ok);
+    };
+    const timer = setTimeout(() => finish(false), 5000);
+    urls.forEach((u) => {
+      const im = new Image();
+      im.onload = () => {
+        left -= 1;
+        if (left === 0) {
+          clearTimeout(timer);
+          finish(true);
+        }
+      };
+      im.onerror = () => {
+        clearTimeout(timer);
+        finish(false);
+      };
+      im.src = u + (u.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now();
+    });
+  }
+
+  // Stop any bonus YouTube player that is not on the current card (no sound off-screen).
+  function resetOffscreenEmbeds(activeIdx) {
+    const feed = $('feed');
+    if (!feed) return;
+    feed.querySelectorAll('.feed-card').forEach((cardEl) => {
+      if (Number(cardEl.dataset.index) === activeIdx) return;
+      const f = cardEl.querySelector('iframe.yt-frame');
+      if (!f) return;
+      f.remove();
+      const play = cardEl.querySelector('.yt-play');
+      if (play) play.hidden = false;
+    });
+  }
+
   function buildCardEl(card, i) {
     const art = document.createElement('article');
     art.className = 'feed-card' + (card.hook ? ' hook-card' : '');
@@ -363,9 +489,13 @@
 
     const imgUrl = pickImage(card, i);
     const vidUrl = card.video || '';
-    if (vidUrl) {
+    if (card.youtube && card.youtube.id) {
+      if (imgUrl) addPhoto(visual, imgUrl, card, i);
+      buildYouTubeFacade(visual, card);
+    } else if (vidUrl) {
       const vid = document.createElement('video');
       vid.className = 'card-video';
+      if (imgUrl) vid.poster = imgUrl; // verified still = poster / fallback
       vid.src = vidUrl;
       vid.muted = true;
       vid.defaultMuted = true;
@@ -599,6 +729,12 @@
     updateNavLock();
 
     const allDone = state.cards.every((c) => state.answeredOk[c.id]);
+    if (card.youtube) {
+      // Let the song keep playing: no auto-advance. Student moves on when ready.
+      cancelAutoAdvance();
+      if (allDone) showFinishButton(art);
+      return;
+    }
     const cardIdx = state.cards.indexOf(card);
     cancelAutoAdvance();
     advanceTimer = setTimeout(() => {
@@ -628,6 +764,21 @@
         dock.scrollTop += over;
       }
     }
+  }
+
+  function showFinishButton(art) {
+    const fb = art.querySelector('.feedback');
+    if (!fb || fb.querySelector('.finish-btn')) return;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'finish-btn';
+    b.textContent = 'Finish →';
+    b.addEventListener('click', () => {
+      resetOffscreenEmbeds(-1);
+      finishLevel();
+    });
+    fb.appendChild(document.createTextNode(' '));
+    fb.appendChild(b);
   }
 
   function onCaption(card, choiceIdx, art) {
@@ -660,6 +811,7 @@
 
   function finishLevel() {
     cancelAutoAdvance();
+    resetOffscreenEmbeds(-1);
     const total = state.cards.length;
     const key = String(state.levelId);
     const prev = state.completed[key] || { bestFirstTry: 0, total: total, plays: 0 };
@@ -777,6 +929,7 @@
       block: 'start',
     });
     state.index = i;
+    resetOffscreenEmbeds(i);
     updateSoftScore();
     updateNavLock();
     preloadNearbyImages(i);
@@ -809,6 +962,7 @@
     }
     if (best !== state.index) {
       state.index = best;
+      resetOffscreenEmbeds(best);
       updateSoftScore();
       updateNavLock();
       preloadNearbyImages(best);
