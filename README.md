@@ -4,7 +4,7 @@
 
 Each card = **English statement** → pick the Italian that says it (the photo shows the place named on the card).
 Sneak: now-vs-past feel + high-frequency chunks (`Ti va di…`, `il golfo`, food, places). No tense-name labels.
-After a correct pick: tiny “you locked in” gloss. Some cards use short muted Italy loops.
+**Single tap:** one answer per card. After a correct pick: “Brava/Bravo!” + tiny “you locked in” gloss for ~1.4 s, then it auto-advances (Next / arrow keys still work). Some cards use short muted Italy loops.
 
 **Live:** https://appuccinohub.github.io/italia-scroll/
 
@@ -15,7 +15,7 @@ After a correct pick: tiny “you locked in” gloss. Some cards use short muted
 1. Student types first name (saved locally).
 2. Trip stretches unlock quietly after enough solid clears — no counter shown.
 3. Every card has **Help** (before/while choosing) and **Explanation** (soft before answer; full why after).
-4. Correct caption → prove-it meaning check → next card.
+4. Wrong pick → feedback, pick again until correct (only first-try counts). Correct pick → “Brava/Bravo!” + new-word note → auto-advance to the next card.
 5. End screen shows first-try score under their name; roster stored in `localStorage` for `teacher.html`.
 
 ## Trip stretches
@@ -28,5 +28,5 @@ Quick Play ≈ 8 cards. Person scope: io / tu / lui-lei / noi.
 
 ## Tech
 
-Vanilla HTML/CSS/JS. Cache-bust: `?v=13`. Themes: Sky lemon → Fall → Dark.
+Vanilla HTML/CSS/JS. Cache-bust: `?v=13.1`. Themes: Sky lemon → Fall → Dark.
 No modal sheets / Chiudi overlays.

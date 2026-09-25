@@ -604,52 +604,6 @@ html[data-theme="dark"] .card-shade {
 }
 .feedback[hidden] { display: none !important; }
 
-.prove {
-  margin: 0 14px 8px;
-  padding: 10px;
-  border-radius: 14px;
-  position: relative;
-  z-index: 3;
-  background: var(--accent-soft);
-  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
-  text-shadow: none;
-}
-.prove[hidden] { display: none !important; }
-.prove-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.prove-btn {
-  text-align: left;
-  width: 100%;
-  min-height: 44px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--card) 96%, transparent);
-  color: var(--ink);
-  border: 2px solid transparent;
-  font-size: 13px;
-  font-weight: 650;
-  line-height: 1.3;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-.prove-btn:active:not(:disabled) { transform: scale(0.99); }
-.prove-btn.correct-flash {
-  border-color: var(--success);
-  background: var(--success-bg);
-}
-.prove-btn.miss {
-  border-color: color-mix(in srgb, #c45c26 50%, var(--line));
-  opacity: 0.85;
-}
-.prove-miss {
-  margin-top: 6px;
-  font-size: 12px;
-  line-height: 1.35;
-  color: var(--warn-ink);
-}
-.prove-miss[hidden] { display: none !important; }
 
 
 .feed-nav {
@@ -919,13 +873,11 @@ html[data-theme="dark"] .card-shade {
 
 /* Hover / focus for mouse + keyboard (Chromebook trackpad) */
 .caption-btn:hover:not(:disabled),
-.prove-btn:hover:not(:disabled),
 .tool-btn:hover {
   border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
   background: color-mix(in srgb, var(--accent-soft) 55%, var(--card));
 }
 .caption-btn:focus-visible,
-.prove-btn:focus-visible,
 .tool-btn:focus-visible,
 .nav-btn:focus-visible,
 .level-card:focus-visible,
@@ -948,8 +900,8 @@ html[data-theme="dark"] .card-shade {
 
 /* ============================================================
    LAPTOP / CHROMEBOOK PRIMARY (≥900px)
-   Two-pane: large photo LEFT · captions / Help / Explanation /
-   prove-it RIGHT. Uses most of the viewport — not a phone mock.
+   Two-pane: large photo LEFT · captions / Help / Explanation
+   RIGHT. Uses most of the viewport — not a phone mock.
    ============================================================ */
 @media (min-width: 900px) {
   .stage {
@@ -1080,16 +1032,8 @@ html[data-theme="dark"] .card-shade {
     box-shadow: 0 6px 18px rgba(30, 80, 130, 0.14);
   }
 
-  .feedback,
-  .prove {
+  .feedback {
     margin: 0 20px 10px;
-  }
-
-  .prove-btn {
-    min-height: 48px;
-    padding: 12px 14px;
-    font-size: 14px;
-    cursor: pointer;
   }
 
   .feed-nav {
@@ -1167,8 +1111,7 @@ html[data-theme="dark"] .card-shade {
     padding: 11px 14px;
     font-size: 15px;
   }
-  .prove-btn { min-height: 44px; padding: 10px 12px; }
-  .feedback, .prove { margin: 0 16px 8px; }
+  .feedback { margin: 0 16px 8px; }
   .feed-nav { padding: 4px 12px 6px; }
   .nav-btn { height: 44px; min-width: 88px; }
 }
