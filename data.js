@@ -4,7 +4,8 @@
    Person scope: io, tu, lui/lei, noi (spread evenly per level). Silent unlock every 15 clears.
    Every card has ONE explicit, visually verified photo of the place named on the card.
    No rotation arrays. v14: 9 place-verified muted clips (card.video, photo = poster/fallback),
-   4 place-verified people photos, 1 bonus YouTube sing-along card (tap to play, never autoplay).
+   4 place-verified people photos, 1 bonus sing-along card (v14.4: the original 1981 recording as the Apple Music
+   30 s preview, streamed only on tap, with karaoke lyrics + tap-a-word meanings like Arianna Scroll; no YouTube).
    Correct-answer slot varies per card.
 */
 window.ITALIA_SCROLL = {
@@ -579,13 +580,26 @@ window.ITALIA_SCROLL = {
       "level": 1,
       "region": "Bonus 🎶",
       "image": "images/bonus/sara-perche-ti-amo.jpg",
-      "youtube": {
-        "id": "-s1Uzjhe4EQ",
-        "title": "NAPOLI METRO LOVE SARÀ PERCHÉ TI AMO ❤️",
-        "channel": "Metroman ITALY",
-        "url": "https://www.youtube.com/watch?v=-s1Uzjhe4EQ"
+      "song": {
+        "trackId": 1722506116,
+        "title": "Sarà perché ti amo",
+        "artist": "Ricchi e Poveri",
+        "year": 1981,
+        "album": "…E penso a te (1981), original recording",
+        "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7b/2f/cb/7b2fcb1b-0288-c551-7330-c676d186e06c/mzaf_6433311904750505108.plus.aac.p.m4a",
+        "view": "https://music.apple.com/it/album/sar%C3%A0-perch%C3%A9-ti-amo/1722506113?i=1722506116",
+        "lineStart": 0,
+        "lineEnd": null,
+        "lyrics": [
+          { "t": [0.96, 16.6], "w": [["E", "and"], ["vola,", "flies", "volare"], ["vola,", "flies", "volare"], ["si", "one / everyone (si sa = everyone knows)"], ["sa", "knows", "sapere"]] },
+          { "t": [3.1, 18.98], "w": [["sempre", "always (sempre più = more and more)"], ["più", "more"], ["in", "in (in alto = up high)"], ["alto", "high"], ["si", "one / we (si va = we go)"], ["va", "goes", "andare"]] },
+          { "t": [5.1, 20.94], "w": [["E", "and"], ["vola,", "flies", "volare"], ["vola", "flies", "volare"], ["con", "with"], ["me", "me"]] },
+          { "t": [7.1, 22.98], "w": [["il", "the"], ["mondo", "world"], ["è", "is", "essere"], ["matto", "crazy"], ["perché…", "because…"]] },
+          { "t": [8.7, 24.6], "w": [["e", "and"], ["se", "if"], ["l'amore", "love"], ["non", "not"], ["c'è,", "there is (non c'è = there isn't)", "esserci"], ["basta", "is enough", "bastare"], ["una", "a / one"], ["sola", "only (una sola = just one)"], ["canzone", "song"]] },
+          { "t": 13.14, "w": [["per", "to / in order to"], ["far", "to make (short for fare)"], ["confusione", "confusion, commotion"], ["fuori", "outside"], ["e", "and"], ["dentro", "inside"], ["di", "of (dentro di te = inside you)"], ["te", "you"]] }
+        ]
       },
-      "culture": "Bonus · a metro-car sing-along of a 1981 classic",
+      "culture": "Bonus · a 1981 Sanremo classic to sing along to",
       "prompt": "We’re all singing ‘Sarà perché ti amo’ together right now!",
       "gloss": "right now",
       "person": "noi",
@@ -598,7 +612,7 @@ window.ITALIA_SCROLL = {
         "",
         "That one is how it used to go. English is right now."
       ],
-      "help": "Tap ▶ to hear the crowd sing (sound on), then pick. cantiamo = we sing / we’re singing. insieme = together.",
+      "help": "Tap ▶ to hear the 1981 original (sound on) and tap any lyric word for its meaning, then pick. No sound? Just read and pick. cantiamo = we sing / we’re singing. insieme = together.",
       "explain": "Cantiamo tutti insieme… = we’re singing together right now — live.",
       "softExplain": "Read the English line. Pick the Italian that says the same thing.",
       "prove": {
