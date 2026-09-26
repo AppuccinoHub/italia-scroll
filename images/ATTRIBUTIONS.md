@@ -67,7 +67,6 @@ The Tropea clip is a different, daytime section of the same Commons video as bef
 - The v14 YouTube video (Metroman ITALY) and the v14.3 1997 re-recording (trackId 311429581) are no longer used.
   Song rights belong to their owners.
 
-## Link-preview image `og.png` (repo root, v2, 2026-09-26)
-1200×630 card made for this app: a frame (0 s) of https://www.pexels.com/video/aerial-view-of-capri-s-iconic-faraglioni-rock-formations-32693749/
-(Pexels video 32693749, Faraglioni di Capri) by Mihaela Claudia Puscas, Pexels License — the same video as `videos/capri-faraglioni.mp4`.
-Shown inside a drawn phone with the app title and the card c1-08 caption. No other third-party material.
+## Link-preview image `og.png` (repo root, v3, 2026-09-26)
+1200×630 card: Sue Scotto's own image (an AI-assisted collage of Amalfi Coast, Roma, Firenze, Venezia, Toscana and Napoli), used with her permission.
+Edited for this app: the centre title now reads "Italia Scroll / Italiano 3" and the collage is framed as a postcard on the app's pastel background. No other third-party material.
